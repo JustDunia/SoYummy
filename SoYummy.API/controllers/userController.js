@@ -1,4 +1,5 @@
 const User = require('../models/user'); // Zakładając, że korzystasz z modelu User
+const { NewsletterSubscriber } = require('../models/user');
 
 // Funkcja do pobierania profilu użytkownika
 function getUserProfile(req, res) {
@@ -29,7 +30,30 @@ function updateUserProfile(req, res) {
   return res.status(200).json({ message: 'Dane użytkownika zaktualizowane pomyślnie' });
 }
 
+async function subscribeToNewsletter(req, res) {
+  const userId = req.user._id; // Przyjmując, że z uwierzytelniania otrzymujesz informacje o użytkowniku
+
+  try {
+    // Sprawdź, czy użytkownik już jest subskrybentem
+    const existingSubscriber = await NewsletterSubscriber.findOne({ user: userId });
+
+    if (existingSubscriber) {
+      return res.status(400).json({ error: 'Użytkownik jest już zapisany do newslettera.' });
+    }
+
+    // Jeśli użytkownik nie jest jeszcze subskrybentem, zapisz go
+    const newSubscriber = new NewsletterSubscriber({ user: userId });
+    await newSubscriber.save();
+
+    res.status(200).json({ message: 'Zapisano się do newslettera.' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Wystąpił błąd podczas próby zapisania się do newslettera.' });
+  }
+}
+
 module.exports = {
   getUserProfile,
   updateUserProfile,
+  subscribeToNewsletter,
 };

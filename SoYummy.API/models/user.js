@@ -6,4 +6,16 @@ const userSchema = new mongoose.Schema({
     // other user information fields
 });
 
-module.exports = mongoose.model('User', userSchema);
+const User = mongoose.model('User', userSchema);
+
+const newsletterSubscriberSchema = new mongoose.Schema({
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true,
+    },
+});
+
+const NewsletterSubscriber = mongoose.model('NewsletterSubscriber', newsletterSubscriberSchema);
+
+module.exports = { User, NewsletterSubscriber };

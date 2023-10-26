@@ -86,9 +86,55 @@ function resetPassword(req, res) {
   return res.status(200).json({ message: 'Reset hasła pomyślny' });
 }
 
+// Funkcja obsługująca zmianę hasła użytkownika
+function changePassword(req, res) {
+  const { userId, currentPassword, newPassword } = req.body;
+
+  // Pobierz użytkownika na podstawie userId
+  User.findById(userId, (err, user) => {
+    if (err) {
+      return res.status(500).json({ error: 'Błąd serwera' });
+    }
+
+    if (!user) {
+      return res.status(404).json({ error: 'Użytkownik nie istnieje' });
+    }
+
+    // Porównaj aktualne hasło
+    bcrypt.compare(currentPassword, user.password, (err, passwordMatch) => {
+      if (err) {
+        return res.status(500).json({ error: 'Błąd serwera' });
+      }
+
+      if (!passwordMatch) {
+        return res.status(401).json({ error: 'Niepoprawne hasło' });
+      }
+
+      // Zaktualizuj hasło na nowe
+      bcrypt.hash(newPassword, 10, (err, hashedPassword) => {
+        if (err) {
+          return res.status(500).json({ error: 'Błąd serwera' });
+        }
+
+        user.password = hashedPassword;
+
+        user.save((err) => {
+          if (err) {
+            return res.status(500).json({ error: 'Błąd serwera' });
+          }
+
+          // Hasło zostało zaktualizowane pomyślnie
+          return res.status(200).json({ message: 'Hasło zostało zmienione' });
+        });
+      });
+    });
+  });
+}
+
 module.exports = {
   registerUser,
   loginUser,
   logoutUser,
-  resetPassword
+  resetPassword,
+  changePassword
 };

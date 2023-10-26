@@ -6,10 +6,10 @@ const authController = require('../controllers/authController'); // Upewnij się
 router.post('/register', authController.registerUser);
 
 // Punkt końcowy logowania użytkownika
-router.post('/login', authController.login);
+router.post('/login', authController.loginUser);
 
 // Punkt końcowy wylogowania użytkownika
-router.post('/logout', authController.logout);
+router.post('/logout', authController.logoutUser);
 
 // Punkt końcowy resetu hasła
 router.post('/reset-password', authController.resetPassword);

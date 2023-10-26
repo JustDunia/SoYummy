@@ -5,6 +5,6 @@ const authenticate = require('../middleware/authenticate');
 
 // Definicje punktów końcowych operacji użytkownika
 router.get('/profile', authenticate, userController.getUserProfile);
-router.put('/update', authenticate, userController.updateUser);
+router.put('/update', authenticate, userController.updateUserProfile);
 
 module.exports = router;

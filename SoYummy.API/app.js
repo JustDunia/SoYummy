@@ -1,6 +1,8 @@
 const express = require('express')
 const logger = require('morgan')
 const cors = require('cors')
+const authRoutes = require('./routes/auth');
+const userRoutes = require('./routes/user');
 
 const app = express()
 
@@ -19,5 +21,8 @@ app.use((req, res) => {
 app.use((err, req, res, next) => {
 	res.status(500).json({ status: 'error', code: 500, message: err.message })
 })
+
+app.use('/auth', authRoutes);
+app.use('/user', userRoutes);
 
 module.exports = app

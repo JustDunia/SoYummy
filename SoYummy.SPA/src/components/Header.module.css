@@ -1,0 +1,25 @@
+.headerContainer{}
+
+.smallSpinach{
+    position: absolute;
+    top:48px;
+    left: 0;
+}
+
+.bowl{
+    position: absolute;
+    top: 322px;
+    right: 28px;
+    z-index: 9;
+}
+
+.bigSpinach{
+    position: absolute;
+    z-index: 8;
+}
+
+.bgHeader{
+    position: absolute;
+    right: 0;
+    top:150px;
+}

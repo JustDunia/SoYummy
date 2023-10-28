@@ -1,12 +1,17 @@
 const express = require('express')
 const logger = require('morgan')
 const cors = require('cors')
+const swaggerUi = require('swagger-ui-express')
+const swaggerSpec = require('./swagger')
+
 const authRoutes = require('./routes/auth')
 const userRoutes = require('./routes/user')
 
 const app = express()
 
 const formatsLogger = app.get('env') === 'development' ? 'dev' : 'short'
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
 
 app.use(logger(formatsLogger))
 app.use(cors())

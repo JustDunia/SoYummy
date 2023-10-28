@@ -1,25 +1,61 @@
-.headerContainer{}
-
-.smallSpinach{
-    position: absolute;
-    top:48px;
-    left: 0;
+.headerContainer {
+	display: flex;
+	justify-content: center;
 }
 
-.bowl{
-    position: absolute;
-    top: 322px;
-    right: 28px;
-    z-index: 9;
+.soYummyTag {
+	position: absolute;
+	top: 98px;
+	font-family: "Poppins", sans-serif;
+	font-size: 60px;
+	font-weight: 400;
+	line-height: 60px;
+	letter-spacing: -0.005em;
+	text-align: center;
 }
 
-.bigSpinach{
-    position: absolute;
-    z-index: 8;
+.soPart {
+	color: #8baa36;
 }
 
-.bgHeader{
-    position: absolute;
-    right: 0;
-    top:150px;
+.yummyPart {
+	color: #22252a;
+}
+
+.whatToCookTxt {
+	position: absolute;
+	top: 206px;
+	width: 248px;
+	height: 72;
+	font-family: "Poppins", sans-serif;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 18px;
+	letter-spacing: -0.02em;
+	text-align: center;
+}
+
+.smallSpinach {
+	position: absolute;
+	top: 48px;
+	left: 0;
+}
+
+.bowl {
+	position: absolute;
+	top: 322px;
+	right: 28px;
+	z-index: 9;
+}
+
+.bigSpinach {
+	position: absolute;
+	right: 0;
+	z-index: 8;
+}
+
+.bgHeader {
+	position: absolute;
+	right: 0;
+	top: 150px;
 }

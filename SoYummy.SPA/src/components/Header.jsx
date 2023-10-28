@@ -1,4 +1,3 @@
-import { Routes, Route, NavLink } from "react-router-dom";
 import Navigation from "./Navigation";
 import css from "./Header.module.css";
 import smallSpinach from "../images/soYummy/spinach_top_left_1x_mob.png";
@@ -11,16 +10,25 @@ const Header = () => {
 	return (
 		<div className={css.headerContainer}>
 			<Navigation />
+			<h1 className={css.soYummyTag}>
+				<span className={css.soPart}>So</span>
+				<span className={css.yummyPart}>Yummy</span>
+			</h1>
+			<span className={css.whatToCookTxt}>
+				&quot;What to cook?&quot; is not only a recipe app, it is, in
+				fact, your cookbook. You can add your own recipes to save them
+				for the future.
+			</span>
 			<img
 				className={css.smallSpinach}
 				src={smallSpinach}
-				alt="Small spinach"
+				alt="Young spinach leafs"
 			/>
-			<img className={css.bowl} src={bowl} alt="Small spinach" />
+			<img className={css.bowl} src={bowl} alt="Bowl full of veg" />
 			<img
 				className={css.bigSpinach}
 				src={bigSpinach}
-				alt="Small spinach"
+				alt="Young spinach leafs"
 			/>
 			<img className={css.bgHeader} src={bgHeader} alt="Small spinach" />
 		</div>

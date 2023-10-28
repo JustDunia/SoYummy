@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import Home from "../pages/Home";
 import Logo from "./Logo";
-// import Burger from "./Burger";
+import NavigationModal from "./NavigationModal";
 import css from "./Navigation.module.css";
 
 const Navigation = () => {
@@ -42,15 +42,16 @@ const Navigation = () => {
 				</div>
 			</div>
 
-			<div
-				className={css.navOverlay}
-				style={{
-					top: navOpen ? "0" : "-100%",
-					transitionDelay: navOpen ? "0s" : "0s",
-				}}
-			></div>
+			<div className={navOpen ? `${css.navModalOpen}` : `${css.navModalClose}`}>
+				<NavigationModal />
+			</div>
 		</nav>
 	);
 };
 
 export default Navigation;
+
+// style={{
+// top: navOpen ? "0" : "-100%",
+// transitionDelay: navOpen ? "0s" : "0s",
+// }}

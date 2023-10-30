@@ -127,8 +127,26 @@ async function logoutUser(req, res, next) {
 	}
 }
 
+/**
+ * Funkcja obsługująca pobranie danych aktualnego użytkownika
+ */
+const getCurrentUser = async (req, res) => {
+	const { username, email } = req.user
+	res.status(200).json({
+		username: username,
+		email: email,
+	})
+}
+
+/**
+ * Funkcja aktualizacji danych użytkownika
+ * TODO do zrobienia po zorientowaniu się jakie dane użytkownika rzeczywiście będą potrzebowały mieć możliwość zmiany
+ */
+const updateUser = async (req, res, next) => {}
+
 module.exports = {
 	registerUser,
 	loginUser,
 	logoutUser,
+	getCurrentUser,
 }

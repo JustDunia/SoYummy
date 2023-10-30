@@ -93,6 +93,18 @@ router.post('/login', authController.loginUser)
  */
 router.get('/logout', authenticate, authController.logoutUser)
 
-router.get('/current', authenticate, authController.logoutUser)
+/**
+ * @swagger
+ * /auth/current:
+ *    get:
+ *      description: Get current user
+ *      security:
+ *        - bearerAuth: []
+ *      responses:
+ *        200:
+ *          description: Current user data
+ *
+ */
+router.get('/current', authenticate, authController.getCurrentUser)
 
 module.exports = router

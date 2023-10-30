@@ -1,0 +1,136 @@
+:root {
+  --breakpoint-sm: (min-width: 481px) and (max-width: 768px);
+  --breakpoint-md: (min-width: 769px) and (max-width: 1024px);
+  --breakpoint-lg: (min-width: 1025px);
+  --primaryLightText: #FAFAFA;
+  --greenAccent: #8BAA36;
+}
+
+.WelcomeImage {
+  background-image: url('../../images/welcomePage/welcome_hero_mob_1x.png');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  height: 100vh;
+
+  @media (--breakpoint-sm) {
+      background-image: url('../../images/welcomePage/welcome_hero_tab_1x.png');
+  }
+
+  @media (--breakpoint-md) {
+      background-image: url('../../images/welcomePage/welcome_hero_tab_1x.png');
+  }
+
+  @media (--breakpoint-lg) {
+      background-image: url('../../images/welcomePage/welcome_hero_desk_2x.jpg');
+  }
+}
+
+.ButtonBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+}
+
+.Container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  padding: auto;
+  flex-direction: column;
+  max-width: 305px;
+  padding-top: 228px;
+  padding-left: 35px;
+  padding-right: 35px;
+}
+
+.BigText {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 24px;
+  letter-spacing: -0.02em;
+  font-feature-settings: 'liga' off;
+  color: var(--primaryLightText);
+  margin-top: 28px;
+  width: 250px;
+
+  @media (--breakpoint-sm) {
+      width: 288px;
+      height: 35px;
+  }
+
+  @media (--breakpoint-lg) {
+      width: 288px;
+      height: 35px;
+  }
+}
+
+.MainText {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  text-align: center;
+  letter-spacing: -0.02em;
+  color: var(--primaryLightText);
+  margin-bottom: 44px;
+  margin-top: 14px;
+  width: 305px;
+
+  @media (--breakpoint-sm) {
+      width: 450px;
+      height: 72px;
+  }
+
+  @media (--breakpoint-md) {
+      width: 505px;
+  }
+
+  @media (--breakpoint-lg) {
+      width: 540px;
+      height: 72px;
+  }
+}
+
+.StyledLink1,
+.StyledLink2 {
+  background-color: var(--greenAccent);
+  border-radius: 24px 44px;
+  border: none;
+  width: 95px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--primaryLightText);
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+
+  @media (--breakpoint-sm) {
+      width: 144px;
+      height: 61px;
+      transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  @media (--breakpoint-lg) {
+      width: 144px;
+      height: 67px;
+      transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  &:hover,
+  &:focus {
+      background-color: transparent;
+      border: 3px solid var(--primaryLightText);
+      width: 186px;
+  }
+}

@@ -1,4 +1,4 @@
-const { User } = require('../models/user')
+const User = require('../models/user')
 const { ObjectId } = require('mongoose')
 
 /**
@@ -32,9 +32,18 @@ const addToken = async (email, token) => User.findOneAndUpdate({ email: email },
  */
 const removeToken = async id => User.findByIdAndUpdate({ _id: id }, { token: null })
 
+/**
+ * Zmiana statusu subskrypcji
+ * @param {ObjectId} param - Id użytkownika
+ * @param {Boolean} param - Czy użytkownik ma być subskrybentem
+ */
+const updateSubscription = async (id, isSubscriber) =>
+	User.findByIdAndUpdate({ _id: id }, { isSubscriber: isSubscriber }, { new: true })
+
 module.exports = {
 	createUser,
 	getUserByEmail,
 	addToken,
 	removeToken,
+	updateSubscription,
 }

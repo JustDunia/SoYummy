@@ -21,6 +21,10 @@ const userSchema = new Schema(
 			type: String,
 			default: null,
 		},
+		isSubscriber: {
+			type: Boolean,
+			default: false,
+		},
 	},
 	{ versionKey: false, timestamps: true }
 )
@@ -34,14 +38,4 @@ userSchema.methods.validatePassword = function (password) {
 
 const User = model('User', userSchema)
 
-const newsletterSubscriberSchema = new mongoose.Schema({
-	user: {
-		type: mongoose.Schema.Types.ObjectId,
-		ref: 'User',
-		required: true,
-	},
-})
-
-const NewsletterSubscriber = mongoose.model('NewsletterSubscriber', newsletterSubscriberSchema)
-
-module.exports = { User, NewsletterSubscriber }
+module.exports = User

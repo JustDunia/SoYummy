@@ -1,5 +1,5 @@
 require('dotenv').config()
-const { User } = require('../models/user')
+const User = require('../models/user')
 const jwt = require('jsonwebtoken')
 const SECRET = process.env.SECRET
 const service = require('../service/userService')
@@ -139,6 +139,23 @@ const getCurrentUser = async (req, res) => {
 }
 
 /**
+ * Funkcja obsługująca zapisanie / wypisanie z newslettera
+ */
+const manageSubscription = async (req, res, next) => {
+	const { id, isSubscriber } = req.user
+	try {
+		const user = await service.updateSubscription(id, !isSubscriber)
+		return res.status(200).json({
+			message: 'Subscription status updated',
+			userData: { email: user.email, isSubscriber: user.isSubscriber },
+		})
+	} catch (e) {
+		console.error(e)
+		next(e)
+	}
+}
+
+/**
  * Funkcja aktualizacji danych użytkownika
  * TODO do zrobienia po zorientowaniu się jakie dane użytkownika rzeczywiście będą potrzebowały mieć możliwość zmiany
  */
@@ -149,4 +166,5 @@ module.exports = {
 	loginUser,
 	logoutUser,
 	getCurrentUser,
+	manageSubscription,
 }

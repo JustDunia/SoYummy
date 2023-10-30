@@ -103,8 +103,20 @@ router.get('/logout', authenticate, authController.logoutUser)
  *      responses:
  *        200:
  *          description: Current user data
- *
  */
 router.get('/current', authenticate, authController.getCurrentUser)
+
+/**
+ * @swagger
+ * /auth/subscribe:
+ *    patch:
+ *      description: Manage user's subscription
+ *      security:
+ *        - bearerAuth: []
+ *      responses:
+ *        200:
+ *          description: Subscription status updated
+ */
+router.patch('/subscribe', authenticate, authController.manageSubscription)
 
 module.exports = router

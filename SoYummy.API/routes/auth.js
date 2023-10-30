@@ -108,7 +108,7 @@ router.get('/current', authenticate, authController.getCurrentUser)
 
 /**
  * @swagger
- * /auth/current:
+ * /auth/subscribe:
  *    patch:
  *      description: Manage user's subscription
  *      security:

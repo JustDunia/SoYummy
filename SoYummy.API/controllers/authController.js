@@ -1,148 +1,152 @@
 require('dotenv').config()
-// poprawiony sposób importu (bez klamr User nie był importowany)
 const { User } = require('../models/user')
 const jwt = require('jsonwebtoken')
-const bcrypt = require('bcrypt')
 const SECRET = process.env.SECRET
+const service = require('../service/userService')
+const Joi = require('joi')
 
-// Funkcja obsługująca rejestrację użytkownika
-// Te funkcje powinny być asynchroniczne
+/**
+ * schemat walidacji parametrów przesłanych podczas rejestracji
+ */
+const registerSchema = Joi.object({
+	username: Joi.string().min(2).max(30).required(),
+	password: Joi.string().min(8).max(30).required(),
+	email: Joi.string().email().required(),
+})
+
+/**
+ * schemat walidacji parametrów przesłanych podczas logowania
+ */
+const loginSchema = Joi.object({
+	password: Joi.string().required(),
+	email: Joi.string().email().required(),
+})
+
+/**
+ * Funkcja obsługująca rejestrację użytkownika
+ */
 async function registerUser(req, res, next) {
-	const { username, password, email } = req.body
+	const { username, email, password } = req.body
 
-	// Sprawdź, czy użytkownik o podanej nazwie użytkownika lub adresie email już istnieje w bazie danych
-	// "Model.findOne() no longer accepts a callback"
-	// błąd serwera jest już obsłużony na poziomie centralnym, nie trzeba go pisać przy każdym odpytaniu bazy
-	// TODO odwołania do bazy danych przenieść do oddzielnych serwisów
-	// TODO metody hashowania hasła itp. przenieść do modelu User
-	try {
-		const user = await User.findOne({ email: email })
-		if (user)
-			return res.status(400).json({ error: 'Użytkownik o takim adresie email już istnieje.' })
+	const validationResult = registerSchema.validate({
+		username: username,
+		email: email,
+		password: password,
+	})
 
-		// Jeśli użytkownik nie istnieje, zahashuj hasło i zapisz do bazy danych
-		const hashedPassword = bcrypt.hashSync(password, bcrypt.genSaltSync(6))
+	if (!validationResult.error) {
+		try {
+			const user = await service.getUserByEmail(email)
+			if (user) {
+				return res.status(400).json({ error: 'Email is already in use' })
+			}
 
-		const newUser = new User({
-			username,
-			password: hashedPassword,
-			email,
+			const newUser = new User({
+				username,
+				email,
+			})
+
+			newUser.setPassword(password)
+
+			const result = await service.createUser(newUser)
+
+			return res.status(201).json({
+				message: 'Registration successful',
+				user: { username: result.username, email: result.email },
+			})
+		} catch (e) {
+			console.error(e)
+			next(e)
+		}
+	} else {
+		return res.status(400).json({
+			message: validationResult.error.message,
 		})
-
-		await newUser.save()
-
-		// Zarejestrowano pomyślnie
-		return res.status(201).json({
-			message: 'Rejestracja pomyślna',
-			user: { username: newUser.username, email: newUser.email },
-		})
-	} catch (e) {
-		console.error(e)
-		next(e)
 	}
 }
 
-// Funkcja obsługująca logowanie użytkownika
+/**
+ * Funkcja obsługująca logowanie użytkownika
+ */
 async function loginUser(req, res, next) {
 	const { email, password } = req.body
 
-	// Sprawdź, czy użytkownik o podanej nazwie użytkownika istnieje w bazie danych
+	const validationResult = loginSchema.validate({
+		email: email,
+		password: password,
+	})
+
+	if (!validationResult.error) {
+		try {
+			const user = await service.getUserByEmail(email)
+
+			if (!user) {
+				return res.status(404).json({ error: 'User not found' })
+			}
+
+			if (!user.validatePassword(password)) {
+				return res.status(401).json({
+					message: 'Password is wrong',
+				})
+			}
+
+			const payload = {
+				id: user.id,
+				email: user.email,
+			}
+
+			const token = jwt.sign(payload, SECRET)
+
+			await service.addToken(email, token)
+
+			return res
+				.status(200)
+				.json({ message: 'Signing in successful', userData: { email: email, token: token } })
+		} catch (e) {
+			console.error(e)
+			next(e)
+		}
+	} else {
+		return res.status(400).json({
+			message: validationResult.error.message,
+		})
+	}
+}
+
+/**
+ * Funkcja obsługująca wylogowanie użytkownika
+ */
+async function logoutUser(req, res, next) {
+	const id = req.user.id
 	try {
-		const user = await User.findOne({ email: email })
-
-		if (!user) {
-			return res.status(404).json({ error: 'Użytkownik nie istnieje' })
-		}
-
-		// Porównaj hasło
-		const passwordMatch = bcrypt.compareSync(password, user.password)
-
-		if (!passwordMatch) {
-			return res.status(401).json({ error: 'Niepoprawne hasło' })
-		}
-
-		// Wygeneruj token JWT i zwróć go w odpowiedzi
-		const payload = {
-			id: user.id,
-			email: user.email,
-		}
-
-		const token = jwt.sign(payload, SECRET)
-
-		await User.findOneAndUpdate({ email: email }, { token: token })
-
-		return res.status(200).json({ token })
+		await service.removeToken(id)
+		res.status(204).send()
 	} catch (e) {
 		console.error(e)
 		next(e)
 	}
 }
 
-// Funkcja obsługująca wylogowanie użytkownika
-function logoutUser(req, res) {
-	// Realizuj logikę wylogowania, na przykład usuwając token z bazy danych lub inaczej invaliderując sesję
-	// Po wylogowaniu zwróć odpowiednią odpowiedź
-	return res.status(200).json({ message: 'Wylogowano pomyślnie' })
+/**
+ * Funkcja obsługująca pobranie danych aktualnego użytkownika
+ */
+const getCurrentUser = async (req, res) => {
+	const { username, email } = req.user
+	res.status(200).json({
+		username: username,
+		email: email,
+	})
 }
 
-// TAKIE FUNKCJONALNOŚCI NIE SĄ PRZEWIDZIANE W PROJEKCIE, WIĘC NIE MA CO TRACIĆ CZASU NA POPRAWKI
-
-// Funkcja obsługująca reset hasła użytkownika
-// function resetPassword(req, res) {
-// 	// Realizuj logikę resetowania hasła, na przykład wysyłając e-mail z linkiem do resetowania
-// 	// Po zakończeniu resetowania zwróć odpowiednią odpowiedź
-// 	return res.status(200).json({ message: 'Reset hasła pomyślny' })
-// }
-
-// Funkcja obsługująca zmianę hasła użytkownika
-// function changePassword(req, res) {
-// 	const { userId, currentPassword, newPassword } = req.body
-
-// 	// Pobierz użytkownika na podstawie userId
-// 	User.findById(userId, (err, user) => {
-// 		if (err) {
-// 			return res.status(500).json({ error: 'Błąd serwera' })
-// 		}
-
-// 		if (!user) {
-// 			return res.status(404).json({ error: 'Użytkownik nie istnieje' })
-// 		}
-
-// 		// Porównaj aktualne hasło
-// 		bcrypt.compare(currentPassword, user.password, (err, passwordMatch) => {
-// 			if (err) {
-// 				return res.status(500).json({ error: 'Błąd serwera' })
-// 			}
-
-// 			if (!passwordMatch) {
-// 				return res.status(401).json({ error: 'Niepoprawne hasło' })
-// 			}
-
-// 			// Zaktualizuj hasło na nowe
-// 			bcrypt.hash(newPassword, 10, (err, hashedPassword) => {
-// 				if (err) {
-// 					return res.status(500).json({ error: 'Błąd serwera' })
-// 				}
-
-// 				user.password = hashedPassword
-
-// 				user.save(err => {
-// 					if (err) {
-// 						return res.status(500).json({ error: 'Błąd serwera' })
-// 					}
-
-// 					// Hasło zostało zaktualizowane pomyślnie
-// 					return res.status(200).json({ message: 'Hasło zostało zmienione' })
-// 				})
-// 			})
-// 		})
-// 	})
-// }
+/**
+ * Funkcja aktualizacji danych użytkownika
+ * TODO do zrobienia po zorientowaniu się jakie dane użytkownika rzeczywiście będą potrzebowały mieć możliwość zmiany
+ */
+const updateUser = async (req, res, next) => {}
 
 module.exports = {
 	registerUser,
 	loginUser,
 	logoutUser,
-	//resetPassword,
-	//changePassword,
+	getCurrentUser,
 }

@@ -1,42 +1,30 @@
 const express = require('express')
 const router = express.Router()
 const authController = require('../controllers/authController') // Upewnij się, że ścieżka jest poprawna
+const authenticate = require('../middleware/authenticate')
 
 /**
  * @swagger
  * components:
+ *   securitySchemes:
+ *    bearerAuth:
+ *      type: http
+ *      scheme: bearer
+ *      bearerFormat: JWT
  *   schemas:
- *     User:
- *       type: object
- *       properties:
- *         id:
- *           type: string
- *           description: The auto-generated id of the book
- *         username:
- *           type: string
- *           description: User's name
- *         password:
- *           type: string
- *           description: User's password
- *         email:
- *           type: string
- *           description: User's email
- *         token:
- *           type: string
- *           description: User's token
- *     RegisterUser:
+ *     register:
  *       type: object
  *       properties:
  *         username:
  *           type: string
  *           description: User's name
- *         password:
- *           type: string
- *           description: User's password
  *         email:
  *           type: string
  *           description: User's email
- *     LoginUser:
+ *         password:
+ *           type: string
+ *           description: User's password
+ *     login:
  *       type: object
  *       properties:
  *         email:
@@ -57,12 +45,12 @@ const authController = require('../controllers/authController') // Upewnij się,
  *          content:
  *            application/json:
  *              schema:
- *                $ref: '#/components/schemas/RegisterUser'
+ *                $ref: '#/components/schemas/register'
  *      responses:
  *        201:
- *          description: Rejestracja pomyślna.
+ *          description: Registration successful
  *        400:
- *          description: Użytkownik o takim adresie email już istnieje.
+ *          description: Email is already in use / Validation error
  */
 router.post('/register', authController.registerUser)
 
@@ -76,33 +64,47 @@ router.post('/register', authController.registerUser)
  *          content:
  *            application/json:
  *              schema:
- *                $ref: '#/components/schemas/LoginUser'
+ *                $ref: '#/components/schemas/login'
  *      responses:
  *        200:
- *          description: Logowanie zakończone sukcesem
+ *          description: Signing in successful
+ *        400:
+ *          description: Validation error
  *        401:
- *          description: Niepoprawne hasło
+ *          description: Password is wrong
  *        404:
- *          description: Użytkownik nie istnieje
+ *          description: User not found
  */
 router.post('/login', authController.loginUser)
 
-// Punkt końcowy wylogowania użytkownika
-router.post('/logout', authController.logoutUser)
+/**
+ * @swagger
+ * /auth/logout:
+ *    get:
+ *      description: User sign out
+ *      security:
+ *        - bearerAuth: []
+ *      responses:
+ *        204:
+ *          description: User signed out
+ *        401:
+ *          description: Not authorized
+ *
+ */
+router.get('/logout', authenticate, authController.logoutUser)
 
-// Punkt końcowy resetu hasła
-//router.post('/reset-password', authController.resetPassword);
-
-// Punkt końcowy zmiany hasła
-//router.post('/change-password', authController.changePassword);
+/**
+ * @swagger
+ * /auth/current:
+ *    get:
+ *      description: Get current user
+ *      security:
+ *        - bearerAuth: []
+ *      responses:
+ *        200:
+ *          description: Current user data
+ *
+ */
+router.get('/current', authenticate, authController.getCurrentUser)
 
 module.exports = router
-// produces:
-// *       - application/json
-// *     parameters:
-// *       - $ref: '#/parameters/username'
-// *       - name: password
-// *         description: User's password.
-// *         in: formData
-// *         required: true
-// *         type: string

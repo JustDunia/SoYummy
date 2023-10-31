@@ -1,0 +1,133 @@
+.registerForm {
+  border: 1px solid #2a2c36;
+  border-radius: 30px;
+  background-color: #2a2c36;
+  display: flex;
+  flex-direction: column;
+}
+@media (max-width: 767px) {
+  .registerForm {
+    width: 335px;
+    height: 350px;
+  }
+}
+@media (min-width: 768px) {
+  .registerForm {
+    width: 500px;
+    height: 481px;
+  }
+}
+
+.registerTitle {
+  color: #fafafa;
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 30px;
+  letter-spacing: -0.02em;
+  text-align: left;
+  margin-left: 28px;
+}
+@media (max-width: 767px) {
+  .registerTitle {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 28px;
+    letter-spacing: -0.02em;
+  }
+}
+@media (min-width: 768px) {
+  .registerTitle {
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 30px;
+    letter-spacing: -0.02em;
+  }
+}
+
+.inputContainer {
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.label {
+  display: block;
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.icon {
+  position: absolute;
+
+  top: 50%;
+  fill: #2a2c36;
+  stroke: #fafafa;
+  transform: translateY(-50%);
+  left: 10px;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+@media (max-width: 767px) {
+  .icon {
+    width: 18px;
+    height: 18px;
+  }
+}
+@media (min-width: 768px) {
+  .icon {
+    width: 24px;
+    height: 24px;
+  }
+}
+.input {
+  background-color: #2a2c36;
+  color: #f2f2f2;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  font-size: 16px;
+  padding-left: 40px;
+}
+@media (max-width: 767px) {
+  .input {
+    width: 279px;
+    height: 45px;
+  }
+}
+@media (min-width: 768px) {
+  .input {
+    width: 400px;
+    height: 59px;
+  }
+}
+.Button {
+  background-color: #8baa36;
+  color: #f2f2f2;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 18px;
+  cursor: pointer;
+
+  margin: 0 auto;
+}
+@media (max-width: 767px) {
+  .Button {
+    width: 279px;
+    height: 45px;
+  }
+}
+@media (min-width: 768px) {
+  .Button {
+    width: 400px;
+    height: 59px;
+  }
+}
+.link {
+  display: block;
+  text-align: center;
+  margin-top: 20px;
+  color: #f2f2f2;
+}

@@ -1,0 +1,35 @@
+.registerPage {
+  padding: 87px 20px 20px;
+  min-height: 845px;
+  background-color: #fafafa;
+  background-image: url("../../images/registration/bottom_mob.svg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: bottom;
+}
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+@media screen and (min-width: 768px) {
+  .registerPage {
+    padding: 96px 20px 59px 20px;
+    min-height: 1024px;
+    background-image: url("../../images/registration/bottom_tab.svg");
+  }
+}
+@media screen and (min-width: 1280px) {
+  .registerPage {
+    padding: 115px 0 123px 0;
+    min-height: 770px;
+    background-image: url("../../images//registration/bottom_desk.svg");
+  }
+  .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+}

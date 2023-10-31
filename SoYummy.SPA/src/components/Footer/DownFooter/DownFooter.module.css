@@ -1,0 +1,86 @@
+
+.wrapper_copytight{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 66px;
+  background-color: #ECECEC;
+  background-image: url(../../../images/background/spinach_bottom_right_mob_1x.png);
+  background-repeat: no-repeat;
+  background-position-y: 100%;
+  background-position-x: 100%;
+
+  @media (min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    background-image: url(../../../images/background/spinach_bottom_right_mob_2x.png);
+    background-repeat: no-repeat;
+    background-position-y: 100%;
+    background-position-x: 100%;
+    background-size: 50%;
+  }
+
+  @media screen and (min-width: 768px) {
+    height: 78px;
+    background-image: url(../../../images/background/spinach_bottom_right_tab_1x.png);
+    background-repeat: no-repeat;
+    background-position-y: 100%;
+    background-position-x: 100%;
+
+    @media (min-device-pixel-ratio: 2),
+      (min-resolution: 192dpi),
+      (min-resolution: 2dppx) {
+      background-image: url(../../../images/background/spinach_bottom_right_tab_2x.png);
+      background-repeat: no-repeat;
+      background-position-y: 100%;
+      background-position-x: 100%;
+      background-size: 45%;
+    }
+  }
+
+  @media screen and (min-width: 1440px) {
+    height: 114px;
+    background-image: url(../../../images/background/spinach_bottom_right_desk_1x.png);
+    background-repeat: no-repeat;
+    background-position-y: 100%;
+    background-position-x: 100%;
+
+    @media (min-device-pixel-ratio: 2),
+      (min-resolution: 192dpi),
+      (min-resolution: 2dppx) {
+      background-image: url(../../../images/background/spinach_bottom_right_desk_2x.png);
+      background-size: 37%;
+      background-repeat: no-repeat;
+      background-position-y: 100%;
+      background-position-x: 100%;
+    }
+  }
+}
+
+.text_copyright{
+    font-weight: 500;
+  font-size: 10px;
+  line-height: 10px;
+  letter-spacing: -0.01em;
+  color: 22252A;
+  opacity: 0.5;
+
+  @media screen and (min-width: 768px) {
+    font-size: 14px;
+    line-height: 14px;
+  }
+}
+
+.text{
+     margin-left: 14px;
+
+  @media screen and (min-width: 768px) {
+    margin-left: 28px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    margin-left: 40px;
+  }
+}

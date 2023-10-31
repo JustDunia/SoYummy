@@ -1,0 +1,30 @@
+.menu_items{
+      display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+
+  @media (min-width: 768px) {
+    align-items: flex-start;
+    gap: 18px;
+  }
+  @media (min-width: 1440px) {
+    gap: 24px;
+  }
+}
+
+.item{
+ font-weight: 400;
+  font-size: 14px;
+  line-height: 14px;
+  text-decoration: none;
+  font-family: 'Poppins';
+  font-style: normal;
+  color: #FAFAFA;
+  letter-spacing: -0.02em;
+
+  :hover,
+  :focus {
+    color: #8baa36;
+  }
+}

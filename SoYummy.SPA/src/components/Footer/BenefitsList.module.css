@@ -1,0 +1,30 @@
+.benefits_list{
+    display: none;
+  @media (min-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  @media (min-width: 1440px) {
+    gap: 12px;
+  }
+};
+
+.benefits{
+    color: #FAFAFA;
+  @media (min-width: 768px) {
+    font-size: 14px;
+    line-height: 14px;
+  }
+}
+
+.benefits_text {
+    font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: -0, 02em;
+  font-family: 'Poppins';
+  font-style: normal;
+  padding: 0;
+}

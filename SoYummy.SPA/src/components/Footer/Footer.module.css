@@ -1,0 +1,73 @@
+.footer_cointener{
+     display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 28px;
+  background-color: #22252A;
+  height: 435px;
+  width: 100%;
+
+  @media (min-width: 768px) {
+    height: 423px;
+    display: block;
+    flex-direction: row;
+    align-items: center;
+    padding-top: 50px;
+  }
+  @media (min-width: 1440px) {
+    height: 414px;
+  }
+}
+
+.main_box{
+     display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  @media (min-width: 768px) {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  @media (min-width: 918px) and (max-width: 1439px) {
+    padding-top: 45px;
+  }
+
+  @media (min-width: 1440px) {
+    display: flex;
+    align-items: stretch;
+    margin-bottom: 41px;
+  }
+}
+
+.menu_box{
+    justify-content: center;
+  margin-bottom: 32px;
+}
+.form_box{
+     display: flex;
+  justify-content: center;
+  margin-bottom: 44px;
+
+  @media (min-width: 768px) {
+    margin-bottom: 38px;
+  }
+
+  @media (min-width: 918px) {
+    flex-direction: column;
+  }
+
+  @media (min-width: 1440px) {
+    flex-direction: column;
+    margin: 0;
+  }
+}
+
+.social_media{
+    @media (min-width: 768px) {
+    display: flex;
+    justify-content: center;
+  }
+}

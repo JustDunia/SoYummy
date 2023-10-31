@@ -40,10 +40,14 @@ const removeToken = async id => User.findByIdAndUpdate({ _id: id }, { token: nul
 const updateSubscription = async (id, isSubscriber) =>
 	User.findByIdAndUpdate({ _id: id }, { isSubscriber: isSubscriber }, { new: true })
 
+const addToFavorite = async (userId, recipeId) =>
+	User.findByIdAndUpdate({ _id: userId }, { $push: { favorites: recipeId } }, { new: true })
+
 module.exports = {
 	createUser,
 	getUserByEmail,
 	addToken,
 	removeToken,
 	updateSubscription,
+	addToFavorite,
 }

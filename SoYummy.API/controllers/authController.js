@@ -1,140 +1,170 @@
-const User = require('../models/user');
-const jwt = require('jsonwebtoken');
-const config = require('../config/config');
-const bcrypt = require('bcrypt');
+require('dotenv').config()
+const User = require('../models/user')
+const jwt = require('jsonwebtoken')
+const SECRET = process.env.SECRET
+const service = require('../service/userService')
+const Joi = require('joi')
 
-// Funkcja obsługująca rejestrację użytkownika
-function registerUser(req, res) {
-  const { username, password, email } = req.body;
+/**
+ * schemat walidacji parametrów przesłanych podczas rejestracji
+ */
+const registerSchema = Joi.object({
+	username: Joi.string().min(2).max(30).required(),
+	password: Joi.string().min(8).max(30).required(),
+	email: Joi.string().email().required(),
+})
 
-  // Sprawdź, czy użytkownik o podanej nazwie użytkownika lub adresie email już istnieje w bazie danych
-  User.findOne({ $or: [{ username }, { email }] }, (err, existingUser) => {
-    if (err) {
-      return res.status(500).json({ error: 'Błąd serwera' });
-    }
+/**
+ * schemat walidacji parametrów przesłanych podczas logowania
+ */
+const loginSchema = Joi.object({
+	password: Joi.string().required(),
+	email: Joi.string().email().required(),
+})
 
-    if (existingUser) {
-      return res.status(400).json({ error: 'Użytkownik o takiej nazwie użytkownika lub adresie email już istnieje.' });
-    }
+/**
+ * Funkcja obsługująca rejestrację użytkownika
+ */
+async function registerUser(req, res, next) {
+	const { username, email, password } = req.body
 
-    // Jeśli użytkownik nie istnieje, zahashuj hasło i zapisz do bazy danych
-    bcrypt.hash(password, 10, (err, hashedPassword) => {
-      if (err) {
-        return res.status(500).json({ error: 'Błąd serwera' });
-      }
+	const validationResult = registerSchema.validate({
+		username: username,
+		email: email,
+		password: password,
+	})
 
-      const newUser = new User({
-        username,
-        password: hashedPassword,
-        email,
-      });
+	if (!validationResult.error) {
+		try {
+			const user = await service.getUserByEmail(email)
+			if (user) {
+				return res.status(400).json({ error: 'Email is already in use' })
+			}
 
-      newUser.save((err) => {
-        if (err) {
-          return res.status(500).json({ error: 'Błąd serwera' });
-        }
+			const newUser = new User({
+				username,
+				email,
+			})
 
-        // Zarejestrowano pomyślnie
-        return res.status(201).json({ message: 'Rejestracja pomyślna' });
-      });
-    });
-  });
+			newUser.setPassword(password)
+
+			const result = await service.createUser(newUser)
+
+			return res.status(201).json({
+				message: 'Registration successful',
+				user: { username: result.username, email: result.email },
+			})
+		} catch (e) {
+			console.error(e)
+			next(e)
+		}
+	} else {
+		return res.status(400).json({
+			message: validationResult.error.message,
+		})
+	}
 }
 
-// Funkcja obsługująca logowanie użytkownika
-function loginUser(req, res) {
-  const { username, password } = req.body;
+/**
+ * Funkcja obsługująca logowanie użytkownika
+ */
+async function loginUser(req, res, next) {
+	const { email, password } = req.body
 
-  // Sprawdź, czy użytkownik o podanej nazwie użytkownika istnieje w bazie danych
-  User.findOne({ username }, (err, user) => {
-    if (err) {
-      return res.status(500).json({ error: 'Błąd serwera' });
-    }
+	const validationResult = loginSchema.validate({
+		email: email,
+		password: password,
+	})
 
-    if (!user) {
-      return res.status(404).json({ error: 'Użytkownik nie istnieje' });
-    }
+	if (!validationResult.error) {
+		try {
+			const user = await service.getUserByEmail(email)
 
-    // Porównaj hasło
-    bcrypt.compare(password, user.password, (err, passwordMatch) => {
-      if (err) {
-        return res.status(500).json({ error: 'Błąd serwera' });
-      }
+			if (!user) {
+				return res.status(404).json({ error: 'User not found' })
+			}
 
-      if (!passwordMatch) {
-        return res.status(401).json({ error: 'Niepoprawne hasło' });
-      }
+			if (!user.validatePassword(password)) {
+				return res.status(401).json({
+					message: 'Password is wrong',
+				})
+			}
 
-      // Wygeneruj token JWT i zwróć go w odpowiedzi
-      const token = jwt.sign({ userId: user._id }, config.jwtSecret);
-      return res.status(200).json({ token });
-    });
-  });
+			const payload = {
+				id: user.id,
+				email: user.email,
+			}
+
+			const token = jwt.sign(payload, SECRET)
+
+			await service.addToken(email, token)
+
+			return res
+				.status(200)
+				.json({ message: 'Signing in successful', userData: { email: email, token: token } })
+		} catch (e) {
+			console.error(e)
+			next(e)
+		}
+	} else {
+		return res.status(400).json({
+			message: validationResult.error.message,
+		})
+	}
 }
 
-// Funkcja obsługująca wylogowanie użytkownika
-function logoutUser(req, res) {
-  // Realizuj logikę wylogowania, na przykład usuwając token z bazy danych lub inaczej invaliderując sesję
-  // Po wylogowaniu zwróć odpowiednią odpowiedź
-  return res.status(200).json({ message: 'Wylogowano pomyślnie' });
+/**
+ * Funkcja obsługująca wylogowanie użytkownika
+ */
+async function logoutUser(req, res, next) {
+	const id = req.user.id
+	try {
+		await service.removeToken(id)
+		res.status(204).send()
+	} catch (e) {
+		console.error(e)
+		next(e)
+	}
 }
 
-// Funkcja obsługująca reset hasła użytkownika
-function resetPassword(req, res) {
-  // Realizuj logikę resetowania hasła, na przykład wysyłając e-mail z linkiem do resetowania
-  // Po zakończeniu resetowania zwróć odpowiednią odpowiedź
-  return res.status(200).json({ message: 'Reset hasła pomyślny' });
+/**
+ * Funkcja obsługująca pobranie danych aktualnego użytkownika
+ */
+const getCurrentUser = async (req, res) => {
+	const { username, email } = req.user
+	res.status(200).json({
+		username: username,
+		email: email,
+	})
 }
 
-// Funkcja obsługująca zmianę hasła użytkownika
-function changePassword(req, res) {
-  const { userId, currentPassword, newPassword } = req.body;
-
-  // Pobierz użytkownika na podstawie userId
-  User.findById(userId, (err, user) => {
-    if (err) {
-      return res.status(500).json({ error: 'Błąd serwera' });
-    }
-
-    if (!user) {
-      return res.status(404).json({ error: 'Użytkownik nie istnieje' });
-    }
-
-    // Porównaj aktualne hasło
-    bcrypt.compare(currentPassword, user.password, (err, passwordMatch) => {
-      if (err) {
-        return res.status(500).json({ error: 'Błąd serwera' });
-      }
-
-      if (!passwordMatch) {
-        return res.status(401).json({ error: 'Niepoprawne hasło' });
-      }
-
-      // Zaktualizuj hasło na nowe
-      bcrypt.hash(newPassword, 10, (err, hashedPassword) => {
-        if (err) {
-          return res.status(500).json({ error: 'Błąd serwera' });
-        }
-
-        user.password = hashedPassword;
-
-        user.save((err) => {
-          if (err) {
-            return res.status(500).json({ error: 'Błąd serwera' });
-          }
-
-          // Hasło zostało zaktualizowane pomyślnie
-          return res.status(200).json({ message: 'Hasło zostało zmienione' });
-        });
-      });
-    });
-  });
+/**
+ * Funkcja obsługująca zapisanie / wypisanie z newslettera
+ */
+const manageSubscription = async (req, res, next) => {
+	const { id, isSubscriber } = req.user
+	try {
+		const user = await service.updateSubscription(id, !isSubscriber)
+		return res.status(200).json({
+			message: 'Subscription status updated',
+			userData: { email: user.email, isSubscriber: user.isSubscriber },
+		})
+	} catch (e) {
+		console.error(e)
+		next(e)
+	}
 }
+
+/**
+ * Funkcja aktualizacji danych użytkownika
+ * TODO do zrobienia po zorientowaniu się jakie dane użytkownika rzeczywiście będą potrzebowały mieć możliwość zmiany
+ */
+const updateUser = async (req, res, next) => {}
 
 module.exports = {
-  registerUser,
-  loginUser,
-  logoutUser,
-  resetPassword,
-  changePassword
-};
+	registerUser,
+	loginUser,
+	logoutUser,
+	getCurrentUser,
+	manageSubscription,
+}

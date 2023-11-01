@@ -5,17 +5,17 @@ const ownRecipesController = require('../controllers/ownRecipesController')
 
 /**
  * @swagger
- * /favorite/{recipeId}:
- *    put:
- *      description: Add recipe to favorites
+ * /ownRecipes
+ *    post:
+ *      description: Add your own recipe
  *      security:
  *        - bearerAuth: []
- *      parameters:
- *         - in: path
- *           name: recipeId
- *           schema:
- *             type: string
- *           required: true
+ *      requestbody:
+ *        required: true
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: #components/schemas/addRecipe
  *      responses:
  *        200:
  *          description: Recipe added to favorites

@@ -1,8 +1,10 @@
 require('dotenv').config()
 const Recipe = require('../models/recipe')
 const service = require('../service/recipesService')
-//const { ObjectId } = require('mongoose')
 
+/**
+ * Dodaje własny przepis do kolekcji
+ */
 const addRecipe = async (req, res, next) => {
 	const userId = req.user.id
 	const { title, category, instructions, description, preview, time, ingredients } = req.body
@@ -25,6 +27,9 @@ const addRecipe = async (req, res, next) => {
 	}
 }
 
+/**
+ * Zwraca tablicę własnych przepisów użytkownika
+ */
 const getRecipes = async (req, res, next) => {
 	const userId = req.user.id
 	try {
@@ -36,6 +41,9 @@ const getRecipes = async (req, res, next) => {
 	}
 }
 
+/**
+ * Usuwa własny przepis z kolekcji
+ */
 const removeRecipe = async (req, res, next) => {
 	const { recipeId } = req.params
 	try {

@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const authController = require('../controllers/authController') // Upewnij się, że ścieżka jest poprawna
+const authController = require('../controllers/authController')
 const authenticate = require('../middleware/authenticate')
 
 /**
@@ -33,6 +33,33 @@ const authenticate = require('../middleware/authenticate')
  *         password:
  *           type: string
  *           description: User's password
+ *     userResponse:
+ *       type: object
+ *       properties:
+ *         username:
+ *           type: string
+ *           description: User's name
+ *         email:
+ *           type: string
+ *           description: User's email
+ *     registerResponse:
+ *       type: object
+ *       properties:
+ *         message:
+ *           type: string
+ *           description: Message
+ *         user:
+ *           type: object
+ *           properties:
+ *              username:
+ *                type: string
+ *                description: User's name
+ *              email:
+ *                 type: string
+ *                 description: User's email
+ *              token:
+ *                 type: string
+ *                 description: User's token
  */
 
 /**
@@ -49,6 +76,10 @@ const authenticate = require('../middleware/authenticate')
  *      responses:
  *        201:
  *          description: Registration successful
+ *          content:
+ *            application/json:
+ *              schema:
+ *                $ref: '#/components/schemas/registerResponse'
  *        400:
  *          description: Email is already in use / Validation error
  */
@@ -68,6 +99,10 @@ router.post('/register', authController.registerUser)
  *      responses:
  *        200:
  *          description: Signing in successful
+ *          content:
+ *            application/json:
+ *              schema:
+ *                $ref: '#/components/schemas/registerResponse'
  *        400:
  *          description: Validation error
  *        401:
@@ -80,7 +115,7 @@ router.post('/login', authController.loginUser)
 /**
  * @swagger
  * /auth/logout:
- *    get:
+ *    post:
  *      description: User sign out
  *      security:
  *        - bearerAuth: []
@@ -91,7 +126,7 @@ router.post('/login', authController.loginUser)
  *          description: Not authorized
  *
  */
-router.get('/logout', authenticate, authController.logoutUser)
+router.post('/logout', authenticate, authController.logoutUser)
 
 /**
  * @swagger
@@ -103,6 +138,10 @@ router.get('/logout', authenticate, authController.logoutUser)
  *      responses:
  *        200:
  *          description: Current user data
+ *          content:
+ *            application/json:
+ *              schema:
+ *                $ref: '#/components/schemas/userResponse'
  */
 router.get('/current', authenticate, authController.getCurrentUser)
 

@@ -50,17 +50,17 @@ async function getRecipesByCategory(req, res) {
 //   }
 // }
 
-async function getRecipeById(req, res) {
-  const recipeId = req.params.recipeId;
+// async function getRecipeById(req, res) {
+//   const recipeId = req.params.recipeId;
 
-  try {
-    const recipe = await RecipeService.getRecipeById(recipeId);
-    res.json(recipe);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Server Error" });
-  }
-}
+//   try {
+//     const recipe = await RecipeService.getRecipeById(recipeId);
+//     res.json(recipe);
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ error: "Server Error" });
+//   }
+// }
 
 async function getRecipesForMainPage(req, res) {
   try {
@@ -81,22 +81,22 @@ async function getRecipesForMainPage(req, res) {
    }
  }
 
-//  async function getRecipeById(req, res) {
-//   const recipeId = req.params.id;
+ async function getRecipeById(req, res) {
+  const recipeId = req.params.id;
 
-//   try {
-//     const recipe = await RecipeService.getRecipeById(recipeId);
-//     if (!recipe) {
-//       // Jeśli przepis o danym ID nie istnieje, możesz zwrócić odpowiedni status
-//       res.status(404).json({ error: 'Recipe not found' });
-//     } else {
-//       res.json(recipe);
-//     }
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ error: 'Server Error' });
-//   }
-// }
+  try {
+    const recipe = await RecipeService.getRecipeById(recipeId);
+    if (!recipe) {
+      // Jeśli przepis o danym ID nie istnieje, możesz zwrócić odpowiedni status
+      res.status(404).json({ error: 'Recipe not found' });
+    } else {
+      res.json(recipe);
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Server Error' });
+  }
+}
 
 module.exports = {
   getCategories,

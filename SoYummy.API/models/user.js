@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const { Schema, model } = mongoose
 const bCrypt = require('bcrypt')
+const { ObjectId, String, Boolean } = Schema.Types
 
 const userSchema = new Schema(
 	{
@@ -26,7 +27,12 @@ const userSchema = new Schema(
 			default: false,
 		},
 		favorites: {
-			type: Array,
+			type: [
+				{
+					type: ObjectId,
+					ref: 'Recipes',
+				},
+			],
 		},
 	},
 	{ versionKey: false, timestamps: true }

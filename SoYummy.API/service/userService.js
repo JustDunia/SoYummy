@@ -28,26 +28,41 @@ const addToken = async (email, token) => User.findOneAndUpdate({ email: email },
 
 /**
  * Usunięcie tokena autoryzacyjnego użytkownika
- * @param {ObjectId} param - Id uzytkownika
+ * @param {ObjectId} id - Id uzytkownika
  */
 const removeToken = async id => User.findByIdAndUpdate({ _id: id }, { token: null })
 
 /**
  * Zmiana statusu subskrypcji
- * @param {ObjectId} param - Id użytkownika
- * @param {Boolean} param - Czy użytkownik ma być subskrybentem
+ * @param {ObjectId} id - Id użytkownika
+ * @param {Boolean} isSubscriber - Czy użytkownik ma być subskrybentem
  */
 const updateSubscription = async (id, isSubscriber) =>
-	User.findByIdAndUpdate({ _id: id }, { isSubscriber: isSubscriber }, { new: true })
+	User.findByIdAndUpdate(id, { isSubscriber: isSubscriber }, { new: true })
 
-const addToFavorite = async (userId, recipeId) =>
-	User.findByIdAndUpdate({ _id: userId }, { $push: { favorites: recipeId } }, { new: true })
+/**
+ * Dodaje przepis do ulubionych
+ * @param {ObjectId} userId - Id użytkownika
+ * @param {ObjectId} recipeId - Id przepisu
+ */
+const addToFavorites = async (userId, recipeId) =>
+	User.findByIdAndUpdate(userId, { $addToSet: { favorites: recipeId } })
+
+/**
+ * Usuwa przepis z ulubionych
+ * @param {ObjectId} userId - Id użytkownika
+ * @param {ObjectId} recipeId - Id przepisu
+ */
+const removeFromFavorites = async (userId, recipeId) =>
+	User.findByIdAndUpdate(userId, { $pull: { favorites: recipeId } })
 
 module.exports = {
 	createUser,
+	getUserById,
 	getUserByEmail,
 	addToken,
 	removeToken,
 	updateSubscription,
-	addToFavorite,
+	addToFavorites,
+	removeFromFavorites,
 }

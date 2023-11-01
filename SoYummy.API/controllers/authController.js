@@ -155,12 +155,6 @@ const manageSubscription = async (req, res, next) => {
 	}
 }
 
-/**
- * Funkcja aktualizacji danych użytkownika
- * TODO do zrobienia po zorientowaniu się jakie dane użytkownika rzeczywiście będą potrzebowały mieć możliwość zmiany
- */
-const updateUser = async (req, res, next) => {}
-
 module.exports = {
 	registerUser,
 	loginUser,

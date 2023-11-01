@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const authController = require('../controllers/authController') // Upewnij się, że ścieżka jest poprawna
+const authController = require('../controllers/authController')
 const authenticate = require('../middleware/authenticate')
 
 /**
@@ -80,7 +80,7 @@ router.post('/login', authController.loginUser)
 /**
  * @swagger
  * /auth/logout:
- *    get:
+ *    post:
  *      description: User sign out
  *      security:
  *        - bearerAuth: []
@@ -91,7 +91,7 @@ router.post('/login', authController.loginUser)
  *          description: Not authorized
  *
  */
-router.get('/logout', authenticate, authController.logoutUser)
+router.post('/logout', authenticate, authController.logoutUser)
 
 /**
  * @swagger

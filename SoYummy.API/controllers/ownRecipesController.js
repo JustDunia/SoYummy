@@ -25,4 +25,15 @@ const addRecipe = async (req, res, next) => {
 	}
 }
 
-module.exports = { addRecipe }
+const getRecipes = async (req, res, next) => {
+	const userId = req.user.id
+	try {
+		const recipes = await service.getOwnRecipes(userId)
+		return res.status(200).json({ recipes: recipes })
+	} catch (e) {
+		console.error(e)
+		next(e)
+	}
+}
+
+module.exports = { addRecipe, getRecipes }

@@ -50,14 +50,18 @@ const recipeSchema = new Schema(
 		ingredients: {
 			type: [
 				{
-					type: ObjectId,
-					ref: 'Ingredients',
-				},
-				{
-					type: String,
+					id: {
+						type: ObjectId,
+						ref: 'Ingredients',
+						required: [true, 'Ingredients are required'],
+					},
+					measure: {
+						type: String,
+						required: [true, 'Measure is required'],
+					},
+					_id: false,
 				},
 			],
-			required: [true, 'Ingredients are required'],
 		},
 		owner: {
 			type: ObjectId,

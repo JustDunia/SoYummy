@@ -1,5 +1,6 @@
 const Recipe = require('../models/recipe')
 const { ObjectId } = require('mongoose')
+const Ingredient = require('../models/ingredient')
 
 /**
  * Zwraca tablicę obiektów Recipe na podstawie tablicy z ObjectId
@@ -23,6 +24,10 @@ const removeOwnRecipe = async recipeId => Recipe.findByIdAndRemove(recipeId)
  * Zwraca tablicę własnych przepisów użytkownika
  * @param {ObjectId} userId - id użytkownika
  */
-const getOwnRecipes = async userId => Recipe.find({ owner: userId })
+const getOwnRecipes = async userId =>
+	Recipe.find({ owner: userId }).populate({
+		path: 'ingredients.id',
+		model: 'Ingredient',
+	})
 
 module.exports = { getUsersRecipes, addOwnRecipe, removeOwnRecipe, getOwnRecipes }

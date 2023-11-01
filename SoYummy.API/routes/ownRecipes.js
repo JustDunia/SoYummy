@@ -22,4 +22,6 @@ const ownRecipesController = require('../controllers/ownRecipesController')
  */
 router.post('/', authenticate, ownRecipesController.addRecipe)
 
+router.get('/', authenticate, ownRecipesController.getRecipes)
+
 module.exports = router

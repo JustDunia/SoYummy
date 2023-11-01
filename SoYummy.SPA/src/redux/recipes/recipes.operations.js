@@ -18,9 +18,13 @@ export const fetchRecipes = createAsyncThunk(
 export const addRecipe = createAsyncThunk(
   "recipes/addRecipe",
   async (recipe, thunkAPI) => {
-    const { name, number } = recipe;
+    const { title, instructions, ingredients } = recipe;
     try {
-      const response = await axios.post("/recipes", { name, number });
+      const response = await axios.post("/recipes", {
+        title,
+        instructions,
+        ingredients,
+      });
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);

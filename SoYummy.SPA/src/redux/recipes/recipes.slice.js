@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchRecipes, addRecipe, deleteRecipe } from "./operations";
+import { fetchRecipes, addRecipe, deleteRecipe } from "./recipes.operations";
 
 const handlePending = (state) => {
   state.isLoading = true;

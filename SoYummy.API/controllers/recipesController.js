@@ -1,4 +1,4 @@
-const RecipeService = require('../service/recipeService');
+const RecipeService = require("../service/recipeService");
 
 async function getCategories(req, res) {
   try {
@@ -6,7 +6,7 @@ async function getCategories(req, res) {
     res.json(categories);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Server Error' });
+    res.status(500).json({ error: "Server Error" });
   }
 }
 
@@ -18,24 +18,36 @@ async function getRecipesByCategory(req, res) {
     res.json(recipes);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Server Error' });
+    res.status(500).json({ error: "Server Error" });
   }
 }
 
 async function getRecipeDetails(req, res) {
-    const recipeId = req.params.recipeId;
-  
-    try {
-      const recipe = await RecipeService.getRecipeById(recipeId);
-      res.json(recipe);
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: 'Server Error' });
-    }
+  const recipeId = req.params.recipeId;
+
+  try {
+    const recipe = await RecipeService.getRecipeById(recipeId);
+    res.json(recipe);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Server Error" });
   }
+}
+
+async function getRecipesForMainPage(req, res) {
+  const category = req.query.category;
+  try {
+    const recipes = await RecipeService.getRecipesByCategory(category);
+    res.json(recipes);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Server Error" });
+  }
+}
 
 module.exports = {
   getCategories,
   getRecipesByCategory,
   getRecipeDetails,
+  getRecipesForMainPage,
 };

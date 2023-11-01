@@ -4,6 +4,7 @@ const recipesController = require('../controllers/recipesController');
 
 router.get('/recipes/:recipeId', recipesController.getRecipeDetails);
 router.get('/category-list', recipesController.getCategories);
+router.get('/main-page', recipesController.getRecipesForMainPage);
 
 module.exports = router;
 

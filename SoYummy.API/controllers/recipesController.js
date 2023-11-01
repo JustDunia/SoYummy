@@ -11,16 +11,44 @@ async function getCategories(req, res) {
 }
 
 async function getRecipesByCategory(req, res) {
-  const category = req.params.category;
+  const { category } = req.params;
 
   try {
     const recipes = await RecipeService.getRecipesByCategory(category);
-    res.json(recipes);
+    // Zwróć tylko pierwsze 8 przepisów
+    const first8Recipes = recipes.slice(0, 8);
+    res.json(first8Recipes);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Server Error" });
+    res.status(500).json({ error: 'Server Error' });
   }
 }
+
+// to samo ale z paginacją
+// async function getRecipesByCategory(req, res) {
+//   const { category, page, pageSize } = req.params;
+
+//   try {
+//     const recipes = await RecipeService.getRecipesByCategory(category, page, pageSize);
+//     res.json(recipes);
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ error: 'Server Error' });
+//   }
+// }
+
+// to samo ale bez ograniczeń
+// async function getRecipesByCategory(req, res) {
+//   const category = req.params.category;
+
+//   try {
+//     const recipes = await RecipeService.getRecipesByCategory(category);
+//     res.json(recipes);
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ error: "Server Error" });
+//   }
+// }
 
 async function getRecipeDetails(req, res) {
   const recipeId = req.params.recipeId;
@@ -35,7 +63,6 @@ async function getRecipeDetails(req, res) {
 }
 
 async function getRecipesForMainPage(req, res) {
-  const category = req.query.category;
   try {
      // Pobierz kategorie i przepisy (tutaj trzeba dostosować do twoich potrzeb)
      const categories = await RecipeService.getRecipeCategories();

@@ -8,10 +8,23 @@ const getRecipeCategories = async () => {
   return categories;
 };
 
- const getRecipesByCategory = async (category) => {
-  console.log('Rozpoczęcie pobierania przepisów po kategorii');
+async function getRecipesByCategory(category) {
   return Recipe.find({ category });
 }
+// to samo ale z paginacją
+//  const getRecipesByCategory = async (category, page, pageSize) => {
+//   // Oblicz indeks początkowy na podstawie numeru strony i rozmiaru strony
+//   const startIndex = (page - 1) * pageSize;
+
+//   // Pobierz przepisy z danej kategorii, posortowane według popularności malejąco
+//   const recipes = await Recipe.find({ category })
+//     .sort({ popularity: -1 })
+//     .skip(startIndex)
+//     .limit(pageSize);
+
+//   return recipes;
+// };
+
 
 const getRecipesByCategoryForMainPage = async (categories) => {
   const recipesByCategory = {};

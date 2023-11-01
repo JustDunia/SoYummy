@@ -1,16 +1,12 @@
 const express = require('express')
 const logger = require('morgan')
 const cors = require('cors')
-<<<<<<< Updated upstream
 const swaggerUi = require('swagger-ui-express')
 const swaggerSpec = require('./swagger')
 
 const authRoutes = require('./routes/auth')
 const recipesRouter = require('./routes/recipes')
-=======
-const authRoutes = require('./routes/auth')
-const userRoutes = require('./routes/user')
->>>>>>> Stashed changes
+// const userRoutes = require('./routes/user')
 
 const app = express()
 
@@ -26,11 +22,8 @@ app.use(express.static('public'))
 
 // routy przeniesione wyżej, ponieważ gdy były na samym końcu, aplikacja zwracała 404
 app.use('/auth', authRoutes)
-<<<<<<< Updated upstream
 app.use('/recipes', recipesRouter);
-=======
-app.use('/user', userRoutes)
->>>>>>> Stashed changes
+// app.use('/user', userRoutes)
 
 app.use((req, res) => {
 	res.status(404).json({ status: 'error', code: 404, message: 'Not found' })

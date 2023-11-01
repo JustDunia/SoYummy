@@ -4,6 +4,8 @@ import { selectIsUserLoged } from "../../redux/auth/auth.selectors";
 // import css from "./LogInForm.modules";
 import css from "./LogInForm.modules.css";
 
+const logged = useSelector(selectIsUserLoged);
+
 export const LogInForm = () => {
   const dispatch = useDispatch();
 
@@ -16,7 +18,7 @@ export const LogInForm = () => {
         password: form.elements.password.value,
       })
     );
-    const logged = useSelector(selectIsUserLoged);
+
     console.log("IS USER LOGGED IN?:", logged);
     form.reset();
   };

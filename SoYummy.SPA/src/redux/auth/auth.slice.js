@@ -10,7 +10,7 @@ const initialState = {
 };
 
 const handleRejected = (state, action) => {
-  state.isLoading = false;
+  // state.isLoading = false;
   state.error = action.payload.message;
 };
 
@@ -26,8 +26,8 @@ const authSlice = createSlice({
     [register.rejected]: handleRejected,
 
     [logIn.fulfilled](state, action) {
-      state.user = action.payload.user;
-      state.token = action.payload.token;
+      state.user = action.payload.userData;
+      state.token = action.payload.userData.token;
       state.isLoggedIn = true;
     },
     [logIn.rejected]: handleRejected,

@@ -6,7 +6,7 @@ const swaggerSpec = require('./swagger')
 
 const authRoutes = require('./routes/auth')
 const recipesRouter = require('./routes/recipes')
-
+const searchRouter = require('./routes/search')
 const app = express()
 
 const formatsLogger = app.get('env') === 'development' ? 'dev' : 'short'
@@ -22,6 +22,7 @@ app.use(express.static('public'))
 // routy przeniesione wyżej, ponieważ gdy były na samym końcu, aplikacja zwracała 404
 app.use('/auth', authRoutes)
 app.use('/recipes', recipesRouter);
+app.use('/search', searchRouter);
 
 app.use((req, res) => {
 	res.status(404).json({ status: 'error', code: 404, message: 'Not found' })

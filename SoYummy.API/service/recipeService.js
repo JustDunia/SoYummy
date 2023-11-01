@@ -37,9 +37,17 @@ const getRecipesByCategoryForMainPage = async (categories) => {
   return recipesByCategory;
 }
 
+const searchRecipesByKeyword = async (keyword) => {
+  // Użycie modelu Recipe i metody find, aby znaleźć przepisy pasujące do słowa kluczowego
+  const recipes = await Recipe.find({ title: { $regex: keyword, $options: 'i' } });
+
+  return recipes;
+}
+
 module.exports = {
   getRecipeById,
   getRecipeCategories,
   getRecipesByCategory,
   getRecipesByCategoryForMainPage,
+  searchRecipesByKeyword,
 };

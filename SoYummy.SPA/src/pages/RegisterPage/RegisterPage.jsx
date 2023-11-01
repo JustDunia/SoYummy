@@ -1,5 +1,5 @@
 import { Register } from "../../components/Register/Register";
-// import { } from '../../components/Register'
+// import {} from "../../components/Register";
 
 const RegisterPage = () => {
   return (

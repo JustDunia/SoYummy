@@ -22,9 +22,6 @@ const authSlice = createSlice({
       state.user = action.payload.user;
       state.token = action.payload.token;
       state.isLoggedIn = true;
-
-      console.log("TOKEN REGISTER", state.token);
-      console.log("STATE REGISTER", state);
     },
     [register.rejected]: handleRejected,
 
@@ -32,9 +29,6 @@ const authSlice = createSlice({
       state.user = action.payload.user;
       state.token = action.payload.token;
       state.isLoggedIn = true;
-
-      console.log("TOKEN LOGIN", state.token);
-      console.log("STATE LOGIN", state);
     },
     [logIn.rejected]: handleRejected,
 

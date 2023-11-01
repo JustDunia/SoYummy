@@ -45,6 +45,6 @@ userSchema.methods.validatePassword = function (password) {
 	return bCrypt.compareSync(password, this.password)
 }
 
-const User = model('User', userSchema)
+const User = model('User', userSchema, 'users')
 
 module.exports = User

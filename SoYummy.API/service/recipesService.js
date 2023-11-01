@@ -7,4 +7,22 @@ const { ObjectId } = require('mongoose')
  */
 const getUsersRecipes = favorites => Recipe.find({ _id: { $in: favorites } })
 
-module.exports = { getUsersRecipes }
+/**
+ * Dodaje własny przepis do kolekcji
+ * @param {Recipe} recipe - nowy przepis
+ */
+const addOwnRecipe = async recipe => recipe.save()
+
+/**
+ * Usuwa własny przepis z kolekcji
+ * @param {ObjectId} recipeId - id przepisu
+ */
+const removeOwnRecipe = async recipeId => Recipe.findByIdAndRemove(recipeId)
+
+/**
+ * Zwraca tablicę własnych przepisów użytkownika
+ * @param {ObjectId} userId - id użytkownika
+ */
+const getOwnRecipes = async userId => Recipe.find({ owner: userId })
+
+module.exports = { getUsersRecipes, addOwnRecipe, removeOwnRecipe, getOwnRecipes }

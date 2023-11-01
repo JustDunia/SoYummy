@@ -36,4 +36,15 @@ const getRecipes = async (req, res, next) => {
 	}
 }
 
-module.exports = { addRecipe, getRecipes }
+const removeRecipe = async (req, res, next) => {
+	const { recipeId } = req.params
+	try {
+		await service.removeOwnRecipe(recipeId)
+		return res.status(204).send()
+	} catch (e) {
+		console.error(e)
+		next(e)
+	}
+}
+
+module.exports = { addRecipe, getRecipes, removeRecipe }

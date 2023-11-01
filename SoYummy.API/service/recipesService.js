@@ -30,4 +30,5 @@ const getOwnRecipes = async userId =>
 		model: 'Ingredient',
 	})
 
+
 module.exports = { getUsersRecipes, addOwnRecipe, removeOwnRecipe, getOwnRecipes }

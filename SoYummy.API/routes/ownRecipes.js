@@ -24,4 +24,6 @@ router.post('/', authenticate, ownRecipesController.addRecipe)
 
 router.get('/', authenticate, ownRecipesController.getRecipes)
 
+router.delete('/:recipeId', authenticate, ownRecipesController.removeRecipe)
+
 module.exports = router

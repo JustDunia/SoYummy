@@ -1,0 +1,63 @@
+.navModalContainer {
+	a {
+		text-decoration: none;
+		margin: 0;
+		padding: 0;
+		cursor: pointer;
+	}
+
+	a:hover {
+		color: #8baa36;
+	}
+
+	ul,
+	li {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+}
+
+.navModalList {
+	display: flex;
+	flex-direction: column;
+	gap: 32px;
+	text-align: center;
+}
+.navModalBgSpinach {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+}
+
+.navModalItem {
+	font-family: "Poppins", sans-serif;
+	font-size: 18px;
+	font-weight: 500;
+	line-height: 18px;
+	letter-spacing: -0.02em;
+	z-index: 20;
+	color: #22252a;
+}
+
+.navModalItem:hover {
+	color: #8baa36;
+}
+
+.navModalLink {
+	color: black;
+}
+
+.navModalLinkActive {
+	color: #8baa36;
+}
+
+/* <<<Tablet>>> */
+@media screen and (min-width: 768px) {
+	.navModalItem {
+		font-size: 24px;
+		font-style: normal;
+		line-height: 24px;
+		letter-spacing: -0.48px;
+	}
+}

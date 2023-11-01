@@ -37,13 +37,22 @@ async function getRecipeDetails(req, res) {
 async function getRecipesForMainPage(req, res) {
   const category = req.query.category;
   try {
-    const recipes = await RecipeService.getRecipesByCategory(category);
-    res.json(recipes);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Server Error" });
-  }
-}
+     // Pobierz kategorie i przepisy (tutaj trzeba dostosować do twoich potrzeb)
+     const categories = await RecipeService.getRecipeCategories();
+     const recipesByCategory = await RecipeService.getRecipesByCategoryForMainPage(categories);
+ 
+     // Przygotuj dane do wyświetlenia na stronie głównej i zwróć jako odpowiedź
+     const data = {
+       categories,
+       recipesByCategory,
+     };
+     
+     res.json(data);
+   } catch (error) {
+     console.error(error);
+     res.status(500).json({ error: 'Server Error' });
+   }
+ }
 
 module.exports = {
   getCategories,

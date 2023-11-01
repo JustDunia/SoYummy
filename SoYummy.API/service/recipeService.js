@@ -13,8 +13,20 @@ const getRecipeCategories = async () => {
   return Recipe.find({ category });
 }
 
+const getRecipesByCategoryForMainPage = async (categories) => {
+  const recipesByCategory = {};
+
+  for (const category of categories) {
+    const recipes = await Recipe.find({ category }); // Pobierz przepisy dla danej kategorii
+    recipesByCategory[category] = recipes;
+  }
+
+  return recipesByCategory;
+}
+
 module.exports = {
   getRecipeById,
   getRecipeCategories,
   getRecipesByCategory,
+  getRecipesByCategoryForMainPage,
 };

@@ -1,0 +1,233 @@
+.headerContainer {
+	display: flex;
+	justify-content: center;
+}
+
+.soYummyTag {
+	position: absolute;
+	top: 98px;
+	font-family: "Poppins", sans-serif;
+	font-size: 60px;
+	font-weight: 400;
+	line-height: 60px;
+	letter-spacing: -0.005em;
+	text-align: center;
+}
+
+.soPart {
+	color: #8baa36;
+}
+
+.yummyPart {
+	color: #22252a;
+}
+
+.whatToCookTxt {
+	position: absolute;
+	top: 206px;
+	width: 248px;
+	height: 72px;
+	font-family: "Poppins", sans-serif;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 18px;
+	letter-spacing: -0.02em;
+	text-align: center;
+	z-index: 10;
+}
+
+.smallSpinach {
+	position: absolute;
+	top: 48px;
+	left: 0;
+}
+
+.deliciousBox {
+	position: absolute;
+	top: 435px;
+	right: 34px;
+	z-index: 95;
+	width: 225px;
+	height: 92px;
+	background-color: #fafafa;
+	border-radius: 8px;
+	flex-shrink: 0;
+}
+
+.deliciousBoxTxt {
+	width: 209px;
+	font-family: "Poppins", sans-serif;
+	font-size: 12px;
+	font-weight: 500;
+	line-height: 18px;
+	letter-spacing: -0.23999999463558197px;
+	text-align: left;
+	margin: 0 auto;
+	margin-top: 8px;
+}
+.deliciousBoxTxtSpan1 {
+	color: #8baa36;
+}
+.deliciousBoxTxtSpan2 {
+	bottom: 11px;
+}
+.deliciousBoxRecipes {
+	font-family: "Poppins", sans-serif;
+	font-size: 10px;
+	font-weight: 400;
+	line-height: 12px;
+	letter-spacing: 0.20000000298023224px;
+	display: flex;
+	align-items: center;
+	gap: 5px;
+	position: absolute;
+	bottom: 8px;
+	right: 8px;
+	color: #3e4462;
+}
+
+.arrowRight {
+	width: 18px;
+	height: 18px;
+}
+
+.bowl {
+	position: absolute;
+	top: 322px;
+	right: 28px;
+	z-index: 90;
+}
+
+.sprinkleArrow {
+	display: none;
+}
+
+.bigSpinach {
+	position: absolute;
+	top: 54px;
+	right: 0;
+	z-index: 50;
+}
+
+.bgHeader {
+	position: absolute;
+	right: 0;
+	top: 150px;
+}
+
+/* <<<Tablet>>> */
+@media screen and (min-width: 768px) {
+	.soYummyTag {
+		font-size: 72px;
+		letter-spacing: -0.36px;
+		top: 160px;
+		left: 32px;
+	}
+
+	.whatToCookTxt {
+		top: 300px;
+		left: 38px;
+		width: 362px;
+		height: 54px;
+		text-align: left;
+		letter-spacing: -0.28px;
+	}
+
+	.smallSpinach {
+		top: 0;
+	}
+
+	.deliciousBox {
+		top: 370px;
+		right: 31px;
+		width: 260px;
+		height: 100px;
+	}
+
+	.deliciousBoxTxt {
+		width: 236px;
+		height: 54px;
+		line-height: 18px;
+		font-size: 14px;
+		letter-spacing: -0.24px;
+	}
+
+	.deliciousBoxRecipes {
+		right: 16px;
+	}
+
+	.bowl {
+		top: 159px;
+		right: 0px;
+	}
+
+	.sprinkleArrow {
+		display: block;
+		position: absolute;
+		top: 440px;
+		right: 60px;
+		z-index: 95;
+	}
+
+	.bigSpinach {
+		top: 0;
+	}
+
+	.bgHeader {
+		top: 0;
+	}
+}
+
+/* <<<Desktop>>> */
+@media screen and (min-width: 1440px) {
+	.soYummyTag {
+		font-size: 100px;
+		letter-spacing: -0.5%;
+		line-height: 100px;
+		font-weight: 700;
+		top: 160px;
+		left: 100px;
+	}
+
+	.whatToCookTxt {
+		top: 340px;
+		left: 107px;
+		width: 465px;
+		height: 72px;
+		font-size: 18px;
+		font-style: normal;
+		font-weight: 400;
+		line-height: 24px; /* 133.333% */
+		letter-spacing: -0.36px;
+	}
+
+	.deliciousBox {
+		top: 462px;
+		right: 122px;
+		width: 298px;
+		height: 114px;
+	}
+
+	.deliciousBoxTxt {
+		width: 266px;
+		height: 60px;
+		margin-top: 16px;
+		line-height: 18px;
+		font-size: 14px;
+		letter-spacing: -0.24px;
+	}
+	.deliciousBoxRecipes {
+		right: 16px;
+		bottom: 19px;
+	}
+
+	.bowl {
+		top: 126px;
+		right: 184px;
+	}
+
+	.sprinkleArrow {
+		top: 570px;
+		right: 210px;
+	}
+}

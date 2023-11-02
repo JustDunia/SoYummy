@@ -26,6 +26,17 @@ const userSchema = new Schema(
 			type: Boolean,
 			default: false,
 		},
+		shoppingList: [
+			{
+			  ingredient: {
+				type: Schema.Types.ObjectId,
+				ref: 'Recipe',
+			  },
+			  quantity: {
+				type: Number,
+			  },
+			},
+		  ],
 		favorites: {
 			type: [
 				{

@@ -2,12 +2,12 @@ const express = require('express');
 const router = express.Router();
 const recipesController = require('../controllers/recipesController');
 
-// router.get('/recipes/:recipeId', recipesController.getRecipeDetails);
 router.get('/category-list', recipesController.getCategories);
 router.get('/main-page', recipesController.getRecipesForMainPage);
 router.get('/:category', recipesController.getRecipesByCategory);
-router.get('/:id', recipesController.getRecipeById);
-
+// router.get('/:id', recipesController.getRecipeById);
+router.get('/id/:id', recipesController.getRecipeById);
+// router.get('/', recipesController.getRecipeById);
 module.exports = router;
 
 

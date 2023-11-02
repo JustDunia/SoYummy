@@ -82,8 +82,9 @@ async function getRecipesForMainPage(req, res) {
  }
 
  async function getRecipeById(req, res) {
+  console.log("Kontroler getRecipeById został wywołany");
   const recipeId = req.params.id;
-
+  console.log(`Incoming request for recipe with ID: ${recipeId}`);
   try {
     const recipe = await RecipeService.getRecipeById(recipeId);
     if (!recipe) {

@@ -49,7 +49,7 @@ const getPopularRecipes = async () => {
     const popularRecipes = await Recipe.find().sort({ popularity: -1 });
     return popularRecipes;
   } catch (error) {
-    throw new Error('Nie udało się pobrać popularnych przepisów.');
+    throw new Error('Failed to download popular recipes.');
   }
 };
 

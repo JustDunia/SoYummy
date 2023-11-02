@@ -1,5 +1,4 @@
 .signinPage {
-  padding: 87px 20px 20px;
   min-height: 845px;
   background-color: #fafafa;
   background-image: url("../../images/registration/bottom_mob.svg");
@@ -16,20 +15,19 @@
 }
 @media screen and (min-width: 768px) {
   .signinPage {
-    padding: 96px 20px 59px 20px;
     min-height: 1024px;
     background-image: url("../../images/registration/bottom_tab.svg");
   }
 }
 @media screen and (min-width: 1280px) {
   .signinPage {
-    padding: 115px 0 123px 0;
-    min-height: 770px;
+    height: 100vh;
     background-image: url("../../images//registration/bottom_desk.svg");
   }
   .container {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    padding-top: 32vh;
   }
 }

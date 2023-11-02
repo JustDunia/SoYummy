@@ -44,10 +44,20 @@ const searchRecipesByKeyword = async (keyword) => {
   return recipes;
 }
 
+const getPopularRecipes = async () => {
+  try {
+    const popularRecipes = await Recipe.find().sort({ popularity: -1 });
+    return popularRecipes;
+  } catch (error) {
+    throw new Error('Nie udało się pobrać popularnych przepisów.');
+  }
+};
+
 module.exports = {
   getRecipeById,
   getRecipeCategories,
   getRecipesByCategory,
   getRecipesByCategoryForMainPage,
   searchRecipesByKeyword,
+  getPopularRecipes,
 };

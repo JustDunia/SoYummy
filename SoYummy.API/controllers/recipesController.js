@@ -99,10 +99,27 @@ async function getRecipesForMainPage(req, res) {
   }
 }
 
+async function getPopularRecipes(req, res) {
+  try {
+    const popularRecipes = await RecipeService.getPopularRecipes();
+
+    if (popularRecipes.length > 0) {
+      res.json(popularRecipes);
+    } else {
+      res.status(404).json({ message: 'No popular recipes at the moment.' });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Server Error' });
+  }
+}
+
+
 module.exports = {
   getCategories,
   getRecipesByCategory,
   // getRecipeDetails,
   getRecipesForMainPage,
   getRecipeById,
+  getPopularRecipes,
 };

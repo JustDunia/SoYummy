@@ -1,8 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { register, logIn, logOut, refreshUser } from "./auth.operations";
+import {
+  register,
+  logIn,
+  logOut,
+  currentUser,
+  subscription,
+} from "./auth.operations";
 
 const initialState = {
-  user: { username: null, email: null },
+  user: { username: null, email: null, isSubscriber: false },
   token: null,
   isLoggedIn: false,
   isRefreshing: false,
@@ -10,7 +16,6 @@ const initialState = {
 };
 
 const handleRejected = (state, action) => {
-  // state.isLoading = false;
   state.error = action.payload.message;
 };
 
@@ -26,28 +31,43 @@ const authSlice = createSlice({
     [register.rejected]: handleRejected,
 
     [logIn.fulfilled](state, action) {
-      state.user = action.payload.userData;
-      state.token = action.payload.userData.token;
+      state.user = action.payload.user;
+      state.token = action.payload.user.token;
       state.isLoggedIn = true;
     },
     [logIn.rejected]: handleRejected,
 
     [logOut.fulfilled](state, action) {
-      state.user = { name: null, email: null };
+      state.user = null;
       state.token = null;
       state.isLoggedIn = false;
     },
     [logOut.rejected]: handleRejected,
 
-    [refreshUser.pending](state) {
+    // spr logikę z api na refresh user
+
+    [currentUser.pending](state) {
       state.isRefreshing = true;
     },
-    [refreshUser.fulfilled](state, action) {
-      state.user = action.payload;
+    [currentUser.fulfilled](state, action) {
+      state.user = action.payload.user;
       state.isLoggedIn = true;
       state.isRefreshing = false;
     },
-    [refreshUser.rejected](state) {
+    [currentUser.rejected](state) {
+      state.isRefreshing = false;
+    },
+
+    [subscription.pending](state) {
+      state.isRefreshing = true;
+    },
+    [subscription.fulfilled](state, action) {
+      console.log(action.payload);
+      state.user.isSubscriber = action.payload.userData.isSubscriber;
+      state.isLoggedIn = true;
+      state.isRefreshing = false;
+    },
+    [subscription.rejected](state) {
       state.isRefreshing = false;
     },
   },

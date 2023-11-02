@@ -1,35 +1,15 @@
-// const SigninPage = () => {
-//   return <h2> SigninPage</h2>;
-// };
-
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector } from "react-redux"; // Importuj funkcję useSelector
 
-import {
-  selectIsUserLoged,
-  selectUser,
-  selectUserToken,
-} from "../../redux/auth/auth.selectors";
 import { LogInForm } from "../../components/LogInForm";
 
-import { store } from "../../redux/store";
-
 export const SigninPage = () => {
-  const userIsLogged = useSelector(selectIsUserLoged);
-  console.log("USER LOGGED", userIsLogged);
-
-  // const token = useSelector(selectUserToken);
-  // console.log("TOKEN", token);
-
-  const currentState = store.getState();
-  console.log("CURRENT STATE", currentState);
-
-  const user = useSelector(selectUser);
-  console.log("USER", user);
-
   const navigate = useNavigate();
   const [hasRedirected, setHasRedirected] = useState(false);
+
+  // Użyj selektora, aby pobrać wartość userIsLogged ze sklepu Redux
+  const userIsLogged = useSelector((state) => state.auth.isUserLogged); // Załóżmy, że wartość jest przechowywana w state.auth.isUserLogged
 
   useEffect(() => {
     if (userIsLogged && !hasRedirected) {
@@ -50,3 +30,32 @@ export const SigninPage = () => {
 };
 
 export default SigninPage;
+
+// import React, { useEffect, useState } from "react";
+// import { useNavigate } from "react-router-dom";
+
+// import { LogInForm } from "../../components/LogInForm";
+
+// export const SigninPage = () => {
+//   const navigate = useNavigate();
+//   const [hasRedirected, setHasRedirected] = useState(false);
+
+//   useEffect(() => {
+//     if (userIsLogged && !hasRedirected) {
+//       navigate("/main");
+//       setHasRedirected(true);
+//     }
+//     if (!userIsLogged) {
+//       setHasRedirected(false);
+//     }
+//   }, [userIsLogged, navigate, hasRedirected]);
+
+//   return (
+//     <div>
+//       <h1>Login user:</h1>
+//       <LogInForm />
+//     </div>
+//   );
+// };
+
+// export default SigninPage;

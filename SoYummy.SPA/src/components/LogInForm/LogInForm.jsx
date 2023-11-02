@@ -4,10 +4,9 @@ import { selectIsUserLoged } from "../../redux/auth/auth.selectors";
 // import css from "./LogInForm.modules";
 import css from "./LogInForm.modules.css";
 
-const logged = useSelector(selectIsUserLoged);
-
 export const LogInForm = () => {
   const dispatch = useDispatch();
+  const logged = useSelector(selectIsUserLoged);
 
   const handleSubmit = (e) => {
     e.preventDefault();

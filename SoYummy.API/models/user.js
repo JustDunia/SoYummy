@@ -26,6 +26,14 @@ const userSchema = new Schema(
 			type: Boolean,
 			default: false,
 		},
+		favorites: {
+			type: [
+				{
+					type: ObjectId,
+					ref: 'Recipes',
+				},
+			],
+		},
 		shoppingList: [
 			{
 			  ingredient: {
@@ -37,14 +45,6 @@ const userSchema = new Schema(
 			  },
 			},
 		  ],
-		favorites: {
-			type: [
-				{
-					type: ObjectId,
-					ref: 'Recipes',
-				},
-			],
-		},
 	},
 	{ versionKey: false, timestamps: true }
 )

@@ -7,6 +7,8 @@ const swaggerSpec = require('./swagger')
 const authRoutes = require('./routes/auth')
 const recipesRouter = require('./routes/recipes')
 const searchRouter = require('./routes/search')
+const shoppingListRouter = require('./routes/shoppingList');
+const favoriteRoutes = require('./routes/favorite')
 const app = express()
 
 const formatsLogger = app.get('env') === 'development' ? 'dev' : 'short'
@@ -22,6 +24,8 @@ app.use(express.static('public'))
 app.use('/auth', authRoutes)
 app.use('/recipes', recipesRouter);
 app.use('/search', searchRouter);
+app.use('/favorite', favoriteRoutes)
+app.use('/shopping-list', shoppingListRouter);
 
 app.use((req, res) => {
 	res.status(404).json({ status: 'error', code: 404, message: 'Not found' })

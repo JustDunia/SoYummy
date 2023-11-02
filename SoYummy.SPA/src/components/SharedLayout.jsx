@@ -4,9 +4,11 @@ import Navigation from "../components/Navigation/Navigation";
 
 export const SharedLayout = () => {
 	return (
-		<Suspense fallback={<div>Loading...</div>}>
+		<>
 			<Navigation />
-			<Outlet />
-		</Suspense>
+			<Suspense fallback={<div>Loading...</div>}>
+				<Outlet />
+			</Suspense>
+		</>
 	);
 };

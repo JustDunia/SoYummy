@@ -1,5 +1,6 @@
 import { Outlet } from "react-router-dom";
 import { Suspense } from "react";
+
 import { SubscriptionButton } from "./SubscriptionButton/SubscriptionButton.jsx";
 
 import { UserMenu } from "./UserMenu";

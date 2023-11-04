@@ -20,7 +20,7 @@ const addRecipe = async (req, res, next) => {
 			owner: userId,
 		})
 		const result = await service.addOwnRecipe(recipe)
-		return res.status(201).json({ message: 'Recipe added', recipe: result })
+		return res.status(201).json({ message: 'Recipe added' })
 	} catch (e) {
 		console.error(e)
 		next(e)

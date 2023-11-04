@@ -60,41 +60,8 @@ const authenticate = require('../middleware/authenticate')
  *              token:
  *                 type: string
  *                 description: User's token
- *     addRecipe:
- *       type: object
- *       properties:
- *         message:
- *           type: string
- *           description: Message
- *         user:
- *           type: object
- *           properties:
- *              username:
- *                type: string
- *                description: User's name
- *              email:
- *                 type: string
- *                 description: User's email
- *              token:
- *                 type: string
- *                 description: User's token
  */
 
-// {
-//   "title": "Title",
-//   "category": "Breakfast",
-//   "instructions": "testowe instrukcje",
-//   "description": "jakiś opis",
-//   "time": "20",
-//   "ingredients": [
-//       {
-//       "id": "640c2dd963a319ea671e365b",
-//       "measure": "2"},
-//       {
-//       "id": "640c2dd963a319ea671e3661",
-//       "measure": "2"}
-//       ]
-// }
 /**
  * @swagger
  * /auth/register:

@@ -8,6 +8,6 @@ const swaggerOptions = {
 			version: '1.0.0',
 		},
 	},
-	apis: ['./routes/auth.js', './routes/favorite.js'],
+	apis: ['./routes/auth.js', './routes/favorite.js', './routes/ownRecipes.js'],
 }
 module.exports = swaggerJsdoc(swaggerOptions)

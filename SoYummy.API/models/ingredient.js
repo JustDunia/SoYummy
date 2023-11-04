@@ -1,16 +1,23 @@
-const mongoose = require("mongoose");
+// na main był już ten model, więc podmieniłam
+const mongoose = require('mongoose')
+const { Schema, model } = mongoose
+const { String } = Schema.Types
 
-const ingredientSchema = new mongoose.Schema({
-  ttl: {
-    type: String,
-    required: true,
-  },
-  desc: {
-    type: String,
-    required: true,
-  },
-  t: String,
-  thb: String,
-});
+const ingredientSchema = new Schema({
+	ttl: {
+		type: String,
+	},
+	desc: {
+		type: String,
+	},
+	t: {
+		type: String,
+	},
+	thb: {
+		type: String,
+	},
+})
 
-module.exports = mongoose.model('Ingredient', ingredientSchema, 'Ingredients');
+const Ingredient = model('Ingredient', ingredientSchema, 'Ingredients')
+
+module.exports = Ingredient

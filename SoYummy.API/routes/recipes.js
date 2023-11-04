@@ -1,6 +1,6 @@
-const express = require('express');
-const router = express.Router();
-const recipesController = require('../controllers/recipesController');
+const express = require('express')
+const router = express.Router()
+const recipesController = require('../controllers/recipesController')
 
 /**
  * @swagger
@@ -11,7 +11,7 @@ const recipesController = require('../controllers/recipesController');
  *        200:
  *          description: List of recipe categories
  */
-router.get('/category-list', recipesController.getCategories);
+router.get('/category-list', recipesController.getCategories)
 
 /**
  * @swagger
@@ -22,7 +22,7 @@ router.get('/category-list', recipesController.getCategories);
  *        200:
  *          description: Recipes for the main page
  */
-router.get('/main-page', recipesController.getRecipesForMainPage);
+router.get('/main-page', recipesController.getRecipesForMainPage)
 
 /**
  * @swagger
@@ -33,7 +33,7 @@ router.get('/main-page', recipesController.getRecipesForMainPage);
  *        200:
  *          description: List of popular recipes
  */
-router.get('/popular-recipes', recipesController.getPopularRecipes);
+router.get('/popular-recipes', recipesController.getPopularRecipes)
 
 /**
  * @swagger
@@ -47,11 +47,15 @@ router.get('/popular-recipes', recipesController.getPopularRecipes);
  *          schema:
  *            type: string
  *          description: Recipe category
+ *        - in: query
+ *          name: page
+ *          schema:
+ *            type: integer
  *      responses:
  *        200:
  *          description: Recipes in the specified category
  */
-router.get('/:category', recipesController.getRecipesByCategory);
+router.get('/:category', recipesController.getRecipesByCategory)
 
 // router.get('/:id', recipesController.getRecipeById);
 
@@ -71,7 +75,6 @@ router.get('/:category', recipesController.getRecipesByCategory);
  *        200:
  *          description: Recipe details
  */
-router.get('/id/:id', recipesController.getRecipeById);
+router.get('/id/:id', recipesController.getRecipeById)
 
-module.exports = router;
-
+module.exports = router

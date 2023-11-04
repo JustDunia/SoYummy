@@ -1,6 +1,6 @@
-const express = require("express");
-const router = express.Router();
-const ingredientsController = require("../controllers/ingredientsController");
+const express = require('express')
+const router = express.Router()
+const ingredientsController = require('../controllers/ingredientsController')
 
 /**
  * @swagger
@@ -18,10 +18,8 @@ const ingredientsController = require("../controllers/ingredientsController");
  *     responses:
  *       200:
  *         description: Successfully retrieved the list of ingredients
- *       500:
- *         description: Internal server error
  */
-router.get("/list", ingredientsController.getIngredientList);
+router.get('/list', ingredientsController.getIngredientList)
 
 /**
  * @swagger
@@ -41,9 +39,7 @@ router.get("/list", ingredientsController.getIngredientList);
  *         description: Successfully searched for recipes
  *       400:
  *         description: Ingredient name is required
- *       500:
- *         description: Internal server error
  */
-router.get("/", ingredientsController.searchRecipesByIngredient);
+router.get('/', ingredientsController.searchRecipesByIngredient)
 
-module.exports = router;
+module.exports = router

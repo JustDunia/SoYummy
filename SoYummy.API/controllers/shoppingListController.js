@@ -1,40 +1,52 @@
-const ShoppingListService = require('../service/shoppingListService');
+const shoppingListService = require('../service/shoppingListService');
 
-async function addProductToShoppingList(req, res, next) {
-  const { userId, productId } = req.body;
+/**
+ * Dodawanie składnika do listy zakupów
+ */
+async function addToShoppingList(req, res, next) {
+  const { userId, ingredientId } = req.body;
+
   try {
-    await ShoppingListService.addProductToShoppingList(userId, productId);
-    res.status(201).json({ message: 'Produkt został dodany do listy zakupów.' });
+    const result = await shoppingListService.addToShoppingList(userId, ingredientId);
+    res.status(200).json(result);
   } catch (e) {
-		console.error(e)
-		next(e)
-	}
+    console.error(e);
+    next(e); 
+  }
 }
 
-async function removeProductFromShoppingList(req, res, next) {
-  const { userId, productId } = req.body;
+/**
+ * Usuwanie składnika z listy zakupów
+ */
+async function removeFromShoppingList(req, res, next) {
+  const { userId, ingredientId } = req.body;
+
   try {
-    await ShoppingListService.removeProductFromShoppingList(userId, productId);
-    res.json({ message: 'Produkt został usunięty z listy zakupów.' });
+    const result = await shoppingListService.removeFromShoppingList(userId, ingredientId);
+    res.status(200).json(result);
   } catch (e) {
-		console.error(e)
-		next(e)
-	}
+    console.error(e);
+    next(e); 
+  }
 }
 
+/**
+ * Pobieranie listy zakupów użytkownika
+ */
 async function getShoppingList(req, res, next) {
   const userId = req.params.userId;
+
   try {
-    const shoppingList = await ShoppingListService.getShoppingList(userId);
-    res.json(shoppingList);
+    const result = await shoppingListService.getShoppingList(userId);
+    res.status(200).json(result);
   } catch (e) {
-		console.error(e)
-		next(e)
-	}
+    console.error(e);
+    next(e); 
+  }
 }
 
 module.exports = {
-  addProductToShoppingList,
-  removeProductFromShoppingList,
+  addToShoppingList,
+  removeFromShoppingList,
   getShoppingList,
 };

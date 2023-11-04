@@ -12,6 +12,7 @@ const favoriteRoutes = require('./routes/favorite');
 const ingredientsRouter = require("./routes/ingredients");
 const ownRecipesRoutes = require('./routes/ownRecipes')
 
+
 const app = express()
 
 const formatsLogger = app.get('env') === 'development' ? 'dev' : 'short'
@@ -24,13 +25,12 @@ app.use(express.json())
 
 app.use(express.static('public'))
 
-app.use('/auth', authRoutes)
+app.use('/auth', authRoutes);
 app.use('/recipes', recipesRouter);
 app.use('/search', searchRouter);
 app.use('/favorite', favoriteRoutes);
 app.use("/ingredients", ingredientsRouter);
 app.use('/shopping-list', shoppingListRouter);
-
 app.use('/ownRecipes', ownRecipesRoutes)
 
 app.use((req, res) => {

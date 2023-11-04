@@ -37,7 +37,7 @@ const userSchema = new Schema(
 		shoppingList: [
 			{
 			  ingredient: {
-				type: Schema.Types.ObjectId,
+				type: ObjectId,
 				ref: 'Recipe',
 			  },
 			  quantity: {

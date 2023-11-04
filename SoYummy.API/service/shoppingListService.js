@@ -1,39 +1,32 @@
-const Recipe = require('../models/recipe');
-const User = require('../models/user');
+const ShoppingList = require('../models/shoppingList');
 
-const addProductToShoppingList = async (userId, productId) => {
-    try {
-      const user = await User.findById(userId);
-      user.shoppingList.push(productId);
-      await user.save();
-    } catch (error) {
-      throw new Error('Nie udało się dodać produktu do listy zakupów.');
-    }
-  };
-  
-  const removeProductFromShoppingList = async (userId, productId) => {
-    try {
-      const user = await User.findById(userId);
-      user.shoppingList = user.shoppingList.filter(id => id !== productId);
-      await user.save();
-    } catch (error) {
-      throw new Error('Nie udało się usunąć produktu z listy zakupów.');
-    }
-  };
-  
-  const getShoppingList = async (userId) => {
-    try {
-      const user = await User.findById(userId);
-      const shoppingList = await Recipe.find({ _id: { $in: user.shoppingList } });
-      return shoppingList;
-    } catch (error) {
-      throw new Error('Nie udało się pobrać listy zakupów.');
-    }
-  };
-  
+// Dodawanie składnika do listy zakupów użytkownika
+async function addToShoppingList(userId, ingredientId) {
+  const shoppingList = await ShoppingList.findOne({ user: userId });
+  if (!shoppingList) {
+    const newShoppingList = new ShoppingList({ user: userId, ingredients: [ingredientId] });
+    return newShoppingList.save();
+  }
+  shoppingList.ingredients.push(ingredientId);
+  return shoppingList.save();
+}
+
+// Usuwanie składnika z listy zakupów użytkownika
+async function removeFromShoppingList(userId, ingredientId) {
+  return ShoppingList.findOneAndUpdate(
+    { user: userId },
+    { $pull: { ingredients: ingredientId } },
+    { new: true }
+  );
+}
+
+// Pobieranie składników z listy zakupów użytkownika
+async function getShoppingList(userId) {
+  return ShoppingList.findOne({ user: userId }).populate('ingredients');
+}
 
 module.exports = {
-  addProductToShoppingList,
-  removeProductFromShoppingList,
+  addToShoppingList,
+  removeFromShoppingList,
   getShoppingList,
 };

@@ -1,7 +1,13 @@
-import Header from "../../components/Header/Header";
+import Header from '../../components/Header/Header'
+import RecipePreviewBox from '../../components/RecipePreviewBox/RecipePreviewBox'
 
 const MainPage = () => {
-  return <Header />
-};
+	return (
+		<>
+			<Header />
+			<RecipePreviewBox />
+		</>
+	)
+}
 
-export default MainPage;
+export default MainPage

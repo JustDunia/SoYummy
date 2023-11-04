@@ -7,9 +7,9 @@ const swaggerSpec = require('./swagger')
 const authRoutes = require('./routes/auth')
 const recipesRouter = require('./routes/recipes')
 const searchRouter = require('./routes/search')
-const shoppingListRouter = require('./routes/shoppingList');
-const favoriteRoutes = require('./routes/favorite');
-const ingredientsRouter = require("./routes/ingredients");
+const shoppingListRouter = require('./routes/shoppingList')
+const favoriteRoutes = require('./routes/favorite')
+const ingredientsRouter = require('./routes/ingredients')
 const ownRecipesRoutes = require('./routes/ownRecipes')
 
 
@@ -25,12 +25,12 @@ app.use(express.json())
 
 app.use(express.static('public'))
 
-app.use('/auth', authRoutes);
-app.use('/recipes', recipesRouter);
-app.use('/search', searchRouter);
-app.use('/favorite', favoriteRoutes);
-app.use("/ingredients", ingredientsRouter);
-app.use('/shopping-list', shoppingListRouter);
+app.use('/auth', authRoutes)
+app.use('/recipes', recipesRouter)
+app.use('/search', searchRouter)
+app.use('/favorite', favoriteRoutes)
+app.use('/ingredients', ingredientsRouter)
+app.use('/shopping-list', shoppingListRouter)
 app.use('/ownRecipes', ownRecipesRoutes)
 
 app.use((req, res) => {

@@ -1,23 +1,23 @@
-const Ingredient = require("../models/ingredient");
+const Ingredient = require('../models/ingredient')
 
 // Pobierz listę składników
 async function getIngredientList() {
-  return Ingredient.find({}, "ttl desc t thb").exec();
+	// po co to?? Rozumiem że nie chciałeś wyświetlać id?
+	// Po 1. i tak id było zwracane, po 2. id jest potrzebne
+	// return Ingredient.find({}, 'ttl desc t thb').exec()
+	return Ingredient.find()
 }
 
 // Wyszukaj przepisy po nazwie składnika
 async function searchRecipesByIngredient(ingredientName) {
-  if (!ingredientName) {
-    throw new Error("Ingredient name is required");
-  }
-
-  return Ingredient.find(
-    { ttl: new RegExp(ingredientName, "i") },
-    "ttl desc t thb"
-  ).exec();
+	// po co to?? obecność ingredientName jest już sprawdzana na poziomie kontrolera
+	// if (!ingredientName) {
+	// 	throw new Error('Ingredient name is required')
+	// }
+	return Ingredient.find({ ttl: new RegExp(ingredientName, 'i') }).exec()
 }
 
 module.exports = {
-  getIngredientList,
-  searchRecipesByIngredient,
-};
+	getIngredientList,
+	searchRecipesByIngredient,
+}

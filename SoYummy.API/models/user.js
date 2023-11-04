@@ -36,15 +36,23 @@ const userSchema = new Schema(
 		},
 		shoppingList: [
 			{
-			  ingredient: {
-				type: ObjectId,
-				ref: 'Recipe',
-			  },
-			  quantity: {
-				type: Number,
-			  },
+				ingredient: {
+					// ObjectId jest już wyżej pobrany, nie trzeba pisać całej ścieżki
+					// type: Schema.Types.ObjectId,
+					type: ObjectId,
+					// składnik powinien mieć odwolanie do kolekcji składnikówa nie do 'Recipe'
+					// ref: 'Recipe'
+					ref: 'Ingredients',
+				},
+				// w przepisach jest measure więc już trzymałabym się tej wersji
+				// quantity: {
+				measure: {
+					// w przepisch ilość jest stringiem (to nie tylko liczby, może być np. '2 tbs')
+					// type: Number,
+					type: String,
+				},
 			},
-		  ],
+		],
 	},
 	{ versionKey: false, timestamps: true }
 )

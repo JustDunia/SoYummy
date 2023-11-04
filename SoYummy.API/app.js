@@ -6,6 +6,7 @@ const swaggerSpec = require('./swagger')
 
 const authRoutes = require('./routes/auth')
 const favoriteRoutes = require('./routes/favorite')
+const ownRecipesRoutes = require('./routes/ownRecipes')
 
 const app = express()
 
@@ -21,6 +22,7 @@ app.use(express.static('public'))
 
 app.use('/auth', authRoutes)
 app.use('/favorite', favoriteRoutes)
+app.use('/ownRecipes', ownRecipesRoutes)
 
 app.use((req, res) => {
 	res.status(404).json({ status: 'error', code: 404, message: 'Not found' })

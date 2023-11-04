@@ -10,6 +10,11 @@ import {
   getRecipe,
 } from "../../redux/recipes/recipes.operations";
 
+import {
+  addToFavorites,
+  getFavorite,
+} from "../../redux/favorite/favorite.operations";
+
 import { searchRecipes } from "../../redux/search/search.operations";
 
 export const UserProfile = () => {
@@ -26,16 +31,18 @@ export const UserProfile = () => {
   const handlePopular = () => dispatch(getRecipesPopular());
   const handleCategory = () =>
     dispatch(getRecipesByCategory({ category: "Side", page: 2 }));
-
   let id = "640cd5ac2d9fecf12e889838";
-
   const handleOne = () => dispatch(getRecipe(id));
-
   const inputRef = useRef();
-
   const handleSearch = (e) => {
     e.preventDefault();
     dispatch(searchRecipes({ keyword: inputRef.current.value }));
+  };
+
+  const handleAddFavorite = (e) => {
+    e.preventDefault();
+    dispatch(addToFavorites(id));
+    dispatch(getFavorite());
   };
 
   return (
@@ -51,6 +58,7 @@ export const UserProfile = () => {
       <form onSubmit={handleSearch}>
         <input type="text" ref={inputRef} placeholder="Wyszukaj przepisy..." />
         <button type="submit">Szukaj</button>
+        <button onClick={handleAddFavorite}>Dodaj do favorite</button>
       </form>
     </div>
   );

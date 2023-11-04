@@ -13,7 +13,7 @@ import storage from "redux-persist/lib/storage";
 
 import { authReducer } from "./auth/auth.slice";
 import { recipesReducer } from "./recipes/recipes.slice";
-// import { favoriteReducer } from "./favorite/favorite.slice";
+import { favoriteReducer } from "./favorite/favorite.slice";
 import { searchReducer } from "./search/search.slice";
 // import { shoppingListReducer } from "./shoppingList/shoppingList.slice";
 
@@ -27,7 +27,7 @@ export const store = configureStore({
   reducer: {
     auth: persistReducer(persistConfig, authReducer),
     recipes: recipesReducer,
-    // favorite: favoriteReducer,
+    favorite: favoriteReducer,
     search: searchReducer,
     // shoppingList: shoppingListReducer,
   },

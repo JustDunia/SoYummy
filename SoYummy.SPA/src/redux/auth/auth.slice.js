@@ -8,7 +8,7 @@ import {
 } from "./auth.operations";
 
 const initialState = {
-  user: { username: null, email: null },
+  user: { username: null, email: null, userId: null },
   token: null,
   isLoggedIn: false,
   isRefreshing: false,

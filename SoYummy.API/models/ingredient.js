@@ -1,4 +1,3 @@
-// na main był już ten model, więc podmieniłam
 const mongoose = require('mongoose')
 const { Schema, model } = mongoose
 const { String } = Schema.Types
@@ -19,5 +18,6 @@ const ingredientSchema = new Schema({
 })
 
 const Ingredient = model('Ingredient', ingredientSchema, 'Ingredients')
+
 
 module.exports = Ingredient

@@ -1,5 +1,34 @@
 const Recipe = require('../models/recipe')
 const { ObjectId } = require('mongoose')
+const Ingredient = require('../models/ingredient')
+
+/**
+ * Zwraca tablicę obiektów Recipe na podstawie tablicy z ObjectId
+ * @param {[ObjectId]} favorites - tablica id ulubionych przepisów
+ */
+const getUsersRecipes = favorites => Recipe.find({ _id: { $in: favorites } })
+
+/**
+ * Zwraca tablicę własnych przepisów użytkownika
+ * @param {ObjectId} userId - id użytkownika
+ */
+const getOwnRecipes = async userId =>
+	Recipe.find({ owner: userId }).populate({
+		path: 'ingredients.id',
+		model: 'Ingredient',
+	})
+
+/**
+ * Dodaje własny przepis do kolekcji
+ * @param {Recipe} recipe - nowy przepis
+ */
+const addOwnRecipe = async recipe => recipe.save()
+
+/**
+ * Usuwa własny przepis z kolekcji
+ * @param {ObjectId} recipeId - id przepisu
+ */
+const removeOwnRecipe = async recipeId => Recipe.findByIdAndRemove(recipeId)
 
 const getRecipeById = async recipeId => Recipe.findById(recipeId)
 
@@ -58,12 +87,6 @@ const getPopularRecipes = async () => Recipe.find().sort({ popularity: -1 })
 // 	}
 // }
 
-/**
- * Zwraca tablicę obiektów Recipe na podstawie tablicy z ObjectId
- * @param {[ObjectId]} favorites - tablica id ulubionych przepisów
- */
-const getUsersRecipes = favorites => Recipe.find({ _id: { $in: favorites } })
-
 module.exports = {
 	getRecipeById,
 	getRecipeCategories,
@@ -72,4 +95,7 @@ module.exports = {
 	searchRecipesByKeyword,
 	getPopularRecipes,
 	getUsersRecipes,
+	getOwnRecipes,
+	addOwnRecipe,
+	removeOwnRecipe,
 }

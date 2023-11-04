@@ -35,3 +35,26 @@ Należy stworzyć plik .env, którego struktura będzie wyglądać następująco
 - należy pilnować prawidłowej indentacji dokumentacji swagger (syntax yaml)
 - dokumentacje można otworzyć pod adresem localhost:PORT/api-docs
 - [swagger-jsdoc](https://github.com/Surnet/swagger-jsdoc)
+
+
+SoYummy.API\models\shoppingList.js:
+console.log('ShoppingList model initialized.');
+
+SoYummy.API\service\shoppingListService.js:
+console.log('ShoppingList service initialized.');
+
+SoYummy.API\controllers\shoppingListController.js:
+console.log('ShoppingList controller initialized.');
+
+// W funkcji addToShoppingList
+console.log('Request to add ingredient to shopping list:', userId, ingredientId);
+console.log('Ingredient added to shopping list successfully:', result);
+
+// W funkcji removeFromShoppingList
+console.log('Request to remove ingredient from shopping list:', userId, ingredientId);
+console.log('Ingredient removed from shopping list successfully:', result);
+
+// W funkcji getShoppingList
+console.log('Request to get shopping list for user:', userId);
+console.log('Shopping list retrieved successfully:', result);
+Te linie console.log pomogą 

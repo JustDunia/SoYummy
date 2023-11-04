@@ -19,4 +19,8 @@ const shoppingListSchema = new Schema({
 
 const ShoppingList = model('ShoppingList', shoppingListSchema)
 
+console.log('ShoppingList model initialized.');
+
 module.exports = ShoppingList;
+
+// , 'user', 'Ingredients'

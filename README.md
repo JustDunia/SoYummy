@@ -1,8 +1,21 @@
 struktura plików
 
-SoYummy.API/ │ ├── app.js ├── package.json ├── node_modules/ ├── server.js ├── routes/ │ ├── auth.js
-│ ├── user.js ├── controllers/ │ ├── authController.js │ ├── userController.js ├── models/ │ ├──
-user.js ├── middleware/ │ ├── authenticate.js │ └── config/ ├── config.js
+SoYummy.API/
+  ├── app.js
+  ├── package.json 
+  ├── node_modules/ 
+  ├── server.js
+  ├── swagger.js
+  ├── routes/ 
+  │     ├── auth.js
+  ├── controllers/ 
+  │     ├── authController.js 
+  ├── models/ 
+  │     ├──user.js 
+  ├── middleware/ 
+  │     ├── authenticate.js 
+  ├── service/
+  │     ├── userService.js 
 
 ## Obsługa API
 

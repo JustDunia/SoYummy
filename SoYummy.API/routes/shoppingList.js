@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const authenticate = require('../middleware/authenticate');
 const shoppingListController = require("../controllers/shoppingListController");
 
 /**
@@ -25,7 +26,7 @@ const shoppingListController = require("../controllers/shoppingListController");
  *       200:
  *         description: Successfully added the ingredient to the shopping list.
  */
-router.post("/add", shoppingListController.addToShoppingList);
+router.post("/add", authenticate, shoppingListController.addToShoppingList);
 
 /**
  * @swagger
@@ -50,7 +51,7 @@ router.post("/add", shoppingListController.addToShoppingList);
  *       200:
  *         description: Successfully removed the ingredient from the shopping list.
  */
-router.delete("/remove", shoppingListController.removeFromShoppingList);
+router.delete("/remove", authenticate, shoppingListController.removeFromShoppingList);
 
 /**
  * @swagger
@@ -70,6 +71,6 @@ router.delete("/remove", shoppingListController.removeFromShoppingList);
  *       200:
  *         description: Successfully retrieved the shopping list of the user.
  */
-router.get("/list/:userId", shoppingListController.getShoppingList);
+router.get("/list/:userId", authenticate, shoppingListController.getShoppingList);
 
 module.exports = router;

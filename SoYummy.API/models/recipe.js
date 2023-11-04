@@ -6,15 +6,18 @@ const recipeSchema = new Schema(
 	{
 		title: {
 			type: String,
+			required: [true, 'Title is required'],
 		},
 		category: {
 			type: String,
+			required: [true, 'Category is required'],
 		},
 		area: {
 			type: String,
 		},
 		instructions: {
 			type: String,
+			required: [true, 'Instructions are required'],
 		},
 		description: {
 			type: String,
@@ -27,6 +30,7 @@ const recipeSchema = new Schema(
 		},
 		time: {
 			type: String,
+			required: [true, 'Cooking time is required'],
 		},
 		popularity: {
 			type: Number,
@@ -46,13 +50,22 @@ const recipeSchema = new Schema(
 		ingredients: {
 			type: [
 				{
-					type: ObjectId,
-					ref: 'Ingredients',
-				},
-				{
-					type: String,
+					id: {
+						type: ObjectId,
+						ref: 'Ingredients',
+						required: [true, 'Ingredients are required'],
+					},
+					measure: {
+						type: String,
+						required: [true, 'Measure is required'],
+					},
+					_id: false,
 				},
 			],
+		},
+		owner: {
+			type: ObjectId,
+			ref: 'users',
 		},
 	},
 	{ versionKey: false, timestamps: true }

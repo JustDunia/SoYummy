@@ -1,7 +1,7 @@
 const swaggerJsdoc = require("swagger-jsdoc");
 
 const swaggerOptions = {
-  definition: {
+ definition: {
     openapi: "3.0.0",
     info: {
       title: "SoYummy Project",

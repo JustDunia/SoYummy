@@ -7,7 +7,36 @@ const swaggerOptions = {
 			title: 'SoYummy Project',
 			version: '1.0.0',
 		},
+		components: {
+			schemas: {
+				Recipe: {
+					type: 'object',
+					properties: {
+						_id: {
+							type: 'string',
+						},
+						title: {
+							type: 'string',
+						},
+						category: {
+							type: 'string',
+						},
+						area: {
+							type: 'string',
+						},
+						instructions: {
+							type: 'string',
+						},
+						thumb: {
+							type: 'string',
+						},
+						// inne pola przepisu
+					},
+					// inne opcje definicji
+				},
+			},
+		},
 	},
-	apis: ['./routes/auth.js', './routes/favorite.js', './routes/ownRecipes.js'],
+	apis: ['./routes/*.js'],
 }
 module.exports = swaggerJsdoc(swaggerOptions)

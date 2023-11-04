@@ -1,5 +1,5 @@
 const userService = require('../service/userService')
-const recipeService = require('../service/recipeService')
+const recipeService = require('../service/recipesService')
 
 /**
  * Dodaja przepis do ulubionych

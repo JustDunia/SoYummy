@@ -1,4 +1,4 @@
-const RecipeService = require('../service/recipeService')
+const RecipeService = require('../service/recipesService')
 
 // Kontroler obsługujący wyszukiwanie przepisów
 async function searchRecipes(req, res, next) {

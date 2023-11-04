@@ -3,8 +3,8 @@ const Ingredient = require('../models/ingredient')
 // Pobierz listę składników
 async function getIngredientList() {
 	// po co to?? Rozumiem że nie chciałeś wyświetlać id?
-	//Po 1. i tak id było zwracane, po 2. id jest potrzebne
-	//return Ingredient.find({}, 'ttl desc t thb').exec()
+	// Po 1. i tak id było zwracane, po 2. id jest potrzebne
+	// return Ingredient.find({}, 'ttl desc t thb').exec()
 	return Ingredient.find()
 }
 

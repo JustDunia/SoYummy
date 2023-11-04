@@ -1,4 +1,4 @@
-const RecipeService = require('../service/recipeService')
+const RecipeService = require('../service/recipesService')
 
 async function getCategories(req, res, next) {
 	try {
@@ -14,7 +14,7 @@ async function getRecipesByCategory(req, res, next) {
 	const { category } = req.params
 	let { page } = req.query
 
-	if (!page || page == 0) page = 1
+	if (!page || page === 0) page = 1
 	try {
 		const recipes = await RecipeService.getRecipesByCategory(category, page)
 		// Owszem, powinno być 8 przepisów, ale na każdej stronie, a tu za każdym razem zwracasz pierwsze 8 przepisów
@@ -86,9 +86,9 @@ async function getRecipesForMainPage(req, res, next) {
 }
 
 async function getRecipeById(req, res, next) {
-	//console.log('Kontroler getRecipeById został wywołany')
+	// console.log('Kontroler getRecipeById został wywołany')
 	const recipeId = req.params.id
-	//console.log(`Incoming request for recipe with ID: ${recipeId}`)
+	// console.log(`Incoming request for recipe with ID: ${recipeId}`)
 	try {
 		const recipe = await RecipeService.getRecipeById(recipeId)
 		if (!recipe) {
@@ -107,7 +107,7 @@ async function getPopularRecipes(req, res, next) {
 	try {
 		const popularRecipes = await RecipeService.getPopularRecipes()
 
-		//if (popularRecipes.length > 0) {
+		// if (popularRecipes.length > 0) {
 		res.json(popularRecipes)
 		// } else {
 		// 	res.status(404).json({ message: 'No popular recipes at the moment.' })

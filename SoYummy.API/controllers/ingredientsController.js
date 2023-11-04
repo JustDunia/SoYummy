@@ -1,16 +1,16 @@
 const ingredientService = require("../service/ingredientService");
 
-async function getIngredientList(req, res) {
+async function getIngredientList(req, res, next) {
   try {
     const ingredients = await ingredientService.getIngredientList();
     res.json(ingredients);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Internal Server Error" });
-  }
+  } catch (e) {
+		console.error(e)
+		next(e)
+	}
 }
 
-async function searchRecipesByIngredient(req, res) {
+async function searchRecipesByIngredient(req, res, next) {
   const { ingredientName } = req.query;
 
   try {
@@ -20,10 +20,10 @@ async function searchRecipesByIngredient(req, res) {
 
     const recipes = await ingredientService.searchRecipesByIngredient(ingredientName);
     res.json(recipes);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Internal Server Error" });
-  }
+  } catch (e) {
+		console.error(e)
+		next(e)
+	}
 }
 
 module.exports = {

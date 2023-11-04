@@ -1,16 +1,16 @@
 const RecipeService = require("../service/recipeService");
 
-async function getCategories(req, res) {
+async function getCategories(req, res, next) {
   try {
     const categories = await RecipeService.getRecipeCategories();
     res.json(categories);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Server Error" });
-  }
+  } catch (e) {
+		console.error(e)
+		next(e)
+	}
 }
 
-async function getRecipesByCategory(req, res) {
+async function getRecipesByCategory(req, res, next) {
   const { category } = req.params;
 
   try {
@@ -18,51 +18,52 @@ async function getRecipesByCategory(req, res) {
     // Zwróć tylko pierwsze 8 przepisów
     const first8Recipes = recipes.slice(0, 8);
     res.json(first8Recipes);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Server Error' });
-  }
+  } catch (e) {
+		console.error(e)
+		next(e)
+	}
 }
 
 // to samo ale z paginacją
-// async function getRecipesByCategory(req, res) {
+// async function getRecipesByCategory(req, res, next) {
 //   const { category, page, pageSize } = req.params;
 
 //   try {
 //     const recipes = await RecipeService.getRecipesByCategory(category, page, pageSize);
 //     res.json(recipes);
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ error: 'Server Error' });
-//   }
+// } catch (e) {
+//   console.error(e)
+//   next(e)
+// }
 // }
 
 // to samo ale bez ograniczeń
-// async function getRecipesByCategory(req, res) {
+// async function getRecipesByCategory(req, res, next) {
 //   const category = req.params.category;
 
 //   try {
 //     const recipes = await RecipeService.getRecipesByCategory(category);
 //     res.json(recipes);
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ error: "Server Error" });
+// } catch (e) {
+//   console.error(e)
+//   next(e)
+// }
 //   }
 // }
 
-// async function getRecipeById(req, res) {
+// async function getRecipeById(req, res, next) {
 //   const recipeId = req.params.recipeId;
 
 //   try {
 //     const recipe = await RecipeService.getRecipeById(recipeId);
 //     res.json(recipe);
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ error: "Server Error" });
-//   }
+// } catch (e) {
+//   console.error(e)
+//   next(e)
+// }
 // }
 
-async function getRecipesForMainPage(req, res) {
+async function getRecipesForMainPage(req, res, next) {
   try {
      // Pobierz kategorie i przepisy (tutaj trzeba dostosować do twoich potrzeb)
      const categories = await RecipeService.getRecipeCategories();
@@ -75,16 +76,14 @@ async function getRecipesForMainPage(req, res) {
      };
      
      res.json(data);
-   } catch (error) {
-     console.error(error);
-     res.status(500).json({ error: 'Server Error' });
-   }
+    } catch (e) {
+      console.error(e)
+      next(e)
+    }
  }
 
- async function getRecipeById(req, res) {
-  console.log("Kontroler getRecipeById został wywołany");
+ async function getRecipeById(req, res, next) {
   const recipeId = req.params.id;
-  console.log(`Incoming request for recipe with ID: ${recipeId}`);
   try {
     const recipe = await RecipeService.getRecipeById(recipeId);
     if (!recipe) {
@@ -93,13 +92,13 @@ async function getRecipesForMainPage(req, res) {
     } else {
       res.json(recipe);
     }
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Server Error' });
-  }
+  } catch (e) {
+		console.error(e)
+		next(e)
+	}
 }
 
-async function getPopularRecipes(req, res) {
+async function getPopularRecipes(req, res, next) {
   try {
     const popularRecipes = await RecipeService.getPopularRecipes();
 
@@ -108,17 +107,16 @@ async function getPopularRecipes(req, res) {
     } else {
       res.status(404).json({ message: 'No popular recipes at the moment.' });
     }
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Server Error' });
-  }
+  } catch (e) {
+		console.error(e)
+		next(e)
+	}
 }
 
 
 module.exports = {
   getCategories,
   getRecipesByCategory,
-  // getRecipeDetails,
   getRecipesForMainPage,
   getRecipeById,
   getPopularRecipes,

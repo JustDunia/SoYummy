@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom'
 import { SharedLayout } from '../components/SharedLayout'
 import { lazy } from 'react'
+import css from './App.module.css'
 
 export const App = () => {
 	const WelcomePage = lazy(() => import('../pages/WelcomePage/WelcomePage'))

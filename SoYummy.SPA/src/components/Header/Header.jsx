@@ -1,4 +1,5 @@
 import css from "./Header.module.css";
+import SearchBar from "../SearchBar/SearchBar";
 
 const Header = () => {
 	const imagePath = "/src/images/soYummy/";
@@ -86,7 +87,7 @@ const Header = () => {
 				src={"/src/images/commonSvgImg/arrow_header.svg"}
 				alt="sprinkle arrow"
 			/>
-			
+
 			<picture>
 				{/* Desktop from 1200px */}
 				<source
@@ -131,6 +132,8 @@ const Header = () => {
 					alt="bg header"
 				/>
 			</picture>
+
+			<SearchBar btnColor="black" />
 		</div>
 	);
 };

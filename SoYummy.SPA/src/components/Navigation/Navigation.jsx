@@ -3,6 +3,7 @@ import { useState } from "react";
 import Logo from "../Logo/Logo";
 import NavigationModal from "./NavigationModal";
 import css from "../Navigation/Navigation.module.css";
+import UserLogo from "../UserLogo/UserLogo";
 
 const Navigation = () => {
 	const [navOpen, setNavOpen] = useState(false);
@@ -12,6 +13,7 @@ const Navigation = () => {
 			<Link to="/">
 				<Logo />
 			</Link>
+			<UserLogo />
 			<div className={css.navBar}>
 				<ul className={css.navBarList}>
 					<li className={css.navBarItem}>

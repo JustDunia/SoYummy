@@ -20,7 +20,7 @@ const recipesSlice = createSlice({
   name: "recipes",
   initialState: {
     categories: [],
-    recipesMain: [],
+    recipesMain: {},
     popularRecipes: [],
     recipesByCategory: {},
     recipe: {},

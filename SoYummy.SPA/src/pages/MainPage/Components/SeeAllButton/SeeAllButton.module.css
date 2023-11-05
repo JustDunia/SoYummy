@@ -1,0 +1,15 @@
+
+.seeAllButton {
+	display: block;
+	margin-top: 24px;
+	margin-left: auto;
+	padding: 10px 24px;
+	border-radius: 6px;
+	border: none;
+	font-family: var(--poppins-font);
+	font-size: 14px;
+	color: var(--primaryLightTextNoChange);
+	background-color: var(--mainPageButtons);
+	cursor: pointer;
+}
+

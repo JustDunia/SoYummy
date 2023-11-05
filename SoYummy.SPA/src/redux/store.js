@@ -15,6 +15,7 @@ import { authReducer } from "./auth/auth.slice";
 import { recipesReducer } from "./recipes/recipes.slice";
 import { favoriteReducer } from "./favorite/favorite.slice";
 import { searchReducer } from "./search/search.slice";
+import { ownRecipesReducer } from "./ownRecipes/ownRecipes.slice";
 // import { shoppingListReducer } from "./shoppingList/shoppingList.slice";
 
 const persistConfig = {
@@ -29,6 +30,7 @@ export const store = configureStore({
     recipes: recipesReducer,
     favorite: favoriteReducer,
     search: searchReducer,
+    own: ownRecipesReducer,
     // shoppingList: shoppingListReducer,
   },
   middleware: (getDefaultMiddleware) =>

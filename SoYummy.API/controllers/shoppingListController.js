@@ -6,13 +6,13 @@ const authenticate = require('../middleware/authenticate');
  * Dodawanie składnika do listy zakupów
  */
 const addToShoppingList = async (req, res, next) =>  {
-  const { ingredientId } = req.body;
+  const { ingredientId, measure } = req.body;
   const userId = req.user.id;
 
-  console.log('Request to add ingredient to shopping list:', userId, ingredientId);
+  console.log('Request to add ingredient to shopping list:', userId, ingredientId, measure);
 
   try {
-    const result = await shoppingListService.addToShoppingList(userId, ingredientId);
+    const result = await shoppingListService.addToShoppingList(userId, ingredientId, measure);
     console.log('Ingredient added to shopping list successfully:', result);
     res.status(200).json(result);
   } catch (e) {

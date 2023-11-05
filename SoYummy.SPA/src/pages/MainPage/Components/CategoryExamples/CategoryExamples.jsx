@@ -2,33 +2,30 @@ import css from './CategoryExamples.module.css'
 import RecipePreviewBox from '../../../../components/RecipePreviewBox/RecipePreviewBox'
 import SeeAllButton from '../SeeAllButton/SeeAllButton'
 
-const CategoryExamples = () => {
+import { useSelector } from 'react-redux'
+import { selectRecipesMainPage } from '../../../../redux/recipes/recipes.selectors'
+
+const CategoryExamples = props => {
+	const { category } = props
+
+	const recipes = useSelector(selectRecipesMainPage)
+
+	const recipesForCategory = recipes[category]
 	return (
 		<>
-			<h2 className={css.categoryName}>Breakfast</h2>
+			<h2 className={css.categoryName}>{category}</h2>
 			<div className={css.categoryExamples}>
-				<RecipePreviewBox
-					img='https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678560540/esnyz2hleveentclsvya.jpg'
-					productName='Banana Pancakes'
-					onClick={() => console.log('go to banana')}
-				/>
-				<RecipePreviewBox
-					img='https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678560540/esnyz2hleveentclsvya.jpg'
-					productName='Banana Pancakes'
-					onClick={() => console.log('go to banana')}
-				/>
-				<RecipePreviewBox
-					img='https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678560540/esnyz2hleveentclsvya.jpg'
-					productName='Banana Pancakes'
-					onClick={() => console.log('go to banana')}
-				/>
-				<RecipePreviewBox
-					img='https://res.cloudinary.com/ddbvbv5sp/image/upload/v1678560540/esnyz2hleveentclsvya.jpg'
-					productName='Banana Pancakes'
-					onClick={() => console.log('go to banana')}
-				/>
+				{recipesForCategory &&
+					recipesForCategory.map(({ _id, preview, title }) => (
+						<RecipePreviewBox
+							key={_id}
+							img={preview}
+							productName={title}
+							onClick={() => console.log(title)}
+						/>
+					))}
 			</div>
-			<SeeAllButton onClick={() => console.log('go to breakfast')} />
+			<SeeAllButton onClick={() => console.log('go to ', category)} />
 		</>
 	)
 }

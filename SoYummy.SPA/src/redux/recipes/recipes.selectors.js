@@ -1,5 +1,6 @@
-export const selectRecipesCategories = (state) => recipes.categories;
-export const selectRecipesMainPage = (state) => recipes.recipesMain;
-export const selectRecipesPopular = (state) => recipes.popularRecipes;
-export const selectRecipesByCategory = (state) => recipes.recipesByCategory;
-export const selectRecipe = (state) => recipes.recipe;
+export const selectRecipesCategories = state => state.recipes.categories
+export const selectRecipesMainPage = state => state.recipes.recipesMain
+export const selectRecipesPopular = state => state.recipes.popularRecipes
+export const selectRecipesByCategory = state => state.recipes.recipesByCategory
+export const selectRecipe = state => state.recipes.recipe
+export const selectIsLoading = state => state.recipes.isLoading

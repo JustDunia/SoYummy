@@ -13,6 +13,7 @@ import {
 import {
   addToFavorites,
   getFavorite,
+  removeFromFavorites,
 } from "../../redux/favorite/favorite.operations";
 
 import { searchRecipes } from "../../redux/search/search.operations";
@@ -31,8 +32,9 @@ export const UserProfile = () => {
   const handlePopular = () => dispatch(getRecipesPopular());
   const handleCategory = () =>
     dispatch(getRecipesByCategory({ category: "Side", page: 2 }));
-  let id = "640cd5ac2d9fecf12e889838";
+  let id = "640cd5ac2d9fecf12e8897f9";
   const handleOne = () => dispatch(getRecipe(id));
+
   const inputRef = useRef();
   const handleSearch = (e) => {
     e.preventDefault();
@@ -42,14 +44,6 @@ export const UserProfile = () => {
   const handleAddFavorite = (e) => {
     e.preventDefault();
     dispatch(addToFavorites(id));
-
-    // .unwrap()
-    // .then(() => {
-    //   dispatch(getFavorite());
-    // })
-    // .catch((error) => {
-    //   console.error("Failed to add to favorites:", error);
-    // });
   };
 
   const handleGetFavorite = (e) => {
@@ -57,6 +51,12 @@ export const UserProfile = () => {
     e.preventDefault();
     dispatch(getFavorite());
     console.log("AFTER GET FAVORITE");
+  };
+
+  const handleRemove = (e) => {
+    e.preventDefault;
+    // crossOriginIsolated.log("removing recipe id:", id);
+    dispatch(removeFromFavorites(id));
   };
 
   return (
@@ -71,6 +71,7 @@ export const UserProfile = () => {
       <button onClick={handleOne}>Wyświetl jeden przepis</button>
       <button onClick={handleAddFavorite}>Dodaj do favorite</button>
       <button onClick={handleGetFavorite}>Pobież Favorite</button>
+      <button onClick={handleRemove}>Remove Favorite</button>
       <form onSubmit={handleSearch}>
         <input type="text" ref={inputRef} placeholder="Wyszukaj przepisy..." />
         <button type="submit">Szukaj</button>

@@ -22,9 +22,11 @@ export const addToFavorites = createAsyncThunk(
 
 export const removeFromFavorites = createAsyncThunk(
   "favorite/remove",
-  async (_, thunkAPI) => {
+  async (recipeId, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const userId = selectUserId(state);
     try {
-      const res = await axios.patch("/favorite/:recipeId");
+      const res = await axios.patch(`/favorite/${recipeId}`);
       console.log("RECIPES CATEGORY LIST:", res.data);
       return res.data;
     } catch (e) {

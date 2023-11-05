@@ -32,9 +32,12 @@ const favoriteSlice = createSlice({
 
   [getFavorite.pending]: handlePending,
   [getFavorite.fulfilled](state, action) {
+    console.log("BEFORE STATE UPDATE", state.favoriteRecipes);
+    console.log("ACTION PAYLOAD", action.payload);
     state.isLoading = false;
     state.error = null;
-    state.favoriteRecipes.push(action.payload.favorites);
+    state.favoriteRecipes = action.payload;
+    console.log("AFTER STATE UPDATE", state.favoriteRecipes);
   },
   [getFavorite.rejected]: handleRejected,
 });

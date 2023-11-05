@@ -42,7 +42,21 @@ export const UserProfile = () => {
   const handleAddFavorite = (e) => {
     e.preventDefault();
     dispatch(addToFavorites(id));
+
+    // .unwrap()
+    // .then(() => {
+    //   dispatch(getFavorite());
+    // })
+    // .catch((error) => {
+    //   console.error("Failed to add to favorites:", error);
+    // });
+  };
+
+  const handleGetFavorite = (e) => {
+    console.log("BEFORE GET FAVORITE");
+    e.preventDefault();
     dispatch(getFavorite());
+    console.log("AFTER GET FAVORITE");
   };
 
   return (
@@ -55,10 +69,11 @@ export const UserProfile = () => {
       <button onClick={handlePopular}>Wyświetl przepisy Popualar</button>
       <button onClick={handleCategory}>Wyświetl przepisy po kategorii</button>
       <button onClick={handleOne}>Wyświetl jeden przepis</button>
+      <button onClick={handleAddFavorite}>Dodaj do favorite</button>
+      <button onClick={handleGetFavorite}>Pobież Favorite</button>
       <form onSubmit={handleSearch}>
         <input type="text" ref={inputRef} placeholder="Wyszukaj przepisy..." />
         <button type="submit">Szukaj</button>
-        <button onClick={handleAddFavorite}>Dodaj do favorite</button>
       </form>
     </div>
   );

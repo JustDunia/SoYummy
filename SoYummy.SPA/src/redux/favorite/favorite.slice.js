@@ -21,25 +21,25 @@ const favoriteSlice = createSlice({
   extraReducers: {
     [addToFavorites.pending]: handlePending,
     [addToFavorites.fulfilled](state, action) {
+      console.log("ADD FULLFIELD");
       state.isLoading = false;
       state.error = null;
-      //   state.favorite = action.payload;
-      //   state.favoriteRecipes = action.payload.favorites;
+
+      state.favoriteRecipes = action.payload.favorites;
     },
     [addToFavorites.rejected]: handleRejected,
-  },
-  //   to jako ostatnie
 
-  [getFavorite.pending]: handlePending,
-  [getFavorite.fulfilled](state, action) {
-    console.log("BEFORE STATE UPDATE", state.favoriteRecipes);
-    console.log("ACTION PAYLOAD", action.payload);
-    state.isLoading = false;
-    state.error = null;
-    state.favoriteRecipes = action.payload;
-    console.log("AFTER STATE UPDATE", state.favoriteRecipes);
+    [getFavorite.pending]: handlePending,
+    [getFavorite.fulfilled](state, action) {
+      console.log("BEFORE STATE UPDATE", state.favoriteRecipes);
+      console.log("ACTION PAYLOAD", action.payload);
+      state.isLoading = false;
+      state.error = null;
+      state.favoriteRecipes = action.payload.favorites;
+      console.log("AFTER STATE UPDATE", state.favoriteRecipes);
+    },
+    [getFavorite.rejected]: handleRejected,
   },
-  [getFavorite.rejected]: handleRejected,
 });
 
 export const favoriteReducer = favoriteSlice.reducer;

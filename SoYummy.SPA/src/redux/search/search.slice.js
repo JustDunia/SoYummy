@@ -21,6 +21,7 @@ const searchSlice = createSlice({
   extraReducers: {
     [searchRecipes.pending]: handlePending,
     [searchRecipes.fulfilled](state, action) {
+      console.log("SEARCH FULLFIELD");
       state.isLoading = false;
       state.error = null;
       state.recipes = action.payload;

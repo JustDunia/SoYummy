@@ -1,7 +1,8 @@
 import Header from "../../components/Header/Header";
 
 const MainPage = () => {
-  return <Header />
+
+  return <h2>MainPage</h2>;
 };
 
 export default MainPage;

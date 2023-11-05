@@ -5,7 +5,7 @@ const authenticate = require('../middleware/authenticate');
 /**
  * Dodawanie składnika do listy zakupów
  */
-async function addToShoppingList(req, res, next) {
+const addToShoppingList = async (req, res, next) =>  {
   const { ingredientId } = req.body;
   const userId = req.user.id;
 
@@ -24,7 +24,7 @@ async function addToShoppingList(req, res, next) {
 /**
  * Usuwanie składnika z listy zakupów
  */
-async function removeFromShoppingList(req, res, next) {
+const removeFromShoppingList = async (req, res, next) =>  {
   const { ingredientId } = req.body;
   const userId = req.user.id; 
 
@@ -43,7 +43,7 @@ async function removeFromShoppingList(req, res, next) {
 /**
  * Pobieranie listy zakupów użytkownika
  */
-async function getShoppingList(req, res, next) {
+const getShoppingList = async (req, res, next) => {
   const userId = req.user.id; 
 
   console.log('Request to get shopping list for user:', userId);

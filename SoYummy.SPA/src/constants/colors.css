@@ -1,0 +1,262 @@
+:root {
+	/* // shoppingList */
+	--primaryLightTextNoChange: #fafafa;
+
+	/* in footer; and in darkTheme */
+	--primaryLightText: #fafafa;
+
+	/* buttons */
+	--normalDark: #1e1f28;
+
+	/* long text of recipy; header text */
+	--primaryDarkText: #23262a;
+
+	/* long text of recipy; header text */
+	--primaryDarkTextNoChange: #23262a;
+
+	/*  titles of recipy; ingredients */
+	--secondaryDarkText: #3e4462;
+
+	--secondaryDarkTextNoChange: #3e4462;
+
+	/* title of pages (favorites; my receipies; categories; search; shopping list) */
+	--tertiaryDarkText: #001833;
+
+	/* main page buttons except footer */
+	--mainPageButtons: #8aa936;
+
+	/* buttons; footer in darkTheme */
+	--greenAccent: #8baa36;
+
+	/* search buttons */
+	--greenAccentSearch: #8baa36;
+
+	/*  footer */
+	--SocialIcons: #8baa36;
+
+	--footerSubscribeButtonBG: #8baa36;
+
+	/* in foter text */
+	--footerTextLight: #fafafa;
+
+	/* footer  text rights reserved */
+	--footerRightsReserved: #fafafa;
+
+	/* dark color in footer */
+	--footerBG: #22252a;
+
+	--headerAccentText: #8baa36;
+
+	--categoriesNames: #bdbdbd;
+
+	--categoriesAccent: #8baa36;
+
+	/* favorites button */
+	--secondaryDarkBackground: #22252a;
+
+	--recipyLightBgItem: #ebf3d4;
+
+	/*  my recipe  delete button background */
+	--myRecipyDeleteButton: #8baa36;
+
+	/* border in search form */
+	--normalGrey: #f0f0f0;
+
+	/* background-color in search select */
+	--normalGreySelect: #f0f0f0;
+
+	/* background-color in search select option */
+	--lightSelector: #fafafa;
+
+	/* favorites bg */
+	--whiteBackgroundToBlack: #ffffff;
+
+	/* icon close at shopping list */
+	--blackCloseIconToWhite: #333333;
+
+	--blackTextToWhite: #000000;
+
+	--iconDarkColor: #23262a;
+
+	--otherCategoriesMainPageBtn: #22252a;
+
+	/* main Logo */
+	--mainPageLogo: #22252a;
+
+	--whiteText: #ffffff;
+
+	--blackText: #000000;
+
+	--quaternaryDarkText: #22252a;
+
+	/* in forms */
+	--greenValidation: #3cbc81;
+
+	--yellowValidation: #f6c23e;
+
+	--redValidation: #e74a3b;
+
+	--lightBackground: #fafafa;
+
+	--lightBackgroundBody: #fafafa;
+
+	--primaryDarkBackground: #1e1f28;
+
+	--messageBackground: #53545599;
+
+	--secondaryGrey: #656565;
+
+	--secondaryGreyBg: #c4c4c4;
+
+	/* footer */
+	--darkAccent: #22252a;
+
+	/* categories list text */
+	--lightGray: #bdbdbd;
+
+	--secondaryAccent: #ebf3d4;
+
+	--whiteBackground: #ffffff;
+
+	--whiteBackgroundDish: #ffffff;
+
+	--secondaryLightBackground: #ececec;
+
+	--shoppingListProductName: #3e4462;
+
+	/* favorite + myrecipe */
+	--buttonColor: #22252a;
+	--buttoHoverColor: #8baa36;
+	--buttonTrashColor: #8baa36;
+}
+
+/* ////////////////////////////////////////// */
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--primaryLightText: #1e1f28;
+
+		/* shoppingList */
+		--primaryLightTextNoChange: #fafafa;
+
+		/* buttons */
+		--normalDark: #1e1f28;
+
+		/* long text of recipy */
+		--primaryDarkText: #fafafa;
+
+		--primaryDarkTextNoChange: #23262a;
+
+		/* titles of recipy; ingredients */
+		--secondaryDarkText: #fafafa;
+
+		/* title of pages (favorites, my receipies, categories, search, shopping list */
+		--tertiaryDarkText: #fafafa;
+
+		/* main page buttons except footer */
+		--mainPageButtons: #8aa936;
+
+		/* buttons, footer in darkTheme */
+		--greenAccent: #8baa36;
+
+		/* search-- buttons */
+		--greenAccentSearch: #22252a;
+
+		/* footer  */
+		--SocialIcons: #fafafa;
+
+		--footerSubscribeButtonBG: #1e1f28;
+
+		/* in foter text */
+		--footerTextLight: #fafafa;
+
+		--footerBG: #8baa36;
+
+		/* footer  text rights reserved */
+		--footerRightsReserved: #22252a;
+
+		--headerAccentText: #8baa36;
+
+		--categoriesNames: #fafafa;
+
+		--categoriesAccent: #8baa36;
+
+		/* favorites button */
+		--secondaryDarkBackground: #8baa36;
+
+		/*  receipe background of item */
+		--recipyLightBgItem: #2a2c36;
+
+		/* background-color in search select */
+		--normalGreySelect: #22252a;
+
+		/*  background-color in search select option */
+		--lightSelector: #8baa36;
+
+		/* my recipe delete button background */
+		--myRecipyDeleteButton: #8baa36;
+
+		/* favorites bg */
+		--whiteBackgroundToBlack: #2a2c36;
+
+		--otherCategoriesMainPageBtn: #fafafa;
+
+		--mainPageLogo: #fafafa;
+
+		/*  border in search form  */
+		--normalGrey: #f0f0f0;
+
+		--whiteText: #ffffff;
+
+		--blackText: #ffffff;
+
+		--quaternaryDarkText: #22252a;
+
+		/* in forms */
+		--greenValidation: #3cbc81;
+
+		--yellowValidation: #f6c23e;
+
+		--redValidation: #e74a3b;
+
+		--lightBackground: #fafafa;
+
+		--lightBackgroundBody: #1e1f28;
+
+		--primaryDarkBackground: #1e1f28;
+
+		--messageBackground: #53545599;
+
+		--secondaryGrey: #656565;
+
+		--secondaryGreyBg: #c4c4c4;
+
+		--iconDarkColor: #ffffff;
+
+		--shoppingListProductName: #fafafa;
+
+		/*  footer */
+		--darkAccent: #22252a;
+
+		/* categories list text */
+		--lightGray: #bdbdbd;
+
+		--secondaryAccent: #1e1f28;
+
+		--whiteBackground: #ffffff;
+
+		--whiteBackgroundDish: #1e1f28;
+
+		--secondaryLightBackground: #ececec;
+
+		/* icon close at shopping list */
+		--blackCloseIconToWhite: #fafafa;
+
+		--blackTextToWhite: #fafafa;
+
+		/* favorire + myrecipe */
+		--buttonColor: #8baa36;
+		--buttoHoverColor: #22252a;
+		--buttonTrashColor: #8baa36;
+	}
+}

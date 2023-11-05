@@ -1,0 +1,47 @@
+.imageBox {
+	flex: 0 0 auto;
+	position: relative;
+	height: 323px;
+	min-width: 100%;
+	padding: 24px 18px;
+	display: inline-flex;
+	align-items: end;
+	justify-content: center;
+	border-radius: var(--border-radius);
+	overflow: hidden;
+}
+
+.recipePreview {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -1;
+}
+
+.productName {
+	width: 100%;
+	padding: 14px 16px;
+	text-align: left;
+	border-radius: var(--border-radius);
+	border: none;
+	background-color: var(--whiteBackgroundToBlack);
+	font-family: var(--poppins-font);
+	font-weight: 500;
+	font-size: 16px;
+	color: var(--secondaryDarkText);
+	cursor: pointer;
+}
+
+@media (min-width: 768px) {
+	.imageBox {
+		min-width: 336px;
+		width: 336px;
+	}
+}
+
+@media (min-width: 1440px) {
+	.imageBox {
+		min-width: 300px;
+		width: 300px;
+	}
+}

@@ -16,7 +16,7 @@ const MainPage = () => {
 	}, [dispatch])
 
 	const basicCategories = ['Breakfast', 'Miscellaneous', 'Chicken', 'Dessert']
-	
+
 	return (
 		<div className={css.mainPageContainer}>
 			<Header />
@@ -25,7 +25,11 @@ const MainPage = () => {
 					<CategoryExamples category={name} key={index} />
 				))}
 			</div>
-			<SkewButton onClick={() => console.log('see other categories')} text='Other categories' />
+			<SkewButton
+				onClick={() => console.log('see other categories')}
+				text='Other categories'
+				isSmaller={false}
+			/>
 		</div>
 	)
 }

@@ -1,7 +1,7 @@
 .skewButton {
 	display: block;
 	margin-inline: auto;
-	padding: 14px 32px;
+	padding: 1em 2.3em;
 	background-color: transparent;
 	border: solid 2px var(--greenAccentSearch);
 	border-start-end-radius: 40px;
@@ -14,9 +14,13 @@
 	cursor: pointer;
 }
 
+.smallerButton {
+	font-size: 10px;
+}
+
 @media (min-width: 768px) {
 	.skewButton {
-		font-size: 16px;
+		font-size: 1.14em;
 		padding: 18px 50px;
 		border-start-end-radius: 48px;
 		border-end-start-radius: 48px;

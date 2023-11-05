@@ -1,12 +1,13 @@
 import css from './RecipePreviewBox.module.css'
 
-const RecipePreviewBox = () => {
+const RecipePreviewBox = props => {
+	const { img, productName, onClick } = props
 	return (
 		<div className={css.imageBox}>
-			{/* img */}
-			<div className={css.productName}>
-      Banana Pancakes
-			</div>
+			<img src={img} className={css.recipePreview} />
+			<button className={css.productName} onClick={onClick}>
+				{productName}
+			</button>
 		</div>
 	)
 }

@@ -1,12 +1,20 @@
+import css from './MainPage.module.css'
 import Header from '../../components/Header/Header'
-import RecipePreviewBox from '../../components/RecipePreviewBox/RecipePreviewBox'
+import CategoryExamples from './Components/CategoryExamples/CategoryExamples'
+import SkewButton from '../../components/SkewButton/SkewButton'
 
 const MainPage = () => {
 	return (
-		<>
+		<div className={css.mainPageContainer}>
 			<Header />
-			<RecipePreviewBox />
-		</>
+			<div className={css.categoriesExamples}>
+				<CategoryExamples />
+				<CategoryExamples />
+				<CategoryExamples />
+				<CategoryExamples />
+			</div>
+			<SkewButton onClick={() => console.log('see other categories')} text='Other categories' />
+		</div>
 	)
 }
 

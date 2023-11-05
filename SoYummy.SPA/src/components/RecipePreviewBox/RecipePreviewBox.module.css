@@ -1,27 +1,48 @@
-@import '../../constants/colors.css';
-@import '../../constants/vars.css';
 
-* {
-	box-sizing: border-box;
-}
+
 
 .imageBox {
-	margin-top: 813px;
-	max-width: 343px;
+	flex: 0 0 auto;
+	position: relative;
 	height: 323px;
+	min-width: 100%;
 	padding: 24px 18px;
-	display: flex;
+	display: inline-flex;
 	align-items: end;
 	justify-content: center;
 	border-radius: var(--border-radius);
-	background-color: #efefef;
+	overflow: hidden;
+}
+
+.recipePreview {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -1;
 }
 
 .productName {
 	height: 52px;
 	width: 100%;
-	padding: 16px;
+	padding-inline: 16px;
+	text-align-last: left;
 	border-radius: var(--border-radius);
+	border: none;
 	background-color: var(--whiteBackgroundToBlack);
 	font-family: var(--poppins-font);
+	font-weight: 500;
+	font-size: 16px;
+	color: var(--secondaryDarkText);
+}
+
+@media (min-width: 768px) {
+	.imageBox {
+		min-width: 336px;
+	}
+}
+
+@media (min-width: 1440px) {
+	.imageBox {
+		min-width: 300px;
+	}
 }

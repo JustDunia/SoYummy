@@ -24,6 +24,11 @@ import {
   getOwnRecipe,
 } from "../../redux/ownRecipes/ownRecipes.operations";
 
+import {
+  getIngredientList,
+  searchRecipesByIngredient,
+} from "../../redux/ingredients/ingredients.operations";
+
 export const UserProfile = () => {
   let id = "640cd5ac2d9fecf12e8897f9";
 
@@ -108,6 +113,17 @@ export const UserProfile = () => {
     dispatch(removeOwnRecipe(idRemove));
   };
 
+  // INGREDIENTS
+
+  const handeleIngredients = () => dispatch(getIngredientList());
+
+  const handleSearchByIngredient = (e) => {
+    e.preventDefault();
+    const query = inputRef.current.value;
+    dispatch(searchRecipesByIngredient(query));
+    console.log(query);
+  };
+
   return (
     <div>
       <button onClick={handleUserData}>
@@ -126,8 +142,19 @@ export const UserProfile = () => {
       <button onClick={handleOwnAdd}>Dodaj do own</button>
       <button onClick={handleOwnGet}>Pobież own recipes</button>
       <button onClick={handleOwnRemove}>Remove own recipe</button>
+
+      <button onClick={handeleIngredients}>Get ingredients</button>
       <form onSubmit={handleSearch}>
         <input type="text" ref={inputRef} placeholder="Wyszukaj przepisy..." />
+        <button type="submit">Szukaj</button>
+      </form>
+
+      <form onSubmit={handleSearchByIngredient}>
+        <input
+          type="text"
+          ref={inputRef}
+          placeholder="Wyszukaj po składniku..."
+        />
         <button type="submit">Szukaj</button>
       </form>
     </div>

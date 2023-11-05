@@ -14,7 +14,7 @@ const shoppingListController = require("../controllers/shoppingListController");
  *       - in: body
  *         name: body
  *         required: true
- *         description: JSON object containing userId and ingredientId.
+ *         description: JSON object containing userId, ingredientId, and measure.
  *         schema:
  *           type: object
  *           properties:
@@ -22,6 +22,8 @@ const shoppingListController = require("../controllers/shoppingListController");
  *               type: string
  *             ingredientId:
  *               type: string
+ *             measure:
+ *               type: string  # Zmieniamy na "string" dla miary
  *     responses:
  *       200:
  *         description: Successfully added the ingredient to the shopping list.

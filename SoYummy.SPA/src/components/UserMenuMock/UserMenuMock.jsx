@@ -3,10 +3,10 @@ import { useNavigate } from "react-router-dom";
 
 import { logOut } from "../../redux/auth/auth.operations";
 import { selectUserName } from "../../redux/auth/auth.selectors";
-import { UserButton, UserMenuContainer, UserInfo } from "./UserMenu.styled";
-import { UserProfile } from "../UserProfile/UserProfile";
+import { UserButton, UserMenuContainer, UserInfo } from "./UserMenuMock.styled";
+import { UserProfile } from "../UserProfileMock/UserProfile";
 
-export const UserMenu = () => {
+export const UserMenuMock = () => {
   const username = useSelector(selectUserName);
   const dispatch = useDispatch();
   const navigate = useNavigate();

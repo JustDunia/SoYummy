@@ -3,12 +3,12 @@ import { Suspense } from "react";
 
 import { SubscriptionButton } from "./SubscriptionButton/SubscriptionButton.jsx";
 
-import { UserMenu } from "./UserMenu";
+import { UserMenuMock } from "./UserMenuMock";
 
 export const SharedLayout = () => {
   return (
     <div>
-      <UserMenu />
+      <UserMenuMock />
       <SubscriptionButton />
       <Suspense fallback={<div>Loading...</div>}>
         <Outlet />

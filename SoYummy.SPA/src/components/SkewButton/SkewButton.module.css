@@ -21,10 +21,14 @@
 @media (min-width: 768px) {
 	.skewButton {
 		font-size: 1.14em;
-		padding: 18px 50px;
-		border-start-end-radius: 48px;
+ 		border-start-end-radius: 48px;
 		border-end-start-radius: 48px;
 		border-end-end-radius: 18px;
 		border-start-start-radius: 18px;
+	}
+
+	.smallerButton{
+		font-size: 16px;
+		padding: 1em 2.3em;
 	}
 }

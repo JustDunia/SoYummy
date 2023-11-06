@@ -50,7 +50,7 @@ const rootReducer = combineReducers({
   recipes: recipesReducer,
   favorite: favoriteReducer,
   search: searchReducer,
-  oownRecipes: ownRecipesReducer,
+  ownRecipes: ownRecipesReducer,
   ingredients: ingredientsReducer,
   shoppingList: shoppingListReducer,
 });
@@ -58,7 +58,15 @@ const rootReducer = combineReducers({
 const authPersistConfig = {
   key: "auth",
   storage,
-  whitelist: ["session"],
+  whitelist: [
+    "auth",
+    "recipes",
+    "favorite",
+    "search",
+    "ownRecipes",
+    "ingredients",
+    "shoppingList",
+  ],
 };
 
 const persistedReducer = persistReducer(authPersistConfig, rootReducer);

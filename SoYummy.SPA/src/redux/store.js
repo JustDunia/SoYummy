@@ -1,4 +1,4 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import {
   persistStore,
   persistReducer,
@@ -15,22 +15,64 @@ import { authReducer } from "./auth/auth.slice";
 import { recipesReducer } from "./recipes/recipes.slice";
 import { favoriteReducer } from "./favorite/favorite.slice";
 import { searchReducer } from "./search/search.slice";
-// import { shoppingListReducer } from "./shoppingList/shoppingList.slice";
+import { ownRecipesReducer } from "./ownRecipes/ownRecipes.slice";
+import { shoppingListReducer } from "./shoppingList/shoppingList.slice";
+import { ingredientsReducer } from "./ingredients/ingredients.slice";
 
-const persistConfig = {
+// const persistConfig = {
+//   key: "auth",
+//   storage,
+//   whitelist: ["token"],
+// };
+
+// export const store = configureStore({
+//   reducer: {
+//     auth: persistReducer(persistConfig, authReducer),
+//     recipes: recipesReducer,
+//     favorite: favoriteReducer,
+//     search: searchReducer,
+//     // shoppingList: shoppingListReducer,
+//   },
+//   middleware: (getDefaultMiddleware) =>
+//     getDefaultMiddleware({
+//       serializableCheck: {
+//         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+//       },
+//     }),
+// });
+
+// export const persistor = persistStore(store);
+
+// NIECO INNA WERSJA STORE:
+
+const rootReducer = combineReducers({
+  auth: authReducer,
+  recipes: recipesReducer,
+  favorite: favoriteReducer,
+  search: searchReducer,
+  ownRecipes: ownRecipesReducer,
+  ingredients: ingredientsReducer,
+  shoppingList: shoppingListReducer,
+});
+
+const authPersistConfig = {
   key: "auth",
   storage,
-  whitelist: ["token"],
+  whitelist: [
+    "auth",
+    "recipes",
+    "favorite",
+    "search",
+    "ownRecipes",
+    "ingredients",
+    "shoppingList",
+  ],
 };
 
+const persistedReducer = persistReducer(authPersistConfig, rootReducer);
+
 export const store = configureStore({
-  reducer: {
-    auth: persistReducer(persistConfig, authReducer),
-    recipes: recipesReducer,
-    favorite: favoriteReducer,
-    search: searchReducer,
-    // shoppingList: shoppingListReducer,
-  },
+  reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {

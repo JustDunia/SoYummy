@@ -1,5 +1,6 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import { selectUserId } from "../auth/auth.selectors";
 
 axios.defaults.baseURL = "http://localhost:3000";
 
@@ -9,6 +10,7 @@ const setAuthHeader = (token) => {
 };
 
 const clearAuthHeader = () => {
+  console.log("TRYING CLER HEADERS");
   axios.defaults.headers.common.Authorization = "";
 };
 
@@ -47,27 +49,12 @@ export const logIn = createAsyncThunk(
 );
 
 export const logOut = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
+  const state = thunkAPI.getState();
+  const userId = selectUserId(state);
   try {
     console.log("TRYING LOG OUT");
-
-    await axios.post("/auth/logout");
+    await axios.post("/auth/logout", userId);
     clearAuthHeader();
-
-    // Header = null
-
-    console.log(
-      "Authorization header after logout:",
-      axios.defaults.headers.common.Authorization
-    );
-
-    // Token still in concole but i redux dev token = null, strange case don't have any clue why
-
-    const stateAfterLogout = thunkAPI.getState();
-    console.log(
-      "Token in Redux state after logout:",
-      stateAfterLogout.auth.token
-    );
-
     console.log("USER LOGGED OUT");
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);

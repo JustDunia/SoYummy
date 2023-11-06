@@ -1,0 +1,75 @@
+@import "../../constants/colors.css";
+@import "../../constants/vars.css";
+
+* {
+  box-sizing: border-box;
+}
+
+.Container {
+  margin: auto;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.HeaderText {
+  text-align: center;
+  /* text-decoration-style: dashed; */
+}
+
+.Text {
+  text-align: center;
+}
+
+.ContainerSecound {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  /* justify-items: center; */
+}
+
+/* @media (min-width: 768px) {
+  .Container {
+    margin-top: 100px;
+    max-width: 204px;
+  }
+
+  .HeaderText {
+    text-align: center;
+  }
+
+  .Text {
+    text-align: center;
+  }
+  .ContainerSecound {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+  }
+}
+
+@media (min-width: 1440px) {
+  .Container {
+    margin-top: 138px;
+    margin-bottom: 205px;
+    max-width: 1240px;
+    background-color: blue;
+  }
+
+  .HeaderText {
+    text-align: center;
+    background-color: brown;
+  }
+
+  .Text {
+    text-align: center;
+  }
+
+  .ContainerSecound {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+  }
+} */

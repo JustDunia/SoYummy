@@ -1,4 +1,4 @@
-import css from "./NotFoundPage.modules.css";
+import css from "./NotFoundPage.module.css";
 import not_found_people_mob_1x from "../../images/notFound/not_found_people_mob_1x.png";
 import not_found_people_mob_2x from "../../images/notFound/not_found_people_mob_2x.png";
 
@@ -10,7 +10,7 @@ import not_found_people_desk_2x from "../../images/notFound/not_found_people_des
 
 const NotFoundPage = () => {
   return (
-    <div className={css.NotFoundPageContainer}>
+    <div className={css.Container}>
       <div>
         <img
           src={not_found_people_mob_1x}
@@ -18,9 +18,11 @@ const NotFoundPage = () => {
           sizes="(min-width: 1280px) 498px, (min-width: 768px) 498px, (min-width: 320px) 259px, 100vw"
           alt="People with socket"
         />
-        <div>
-          <h3>We are sorry,</h3>
-          <p>but the page you were looking for can’t be found..</p>
+        <div className={css.ContainerSecound}>
+          <h3 className={css.HeaderText}>We are sorry,</h3>
+          <p className={css.Text}>
+            but the page you were looking for can’t be found..
+          </p>
         </div>
       </div>
     </div>

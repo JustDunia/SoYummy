@@ -1,6 +1,20 @@
 import css from "../UserLogoModal/UserLogoModal.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import { logOut } from "../../redux/auth/auth.operations";
+import { useNavigate } from "react-router-dom";
 
 const UserLogoModal = () => {
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
+
+	const handleLogout = async () => {
+		try {
+			await dispatch(logOut()).unwrap();
+			navigate("/");
+		} catch (error) {
+			console.error("Error during logout:", error);
+		}
+	};
 	return (
 		<div className={css.userLogoModalContainer}>
 			<div>
@@ -28,6 +42,7 @@ const UserLogoModal = () => {
 						className={css.logoutBtn}
 						src={"/src/images/commonSvgImg/btn_logout_mob.svg"}
 						alt="Logout button"
+						onClick={() => handleLogout()}
 					/>
 				</picture>
 			</div>

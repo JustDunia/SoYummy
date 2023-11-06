@@ -5,6 +5,7 @@ import { getRecipe } from '../../redux/recipes/recipes.operations'
 import { selectRecipe } from '../../redux/recipes/recipes.selectors'
 
 import RecipePageHeader from './Components/RecipePageHeader/RecipePageHeader'
+import IngredientsList from './Components/IngredientsList/IngredientsList'
 
 const RecipePage = () => {
 	const params = useParams()
@@ -20,6 +21,7 @@ const RecipePage = () => {
 	return (
 		<div>
 			<RecipePageHeader />
+			<IngredientsList />
 		</div>
 	)
 }

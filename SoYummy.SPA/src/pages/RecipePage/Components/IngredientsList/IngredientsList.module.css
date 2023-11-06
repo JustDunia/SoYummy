@@ -1,0 +1,14 @@
+.ingredientsList{
+  padding-inline: 16px;
+}
+
+.listHeader{
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+}
+
+.listHeaderRight{
+  display: flex;
+  gap: 28px;
+}

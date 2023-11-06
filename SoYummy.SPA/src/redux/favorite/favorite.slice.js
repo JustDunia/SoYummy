@@ -1,5 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { addToFavorites, getFavorite } from "./favorite.operations";
+import {
+  addToFavorites,
+  getFavorite,
+  removeFromFavorites,
+} from "./favorite.operations";
 
 const handlePending = (state) => {
   state.isLoading = true;
@@ -24,10 +28,16 @@ const favoriteSlice = createSlice({
       console.log("ADD FULLFIELD");
       state.isLoading = false;
       state.error = null;
-
-      state.favoriteRecipes = action.payload.favorites;
     },
     [addToFavorites.rejected]: handleRejected,
+
+    [removeFromFavorites.pending]: handlePending,
+    [removeFromFavorites.fulfilled](state, action) {
+      console.log("ADD FULLFIELD");
+      state.isLoading = false;
+      state.error = null;
+    },
+    [removeFromFavorites.rejected]: handleRejected,
 
     [getFavorite.pending]: handlePending,
     [getFavorite.fulfilled](state, action) {

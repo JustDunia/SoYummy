@@ -24,13 +24,15 @@ export const RecipeCard = (props) => {
         className={css.recipeFoto}
         alt={title}
       />
-
       <div className={css.recipeDescription}>
-        <div className={css.spacer}>
-          <h3 className={css.recipeTitle}>{title}</h3>
-          <button onClick={handleRemoveRecipe}>Remove</button>
+        <div>
+          <div className={css.spacer}>
+            <h3 className={css.recipeTitle}>{title}</h3>
+            <button onClick={handleRemoveRecipe}>Remove</button>
+          </div>
+          <p className={css.recipeText}>{description}</p>
         </div>
-        <p className={css.recipeText}>{description}</p>
+
         <div className={css.spacer}>
           <p className={css.recipeTextTime}>{time} min</p>
           <Link to={`/recipe/${recipeId}`}>

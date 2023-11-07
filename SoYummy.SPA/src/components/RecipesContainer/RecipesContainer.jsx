@@ -1,4 +1,4 @@
-// import css from "./RecipesContainer.module.css";
+import css from "./RecipesContainer.module.css";
 import { RecipeCard } from "../RecipeCard/RecipeCard";
 
 export const RecipesContainer = ({ recipes }) => {
@@ -7,20 +7,21 @@ export const RecipesContainer = ({ recipes }) => {
   }
 
   return (
-    <div>
-      {recipes.map((recipe) => (
-        <RecipeCard
-          key={recipe._id}
-          img={recipe.thumb}
-          preview={recipe.preview}
-          title={recipe.title}
-          description={recipe.description}
-          time={recipe.time}
-          recipeId={recipe._id}
-        />
-      ))}
+    <div className={css.recipesContainer}>
+      <div className={css.recipesList}>
+        {recipes.map((recipe) => (
+          <RecipeCard
+            key={recipe._id}
+            img={recipe.thumb}
+            preview={recipe.preview}
+            title={recipe.title}
+            description={recipe.description}
+            time={recipe.time}
+            recipeId={recipe._id}
+          />
+        ))}
+      </div>
+      <div className={css.recipesPagination}>PAGINACJA</div>
     </div>
   );
 };
-
-// export default RecipesContainer;

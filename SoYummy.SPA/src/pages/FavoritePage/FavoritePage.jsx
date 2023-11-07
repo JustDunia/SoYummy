@@ -10,15 +10,44 @@ import { getRecipesPopular } from "../../redux/recipes/recipes.operations";
 
 const FavoritePage = () => {
   const dispatch = useDispatch();
-  // const userId = useSelector(selectUserId);
-  // const favoriteRecipes = useSelector(selectFavoriteRecipes);
-  const favoriteRecipes = useSelector(selectRecipesPopular);
 
+  useEffect(() => {
+    dispatch(getRecipesPopular());
+  }, [dispatch]);
+
+  // DO PODMIANKI NA FAVORITE
   // useEffect(() => {
-  //   dispatch(getRecipesPopular());
-  //   // dispatch(getFavorite());
-  //   // DO PODMIANKI POPULAR NA FOVORITE
+  //   dispatch(getFavorite());
   // }, [dispatch]);
+
+  const favoriteRecipes = useSelector(selectRecipesPopular).slice(0, 8);
+  // DO PODMIANKI NA FAVORITE
+  // const favoriteRecipes = useSelector(selectFavoriteRecipes);
+
+  // zalążek paginacji:
+  // const usePagination = (items, itemsPerPage) => {
+  //   const [currentPage, setCurrentPage] = React.useState(1);
+  //   const [totalPages, setTotalPages] = React.useState(0);
+
+  //   useEffect(() => {
+  //     if (items) {
+  //       setTotalPages(Math.ceil(items.length / itemsPerPage));
+  //     }
+  //   }, [items, itemsPerPage]);
+
+  //   const currentItems = React.useMemo(() => {
+  //     const start = (currentPage - 1) * itemsPerPage;
+  //     const end = start + itemsPerPage;
+  //     return items.slice(start, end);
+  //   }, [currentPage, itemsPerPage, items]);
+
+  //   return {
+  //     setCurrentPage,
+  //     currentItems,
+  //     currentPage,
+  //     totalPages,
+  //   };
+  // };
 
   return (
     <div>

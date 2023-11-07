@@ -37,7 +37,7 @@ export const removeFromFavorites = createAsyncThunk(
     const userId = selectUserId(state);
     try {
       const res = await axios.patch(`/favorite/${recipeId}`);
-      // console.log("RECIPES CATEGORY LIST:", res.data);
+      // console.log("REMOVED", res.data);
       return res.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);

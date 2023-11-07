@@ -1,0 +1,102 @@
+.container {
+	position: relative;
+	top: -64px;
+	width: 100%;
+	height: 455px;
+	padding: 20px 38px;
+	background-image: url('/src/images/receipy/receipy_hero_bg_veggies_mob_1x.png');
+	background-position: bottom;
+	background-size: cover;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.title {
+	margin-bottom: 0;
+	color: var(--headerAccentText);
+	font-size: 24px;
+	text-align: center;
+}
+
+.description {
+	margin-bottom: 28px;
+	max-width: 340px;
+	font-size: 12px;
+	text-align: center;
+}
+
+.button {
+	font-size: 10px;
+	color: blue;
+}
+
+.time {
+	margin-top: 40px;
+	font-size: 10px;
+	display: flex;
+	align-items: center;
+	gap: 4px;
+}
+
+.clock {
+	width: 14px;
+	height: 14px;
+}
+
+@media (min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
+	.container {
+		background-image: url('/src/images/receipy/receipy_hero_bg_veggies_mob_2x.png');
+	}
+}
+@media (min-width: 768px) {
+	.container {
+		top: -72px;
+		height: 495px;
+		padding: 20px 130px;
+		background-image: url('/src/images/receipy/receipy_hero_bg_veggies_tab_1x.png');
+	}
+
+	.title {
+		margin-top: 80px;
+		font-size: 44px;
+	}
+
+	.description {
+		margin-bottom: 24px;
+		max-width: 800px;
+		font-size: 18px;
+		line-height: 24px;
+	}
+
+	.time {
+		font-size: 14px;
+		gap: 8px;
+	}
+
+	.clock {
+		width: 20px;
+		height: 20px;
+	}
+}
+@media (min-width: 768px) and (min-device-pixel-ratio: 2),
+	(min-width: 768px) and (min-resolution: 192dpi),
+	(min-width: 768px) and (min-resolution: 2dppx) {
+	.container {
+		background-image: url('/src/images/receipy/receipy_hero_bg_veggies_tab_2x.png');
+	}
+}
+@media (min-width: 1440px) {
+	.container {
+		top: -64px;
+		background-image: url('/src/images/receipy/receipy_hero_bg_veggies_desk_1x.png');
+	}
+}
+@media (min-width: 1440px) and (min-device-pixel-ratio: 2),
+	(min-width: 1440px) and (min-resolution: 192dpi),
+	(min-width: 1440px) and (min-resolution: 2dppx) {
+	.container {
+		background-image: url('/src/images/receipy/receipy_hero_bg_veggies_desk_2x.png');
+	}
+}

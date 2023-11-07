@@ -12,10 +12,16 @@ export const SharedLayout = () => {
 	console.log('location.pathname:', location.pathname);
 	return (
 		<div>
+
 			{isWelcomePage ? null :<UserMenuMock />}
 			{isWelcomePage ? null :<SubscriptionButton />}
 			{isWelcomePage ? null : <Navigation />}
 			
+
+			{/* <UserMenuMock /> */}
+			{/* <SubscriptionButton /> */}
+			<Navigation />
+
 			<Suspense fallback={<div>Loading...</div>}>
 				<Outlet />
 			</Suspense>

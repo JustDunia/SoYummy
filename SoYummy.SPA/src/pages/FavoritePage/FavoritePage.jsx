@@ -1,26 +1,21 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { selectUserId } from "../../redux/auth/auth.selectors";
+import { selectFavoriteRecipes } from "../../redux/favorite/favorite.selectors"; // Załóżmy, że taki selektor istnieje
 
 import { RecipesContainer } from "../../components/RecipesContainer/RecipesContainer";
 import { getFavorite } from "../../redux/favorite/favorite.operations";
 
 const FavoritePage = () => {
   const dispatch = useDispatch();
-  const [favoriteRecipes, setFavoriteRecipes] = useState([]);
+  const userId = useSelector(selectUserId);
+  const favoriteRecipes = useSelector(selectFavoriteRecipes); // Pobierz ulubione przepisy za pomocą selektora
 
   useEffect(() => {
-    dispatch(getFavorite())
-      .unwrap()
-      .then((response) => {
-        // Przypuszczam, że odpowiedź zawiera pole z ulubionymi przepisami
-        // Jeśli struktura odpowiedzi jest inna, dostosuj to
-        setFavoriteRecipes(response.favorites);
-      })
-      .catch((error) => {
-        // Obsłuż błąd tutaj, jeśli potrzebujesz
-        console.error("Error fetching favorite recipes:", error);
-      });
-  }, [dispatch]);
+    if (userId) {
+      dispatch(getFavorite(userId));
+    }
+  }, [dispatch, userId]); // Dodaj userId jako zależność useEffect
 
   return (
     <div>

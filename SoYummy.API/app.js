@@ -5,6 +5,12 @@ const swaggerUi = require('swagger-ui-express')
 const swaggerSpec = require('./swagger')
 
 const authRoutes = require('./routes/auth')
+const recipesRouter = require('./routes/recipes')
+const searchRouter = require('./routes/search')
+const shoppingListRouter = require('./routes/shoppingList')
+const favoriteRoutes = require('./routes/favorite')
+const ingredientsRouter = require('./routes/ingredients')
+const ownRecipesRoutes = require('./routes/ownRecipes')
 
 const app = express()
 
@@ -18,8 +24,13 @@ app.use(express.json())
 
 app.use(express.static('public'))
 
-// routy przeniesione wyżej, ponieważ gdy były na samym końcu, aplikacja zwracała 404
 app.use('/auth', authRoutes)
+app.use('/recipes', recipesRouter)
+app.use('/search', searchRouter)
+app.use('/favorite', favoriteRoutes)
+app.use('/ingredients', ingredientsRouter)
+app.use('/shopping-list', shoppingListRouter)
+app.use('/ownRecipes', ownRecipesRoutes)
 
 app.use((req, res) => {
 	res.status(404).json({ status: 'error', code: 404, message: 'Not found' })

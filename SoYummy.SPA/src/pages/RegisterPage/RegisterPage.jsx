@@ -7,6 +7,9 @@ import imageDesktop2x from "../../images/registration/person_order_2x_desk.png";
 import css from "../RegisterPage/RegisterPage.module.css";
 import RegisterForm from "../../components/RegisterForm/RegisterForm";
 
+import { Register } from "../../components/Register/Register";
+// import {} from "../../components/Register";
+
 const RegisterPage = () => {
   return (
     <section className={css.registerPage}>

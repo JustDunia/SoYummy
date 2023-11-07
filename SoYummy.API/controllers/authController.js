@@ -50,9 +50,16 @@ async function registerUser(req, res, next) {
 
 			const result = await service.createUser(newUser)
 
+			const payload = {
+				id: result.id,
+				email: result.email,
+			}
+			const token = jwt.sign(payload, SECRET)
+			await service.addToken(email, token)
+
 			return res.status(201).json({
 				message: 'Registration successful',
-				user: { username: result.username, email: result.email },
+				user: { username: result.username, email: result.email, token: token },
 			})
 		} catch (e) {
 			console.error(e)
@@ -99,9 +106,10 @@ async function loginUser(req, res, next) {
 
 			await service.addToken(email, token)
 
-			return res
-				.status(200)
-				.json({ message: 'Signing in successful', userData: { email: email, token: token } })
+			return res.status(200).json({
+				message: 'Signing in successful',
+				user: { username: user.username, email: email, token: token },
+			})
 		} catch (e) {
 			console.error(e)
 			next(e)
@@ -154,12 +162,6 @@ const manageSubscription = async (req, res, next) => {
 		next(e)
 	}
 }
-
-/**
- * Funkcja aktualizacji danych użytkownika
- * TODO do zrobienia po zorientowaniu się jakie dane użytkownika rzeczywiście będą potrzebowały mieć możliwość zmiany
- */
-const updateUser = async (req, res, next) => {}
 
 module.exports = {
 	registerUser,

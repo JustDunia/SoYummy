@@ -1,0 +1,38 @@
+@import '../../constants/colors.css';
+@import '../../constants/vars.css';
+
+* {
+	box-sizing: border-box;
+}
+
+.mainPageContainer {
+	margin-top: 760px;
+	margin-inline: auto;
+	max-width: 343px;
+}
+
+.categoriesExamples {
+	margin-bottom: 40px;
+}
+
+@media (min-width: 768px) {
+	.mainPageContainer {
+		margin-top: 640px;
+		max-width: 704px;
+	}
+
+	.categoriesExamples {
+		margin-bottom: 40px;
+	}
+}
+
+@media (min-width: 1440px) {
+	.mainPageContainer {
+		margin-top: 780px;
+		max-width: 1240px;
+	}
+
+	.categoriesExamples {
+		margin-bottom: 40px;
+	}
+}

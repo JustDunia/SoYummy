@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import css from "../SigninForm/SigninForm.module.css";
-import { logIn } from "../../redux/auth/actions";
+import { logIn } from "../../redux/auth/auth.operations";
 import { useDispatch } from "react-redux";
 import icons from "../../images/commonSvgImg/icons.svg";
 import { useFormik } from "formik";

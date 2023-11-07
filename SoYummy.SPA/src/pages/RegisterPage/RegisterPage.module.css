@@ -4,7 +4,7 @@
   background-image: url("../../images/registration/bottom_mob.svg");
   background-repeat: no-repeat;
   background-size: 100%;
-  background-position: bottom;
+  background-position: 50% 250px;
 }
 .container {
   width: 100%;
@@ -17,17 +17,19 @@
   .registerPage {
     min-height: 1024px;
     background-image: url("../../images/registration/bottom_tab.svg");
+    background-position: 50% 320px;
   }
 }
 @media screen and (min-width: 1280px) {
   .registerPage {
     height: 100vh;
     background-image: url("../../images//registration/bottom_desk.svg");
+    background-position: 50% 470px;
   }
   .container {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    padding-top: 32vh;
+    padding-top: 14vh;
   }
 }

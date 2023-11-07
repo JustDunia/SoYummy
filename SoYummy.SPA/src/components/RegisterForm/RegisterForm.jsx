@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import css from "../RegisterForm/RegisterForm.module.css";
-import { register } from "../../redux/auth/actions";
+import css from "./RegisterForm.module.css";
+import { register } from "../../redux/auth/auth.operations";
 import { useDispatch } from "react-redux";
 import icons from "../../images/commonSvgImg/icons.svg";
 import { useFormik } from "formik";
@@ -8,12 +8,12 @@ import * as Yup from "yup";
 
 const nameRegExp = /^[a-zA-Z -]+$/;
 
-const emailRegExp = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+const emailRegExp = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z].{2,}$/i;
 
-const notSecurePasswordRegExp = /^[a-zA-Z0-9]{8,20}$/;
+const notSecurePasswordRegExp = /^[a-zA-Z0-9].{8,20}$/;
 
 const registerValidationSchema = Yup.object({
-  name: Yup.string()
+  user: Yup.string()
     .required("Name is required")
     .min(2)
     .matches(nameRegExp, "Name must contain only letters"),
@@ -33,7 +33,7 @@ const RegisterForm = () => {
 
   const formik = useFormik({
     initialValues: {
-      name: "",
+      user: "",
       email: "",
       password: "",
     },
@@ -55,15 +55,16 @@ const RegisterForm = () => {
             </svg>
             <input
               className={css.input}
+              id="user"
               type="text"
-              name="name"
+              name="user"
               placeholder="Username"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
-              value={formik.values.name}
+              value={formik.values.user}
             />
-            {formik.errors.name && formik.touched.name ? (
-              <div className={css.error}>{formik.errors.name}</div>
+            {formik.errors.user && formik.touched.user ? (
+              <div className={css.error}>{formik.errors.user}</div>
             ) : null}
           </label>
 
@@ -73,6 +74,7 @@ const RegisterForm = () => {
             </svg>
             <input
               className={css.input}
+              id="email"
               type="email"
               name="email"
               placeholder="Email"
@@ -92,6 +94,7 @@ const RegisterForm = () => {
 
             <input
               className={css.input}
+              id="password"
               type="password"
               name="password"
               placeholder="Password"

@@ -9,8 +9,8 @@ import { UserMenuMock } from './UserMenuMock'
 export const SharedLayout = () => {
 	return (
 		<div>
-			<UserMenuMock />
-			<SubscriptionButton />
+			{/* <UserMenuMock /> */}
+			{/* <SubscriptionButton /> */}
 			<Navigation />
 			<Suspense fallback={<div>Loading...</div>}>
 				<Outlet />

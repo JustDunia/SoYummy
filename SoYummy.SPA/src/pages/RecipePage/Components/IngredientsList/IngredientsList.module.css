@@ -1,0 +1,55 @@
+.ingredientsList {
+	padding-inline: 16px;
+	margin-inline: auto;
+	max-width: 480px;
+}
+
+.listHeader {
+	margin-top: -28px;
+	margin-bottom: 24px;
+	padding: 4px 12px;
+	display: flex;
+	justify-content: space-between;
+	font-size: 10px;
+	background-color: var(--greenAccent);
+	color: var(--primaryLightText);
+	border-radius: var(--border-radius);
+}
+
+.listHeaderRight {
+	display: flex;
+	gap: 20px;
+}
+
+@media (min-width: 768px) {
+	.ingredientsList {
+		padding-inline: 24px;
+		max-width: 704px;
+	}
+
+	.listHeader {
+		margin-bottom: 28px;
+		padding: 0 20px;
+		font-size: 18px;
+	}
+
+	.listHeaderRight {
+		gap: 32px;
+	}
+}
+
+@media (min-width: 1440px) {
+	.ingredientsList {
+		max-width: 1240px;
+	}
+
+	.listHeader {
+		margin-top: 0;
+		margin-bottom: 40px;
+		padding: 0 44px;
+	}
+
+	.listHeaderRight {
+		gap: 72px;
+	}
+}

@@ -2,7 +2,7 @@
 	flex: 0 0 auto;
 	position: relative;
 	height: 323px;
-	min-width: 100%;
+	width: 100%;
 	padding: 24px 18px;
 	display: inline-flex;
 	align-items: end;
@@ -34,14 +34,12 @@
 
 @media (min-width: 768px) {
 	.imageBox {
-		min-width: 336px;
-		width: 336px;
+		width: calc(50% - 15px);
 	}
 }
 
 @media (min-width: 1440px) {
 	.imageBox {
-		min-width: 300px;
-		width: 300px;
+		width: calc(25% - 10px);
 	}
 }

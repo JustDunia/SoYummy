@@ -28,41 +28,42 @@ async function getRecipesByCategory(req, res, next) {
 }
 
 // to samo ale z paginacją
-// async function getRecipesByCategory(req, res) {
+// async function getRecipesByCategory(req, res, next) {
 //   const { category, page, pageSize } = req.params;
 
 //   try {
 //     const recipes = await RecipeService.getRecipesByCategory(category, page, pageSize);
 //     res.json(recipes);
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ error: 'Server Error' });
-//   }
+// } catch (e) {
+//   console.error(e)
+//   next(e)
+// }
 // }
 
 // to samo ale bez ograniczeń
-// async function getRecipesByCategory(req, res) {
+// async function getRecipesByCategory(req, res, next) {
 //   const category = req.params.category;
 
 //   try {
 //     const recipes = await RecipeService.getRecipesByCategory(category);
 //     res.json(recipes);
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ error: "Server Error" });
+// } catch (e) {
+//   console.error(e)
+//   next(e)
+// }
 //   }
 // }
 
-// async function getRecipeById(req, res) {
+// async function getRecipeById(req, res, next) {
 //   const recipeId = req.params.recipeId;
 
 //   try {
 //     const recipe = await RecipeService.getRecipeById(recipeId);
 //     res.json(recipe);
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ error: "Server Error" });
-//   }
+// } catch (e) {
+//   console.error(e)
+//   next(e)
+// }
 // }
 
 async function getRecipesForMainPage(req, res, next) {

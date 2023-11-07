@@ -1,0 +1,124 @@
+.searchBarContainer {
+	position: absolute;
+	top: 642px;
+	z-index: 95;
+	width: 295px;
+	height: 52px;
+}
+
+.bg {
+	background: url(../../images/search/search_bg3.png);
+	background-repeat: no-repeat;
+	background-position: 51% 53%;
+	width: 295px;
+	height: 52px;
+	display: flex;
+	justify-content: left;
+	align-items: center;
+}
+.searchBarInput {
+	width: 45%;
+	height: 17px;
+	margin-left: 32px;
+	border: none;
+	outline: none;
+	font-family: "Poppins", sans-serif;
+	font-size: 12px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+	color: #bdbdbd;
+}
+
+.searchBarBtn {
+	background: url(../../images/search/search_btn.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
+	width: 113px;
+	height: 52px;
+	border: none;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	color: #fafafa;
+	font-family: "Poppins", sans-serif;
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+}
+
+/* <<<Tablet>>> */
+@media screen and (min-width: 768px) {
+	.searchBarContainer {
+		top: 386px;
+		left: 32px;
+		width: 369px;
+		height: 59px;
+	}
+
+	.searchBarBtn {
+		background: url(../../images/search/search_btn_tab.png);
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: contain;
+		width: 161px;
+		height: 59px;
+		bottom: 0;
+		right: 0;
+		font-size: 16px;
+		line-height: 24px;
+	}
+
+	.bg {
+		background: url(../../images/search/search_bg_tab.png);
+		background-repeat: no-repeat;
+		background-position: 25% 48%;
+		width: 369px;
+		height: 59px;
+	}
+
+    .searchBarInput {
+	width: 45%;
+	height: 17px;
+	margin-left: 38px;
+	font-size: 16px;
+}
+}
+/* <<<Desktop>>> */
+@media screen and (min-width: 1440px) {
+    	.searchBarContainer {
+	top: 462px;
+    left: 100px;
+	width: 510px;
+	height: 70px;
+}
+
+.searchBarBtn {
+	background: url(../../images/search/search_btn_desk.png);
+    background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
+	width: 161px;
+	height: 70px;
+	bottom: 0;
+	right: 0;
+	font-size: 16px;
+	line-height: 24px;
+}
+
+.bg {
+	background: url(../../images/search/search_bg_desk.png);
+	background-repeat: no-repeat;
+	background-position: 48% 48%;
+	width: 510px;
+	height: 70px;
+}
+
+.searchBarInput {
+	width: 45%;
+	height: 24px;
+	margin-left: 48px;
+}
+}

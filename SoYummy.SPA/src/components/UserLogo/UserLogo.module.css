@@ -1,0 +1,58 @@
+.userContainer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 14px;
+	position: absolute;
+	right: 75px;
+	z-index: 95;
+}
+
+.userLogoContainer {
+	border-radius: 50%;
+	width: 34px;
+	height: 34px;
+	overflow: hidden;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.userLogo {
+	position: relative;
+}
+
+.username {
+	color: #22252a;
+	font-family: "Poppins", sans-serif;
+	font-size: 12px;
+	font-style: normal;
+	font-weight: 600;
+	line-height: 170%; /* 20.4px */
+}
+
+/* <<<Tablet>>> */
+@media screen and (min-width: 768px) {
+
+	.userContainer {
+	right: 114px;
+}
+
+.userLogoContainer {
+	width: 44px;
+	height: 44px;
+}
+
+.username {
+	font-size: 14px;
+}
+	}
+/* <<<Desktop>>> */
+@media screen and (min-width: 1440px) {
+	
+	.userContainer {
+	right: 211px;
+}
+
+
+	}

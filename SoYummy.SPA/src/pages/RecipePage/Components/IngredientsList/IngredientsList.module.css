@@ -18,3 +18,31 @@
 	display: flex;
 	gap: 20px;
 }
+
+@media (min-width: 768px){
+	.listHeader {
+		margin-bottom: 28px;
+		padding: 0 20px;
+		font-size: 18px;
+	}
+
+	.listHeaderRight {
+		gap: 32px;
+	}
+}
+
+@media (min-width: 1440px){
+	.ingredientsList {
+		max-width: 1240px;
+		margin-inline: auto;
+	}
+
+	.listHeader {
+		margin-bottom: 40px;
+		padding: 0 44px;
+	}
+
+	.listHeaderRight {
+		gap: 72px;
+	}
+}

@@ -27,6 +27,8 @@
   letter-spacing: -0.02em;
   text-align: left;
   margin-left: 28px;
+  margin-top: 5%;
+  margin-bottom: 2%;
 }
 @media (min-width: 767px) {
   .registerTitle {

@@ -5,9 +5,29 @@ import imageTablet2x from "../../images/registration/person_order_2x_tab.png";
 import imageDesktop from "../../images/registration/person_order_1x_desk.png";
 import imageDesktop2x from "../../images/registration/person_order_2x_desk.png";
 import css from "../SigninPage/SigninPage.module.css";
-import SigninForm from "../../components/SigninForm/SigninForm";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux"; // Importuj funkcję useSelector
 
-const SigninPage = () => {
+import LogInForm from "../../components/LogInForm/LogInForm";
+
+export const SigninPage = () => {
+  const navigate = useNavigate();
+  const [hasRedirected, setHasRedirected] = useState(false);
+
+  // Użyj selektora, aby pobrać wartość userIsLogged ze sklepu Redux
+  const userIsLogged = useSelector((state) => state.auth.isUserLogged); // Załóżmy, że wartość jest przechowywana w state.auth.isUserLogged
+
+  useEffect(() => {
+    if (userIsLogged && !hasRedirected) {
+      navigate("/main");
+      setHasRedirected(true);
+    }
+    if (!userIsLogged) {
+      setHasRedirected(false);
+    }
+  }, [userIsLogged, navigate, hasRedirected]);
+
   return (
     <section className={css.signinPage}>
       <div className={css.container}>
@@ -17,7 +37,7 @@ const SigninPage = () => {
           sizes="(min-width: 1280px) 532px, (min-width: 768px) 409px, (min-width: 320px) 285px, 100vw"
           alt="Register hero"
         />
-        <SigninForm />
+        <LogInForm />
       </div>
     </section>
   );

@@ -1,42 +1,51 @@
-import { useDispatch, useSelector } from "react-redux";
-import { logIn } from "../../redux/auth/auth.operations";
-import { selectIsUserLoged } from "../../redux/auth/auth.selectors";
-// import css from "./LogInForm.modules";
-import css from "./LogInForm.module.css";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { register } from "../../redux/auth/auth.operations";
 import icons from "../../images/commonSvgImg/icons.svg";
+import css from "./Register.module.css";
 
-const LogInForm = () => {
+const Register = () => {
   const dispatch = useDispatch();
-  const logged = useSelector(selectIsUserLoged);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.currentTarget;
     dispatch(
-      logIn({
+      register({
+        username: form.elements.username.value,
         email: form.elements.email.value,
         password: form.elements.password.value,
       })
     );
-
-    console.log("IS USER LOGGED IN?:", logged);
     form.reset();
   };
 
   return (
     <div>
       <form
-        className={css.signinForm}
+        className={css.registerForm}
         onSubmit={handleSubmit}
         autoComplete="off"
       >
-        <h2 className={css.signinTitle}>Sign in</h2>
+        <h2 className={css.registerTitle}>Registration</h2>
         <div className={css.inputContainer}>
+          <label className={css.label}>
+            <svg className={css.icon}>
+              <use href={`${icons}#icon-input-user`} />
+            </svg>
+
+            <input
+              className={css.input}
+              type="text"
+              name="username"
+              placeholder="Username"
+            />
+          </label>
           <label className={css.label}>
             <svg className={css.icon}>
               <use href={`${icons}#icon-input-envelope`} />
             </svg>
+
             <input
               className={css.input}
               type="email"
@@ -48,6 +57,7 @@ const LogInForm = () => {
             <svg className={css.icon}>
               <use href={`${icons}#icon-input-lock`} />
             </svg>
+
             <input
               className={css.input}
               type="password"
@@ -57,14 +67,14 @@ const LogInForm = () => {
           </label>
         </div>
         <button className={css.Button} type="submit">
-          Log In
+          Register
         </button>
       </form>
-      <Link to="/register" className={css.link}>
-        Registration
+      <Link to="/signin" className={css.link}>
+        Sign in
       </Link>
     </div>
   );
 };
 
-export default LogInForm;
+export default Register;

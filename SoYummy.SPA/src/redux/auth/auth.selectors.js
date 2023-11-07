@@ -8,11 +8,11 @@ export const selectUserName = (state) =>
 export const selectUserToken = (state) => state.auth.user.token;
 
 export const selectUserId = (state) => {
-  const token = state.auth.user.token;
+  const token = state.auth.token;
   // console.log("SELECTOR, token", token);
 
   const decodedID = jwtDecode(token).id;
-  console.log("DECODE ID FROM TOKEN", decodedID);
+  // console.log("DECODE ID FROM TOKEN", decodedID);
   return decodedID;
 
   // if (token) {

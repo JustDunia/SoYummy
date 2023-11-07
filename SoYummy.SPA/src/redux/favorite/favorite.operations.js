@@ -4,6 +4,16 @@ import { selectUserId } from "../auth/auth.selectors";
 
 axios.defaults.baseURL = "http://localhost:3000";
 
+const setAuthHeader = (token) => {
+  // console.log("Setting auth header with token:", token);
+  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+};
+
+const clearAuthHeader = () => {
+  // console.log("TRYING CLER HEADERS");
+  axios.defaults.headers.common.Authorization = "";
+};
+
 export const addToFavorites = createAsyncThunk(
   "favorite/add",
   async (recipeId, thunkAPI) => {
@@ -12,7 +22,7 @@ export const addToFavorites = createAsyncThunk(
 
     try {
       const res = await axios.put(`/favorite/${recipeId}`);
-      console.log("ADD FAVORITE:", res.data);
+      // console.log("ADD FAVORITE:", res.data);
       return res.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
@@ -27,7 +37,7 @@ export const removeFromFavorites = createAsyncThunk(
     const userId = selectUserId(state);
     try {
       const res = await axios.patch(`/favorite/${recipeId}`);
-      console.log("RECIPES CATEGORY LIST:", res.data);
+      // console.log("RECIPES CATEGORY LIST:", res.data);
       return res.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
@@ -38,13 +48,17 @@ export const removeFromFavorites = createAsyncThunk(
 export const getFavorite = createAsyncThunk(
   "favorite/get",
   async (_, thunkAPI) => {
-    const state = thunkAPI.getState();
-    const userId = selectUserId(state);
-    console.log("USER ID FROM FAV", userId);
+    // const state = thunkAPI.getState();
+    // const token = state.auth.token;
+    // const userId = selectUserId(state);
+    // console.log("USER ID FROM FAV", userId);
 
     try {
+      console.log("GET FAVORITE:", res.data.user.token);
       const res = await axios.get("/favorite");
-      console.log("GET FAVORITE:", res.data.favorites);
+      setAuthHeader(res.data.user.token);
+      // console.log("GET FAVORITE:", res.data.favorites);
+
       return res.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);

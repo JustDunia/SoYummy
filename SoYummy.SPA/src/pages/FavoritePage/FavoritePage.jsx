@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUserId } from "../../redux/auth/auth.selectors";
-import { selectFavoriteRecipes } from "../../redux/favorite/favorite.selectors"; // Załóżmy, że taki selektor istnieje
+import { selectFavoriteRecipes } from "../../redux/favorite/favorite.selectors";
 
 import { RecipesContainer } from "../../components/RecipesContainer/RecipesContainer";
 import { getFavorite } from "../../redux/favorite/favorite.operations";
@@ -9,13 +9,15 @@ import { getFavorite } from "../../redux/favorite/favorite.operations";
 const FavoritePage = () => {
   const dispatch = useDispatch();
   const userId = useSelector(selectUserId);
-  const favoriteRecipes = useSelector(selectFavoriteRecipes); // Pobierz ulubione przepisy za pomocą selektora
+  const favoriteRecipes = useSelector(selectFavoriteRecipes);
 
   useEffect(() => {
     if (userId) {
-      dispatch(getFavorite(userId));
+      dispatch(getFavorite());
     }
-  }, [dispatch, userId]); // Dodaj userId jako zależność useEffect
+
+    // console.log("FAVORITE USER ID", userId);
+  }, [dispatch, userId]);
 
   return (
     <div>

@@ -59,10 +59,10 @@ export const UserProfile = () => {
   };
 
   const handleGetFavorite = (e) => {
-    console.log("BEFORE GET FAVORITE");
+    // console.log("BEFORE GET FAVORITE");
     e.preventDefault();
     dispatch(getFavorite());
-    console.log("AFTER GET FAVORITE");
+    // console.log("AFTER GET FAVORITE");
   };
 
   const recipeId = "640cd5ac2d9fecf12e8897ee";
@@ -121,7 +121,7 @@ export const UserProfile = () => {
     e.preventDefault();
     const query = inputRef.current.value;
     dispatch(searchRecipesByIngredient(query));
-    console.log(query);
+    // console.log(query);
   };
 
   return (

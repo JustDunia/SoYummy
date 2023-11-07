@@ -1,0 +1,31 @@
+@import '../../../../constants/colors.css';
+@import '../../../../constants/vars.css';
+
+.categoryName {
+	font-family: var(--poppins-font);
+	font-size: 28px;
+	font-weight: 600;
+	color: var(--tertiaryDarkText);
+}
+
+.categoryExamples {
+	display: flex;
+	overflow-x: auto;
+	gap: 30px;
+}
+
+.categoryExamples::-webkit-scrollbar {
+	display: none;
+}
+
+@media (min-width: 768px) {
+	.categoryName {
+		font-size: 44px;
+	}
+}
+
+@media (min-width: 1440px) {
+	.categoryExamples {
+		gap: 12px;
+	}
+}

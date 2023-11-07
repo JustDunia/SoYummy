@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const { Schema, model } = mongoose
 const bCrypt = require('bcrypt')
+const { ObjectId, String, Boolean } = Schema.Types
 
 const userSchema = new Schema(
 	{
@@ -25,6 +26,33 @@ const userSchema = new Schema(
 			type: Boolean,
 			default: false,
 		},
+		favorites: {
+			type: [
+				{
+					type: ObjectId,
+					ref: 'Recipes',
+				},
+			],
+		},
+		shoppingList: [
+			{
+				ingredient: {
+					// ObjectId jest już wyżej pobrany, nie trzeba pisać całej ścieżki
+					// type: Schema.Types.ObjectId,
+					type: ObjectId,
+					// składnik powinien mieć odwolanie do kolekcji składnikówa nie do 'Recipe'
+					// ref: 'Recipe'
+					ref: 'Ingredients',
+				},
+				// w przepisach jest measure więc już trzymałabym się tej wersji
+				// quantity: {
+				measure: {
+					// w przepisch ilość jest stringiem (to nie tylko liczby, może być np. '2 tbs')
+					// type: Number,
+					type: String,
+				},
+			},
+		],
 	},
 	{ versionKey: false, timestamps: true }
 )
@@ -36,6 +64,6 @@ userSchema.methods.validatePassword = function (password) {
 	return bCrypt.compareSync(password, this.password)
 }
 
-const User = model('User', userSchema)
+const User = model('User', userSchema, 'users')
 
 module.exports = User

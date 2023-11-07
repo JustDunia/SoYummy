@@ -2,11 +2,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { logIn } from "../../redux/auth/auth.operations";
 import { selectIsUserLoged } from "../../redux/auth/auth.selectors";
 // import css from "./LogInForm.modules";
+
 import css from "./LogInForm.module.css";
 import { Link } from "react-router-dom";
 import icons from "../../images/commonSvgImg/icons.svg";
 
 const LogInForm = () => {
+
+import css from "./LogInForm.modules.css";
+
+export const LogInForm = () => {
+
   const dispatch = useDispatch();
   const logged = useSelector(selectIsUserLoged);
 
@@ -25,6 +31,7 @@ const LogInForm = () => {
   };
 
   return (
+
     <div>
       <form
         className={css.signinForm}
@@ -68,3 +75,18 @@ const LogInForm = () => {
 };
 
 export default LogInForm;
+
+    <form className={css.form} onSubmit={handleSubmit} autoComplete="off">
+      <label className={css.label}>
+        Email
+        <input type="email" name="email" />
+      </label>
+      <label className={css.label}>
+        Password
+        <input type="password" name="password" />
+      </label>
+      <button type="submit">Log In</button>
+    </form>
+  );
+};
+

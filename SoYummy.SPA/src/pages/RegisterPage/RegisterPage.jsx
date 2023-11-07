@@ -1,3 +1,4 @@
+
 import imageMobile from "../../images/registration/person_order_1x_mob.png";
 import imageMobile2x from "../../images/registration/person_order_2x_mob.png";
 import imageTablet from "../../images/registration/person_order_1x_tab.png";
@@ -20,6 +21,17 @@ const RegisterPage = () => {
         <Register />
       </div>
     </section>
+
+import { Register } from "../../components/Register/Register";
+// import {} from "../../components/Register";
+
+const RegisterPage = () => {
+  return (
+    <div>
+      <h2> RegisterPage</h2>
+      <Register />
+    </div>
+
   );
 };
 

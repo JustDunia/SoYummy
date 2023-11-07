@@ -8,6 +8,9 @@
 	margin-right: auto;
 	margin-top: 18px;
 	background-color: transparent;
+
+	z-index: 95;
+
 }
 
 .navBar {
@@ -147,6 +150,9 @@
 		position: absolute;
 		left: 331px;
 		top: 28px;
+
+		list-style: none;
+
 	}
 
 	.navBarItem {
@@ -166,10 +172,14 @@
 
 	.navBarLink {
 		color: black;
+		text-decoration: none;
+
 	}
 
 	.navBarLinkActive {
 		color: #8baa36;
+		text-decoration: none;
+
 	}
 
 	.searchIcon {

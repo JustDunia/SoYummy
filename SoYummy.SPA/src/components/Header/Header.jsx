@@ -1,5 +1,9 @@
 import css from "./Header.module.css";
 
+import SearchBar from "../SearchBar/SearchBar";
+import { Link } from "react-router-dom";
+
+
 const Header = () => {
 	const imagePath = "/src/images/soYummy/";
 
@@ -47,6 +51,7 @@ const Header = () => {
 						satisfying meal
 					</span>
 				</div>
+
 				<span className={css.deliciousBoxRecipes}>
 					See recipes
 					<img
@@ -57,6 +62,20 @@ const Header = () => {
 						alt="arrow right"
 					/>
 				</span>
+
+				<Link to="/recipe/:recipeId">
+					<span className={css.deliciousBoxRecipes}>
+						See recipes
+						<img
+							className={css.arrowRight}
+							src={
+								"/src/images/commonSvgImg/icon-arrow-narrow-right.svg"
+							}
+							alt="arrow right"
+						/>
+					</span>
+				</Link>
+
 			</div>
 
 			<picture>
@@ -86,7 +105,7 @@ const Header = () => {
 				src={"/src/images/commonSvgImg/arrow_header.svg"}
 				alt="sprinkle arrow"
 			/>
-			
+
 			<picture>
 				{/* Desktop from 1200px */}
 				<source
@@ -131,6 +150,10 @@ const Header = () => {
 					alt="bg header"
 				/>
 			</picture>
+
+
+			<SearchBar btnColor="black" />
+
 		</div>
 	);
 };

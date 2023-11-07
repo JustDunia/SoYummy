@@ -1,0 +1,60 @@
+.userLogoModalContainer {
+	width: 161px;
+	height: 130px;
+	background-color: #fafafa;
+	position: absolute;
+	top: 54px;
+	right: -5px;
+	border-radius: 8px;
+	border: 1px solid #8baa36;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.userLogoModalEditProfile {
+	display: flex;
+	gap: 37px;
+    margin-top: 18px;
+}
+
+.userLogoModalTxt {
+	color: #23262a;
+	font-family: "Poppins", sans-serif;
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: 22.4px; /* 160% */
+    
+}
+
+.logoutBtn{
+    margin-top: 28px;
+}
+
+/* <<<Tablet>>> */
+@media screen and (min-width: 768px) {
+
+.userLogoModalContainer {
+	width: 177px;
+	height: 134px;
+	top: 58px;
+	right: 20px;
+}
+
+.userLogoModalEditProfile {
+	gap: 53px;
+}
+
+.logoutBtn{
+    margin-top: 32px;
+}
+	}
+/* <<<Desktop>>> */
+@media screen and (min-width: 1440px) {
+	
+    .userLogoModalContainer {
+	right: 10px;
+}
+
+	}

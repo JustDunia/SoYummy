@@ -1,0 +1,66 @@
+.ingredientCard {
+	margin-top: 16px;
+	padding: 8px;
+	display: flex;
+	justify-content: space-between;
+	font-size: 12px;
+	background-color: var(--recipyLightBgItem);
+	color: var(--shoppingListProductName);
+	border-radius: var(--border-radius);
+	gap: 12px;
+}
+
+.ingredientCardRight {
+	padding-right: 16px;
+	display: flex;
+	gap: 24px;
+	justify-content: end;
+	align-items: center;
+}
+
+.ingredientTitle {
+	max-width: 164px;
+	display: flex;
+	align-items: center;
+	justify-content: start;
+	gap: 8px;
+}
+
+.image {
+	width: 57px;
+	height: 57px;
+}
+
+.measure {
+	padding: 4px 6px;
+	background-color: var(--greenAccent);
+	color: var(--primaryLightText);
+	border-radius: 4px;
+	font-size: 10px;
+	text-align: right;
+}
+
+.checkboxWrapper {
+	position: relative;
+}
+
+.checkbox {
+	height: 18px;
+	width: 19px;
+	appearance: none;
+	border: 1px solid #7e7e7e81;
+	border-radius: 4px;
+	vertical-align: middle;
+}
+
+.tickIcon {
+	position: absolute;
+	top: 6px;
+	left: 8px;
+	display: none;
+	pointer-events: none;
+}
+
+.checkbox:checked ~ .tickIcon {
+	display: block;
+}

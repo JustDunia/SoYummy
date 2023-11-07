@@ -1,14 +1,20 @@
-.ingredientsList{
-  padding-inline: 16px;
+.ingredientsList {
+	padding-inline: 16px;
 }
 
-.listHeader{
-  display: flex;
-  justify-content: space-between;
-  font-size: 10px;
+.listHeader {
+	margin-top: -28px;
+	margin-bottom: 24px;
+	padding: 4px 12px;
+	display: flex;
+	justify-content: space-between;
+	font-size: 10px;
+	background-color: var(--greenAccent);
+	color: var(--primaryLightText);
+	border-radius: var(--border-radius);
 }
 
-.listHeaderRight{
-  display: flex;
-  gap: 28px;
+.listHeaderRight {
+	display: flex;
+	gap: 20px;
 }

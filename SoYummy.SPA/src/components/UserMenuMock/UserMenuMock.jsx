@@ -13,12 +13,6 @@ export const UserMenuMock = () => {
 
   const handleLogout = async () => {
     dispatch(logOut());
-    // try {
-    //   await dispatch(logOut()).unwrap();
-    //   navigate("/");
-    // } catch (error) {
-    //   console.error("Error during logout:", error);
-    // }
   };
 
   return (

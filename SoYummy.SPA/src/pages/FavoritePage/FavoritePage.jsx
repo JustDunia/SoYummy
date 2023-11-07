@@ -1,15 +1,34 @@
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 
-// import { userName, isUserLoged } from "../../redux/auth/selectors";
+import { RecipesContainer } from "../../components/RecipesContainer/RecipesContainer";
+import { getFavorite } from "../../redux/favorite/favorite.operations";
 
 const FavoritePage = () => {
-  // console.log("favorite page");
-  // const user = useSelector(userName);
-  // const isLogged = useSelector(isUserLoged);
+  const dispatch = useDispatch();
+  const [favoriteRecipes, setFavoriteRecipes] = useState([]);
 
-  // console.log("USER:", user);
-  // console.log("LOGGED ?:", isLogged);
-  return <h2> FavoritePage</h2>;
+  useEffect(() => {
+    dispatch(getFavorite())
+      .unwrap()
+      .then((response) => {
+        // Przypuszczam, że odpowiedź zawiera pole z ulubionymi przepisami
+        // Jeśli struktura odpowiedzi jest inna, dostosuj to
+        setFavoriteRecipes(response.favorites);
+      })
+      .catch((error) => {
+        // Obsłuż błąd tutaj, jeśli potrzebujesz
+        console.error("Error fetching favorite recipes:", error);
+      });
+  }, [dispatch]);
+
+  return (
+    <div>
+      <h2>Favorite Recipes</h2>
+      <RecipesContainer recipes={favoriteRecipes} />
+      {/* PAGINACJA */}
+    </div>
+  );
 };
 
 export default FavoritePage;

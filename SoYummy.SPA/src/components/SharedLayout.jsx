@@ -12,9 +12,8 @@ export const SharedLayout = () => {
 	console.log('location.pathname:', location.pathname);
 	return (
 		<div>
-			{/* <UserMenuMock />
-			<SubscriptionButton /> */}
-			{/* Warunkowe renderowanie nawigacji na stronach innych niż strona startowa */}
+			{isWelcomePage ? null :<UserMenuMock />}
+			{isWelcomePage ? null :<SubscriptionButton />}
 			{isWelcomePage ? null : <Navigation />}
 			
 			<Suspense fallback={<div>Loading...</div>}>

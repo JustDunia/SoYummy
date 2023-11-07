@@ -12,7 +12,7 @@ export const selectUserId = (state) => {
   // console.log("SELECTOR, token", token);
 
   const decodedID = jwtDecode(token).id;
-  // console.log("DECODE ID FROM TOKEN", decodedID);
+  console.log("DECODE ID FROM TOKEN", decodedID);
   return decodedID;
 
   // if (token) {

@@ -1,79 +1,73 @@
-import { createSlice } from "@reduxjs/toolkit";
-import {
-  register,
-  logIn,
-  logOut,
-  currentUser,
-  subscription,
-} from "./auth.operations";
+import { createSlice } from '@reduxjs/toolkit'
+import { register, logIn, logOut, currentUser, subscription } from './auth.operations'
 
 const initialState = {
-  user: { username: null, email: null, userId: null },
-  token: null,
-  isLoggedIn: false,
-  isRefreshing: false,
-  error: null,
-};
+	user: { username: null, email: null, userId: null },
+	token: null,
+	isLoggedIn: false,
+	isRefreshing: false,
+	error: null,
+}
 
 const handleRejected = (state, action) => {
-  state.error = action.payload.message;
-};
+	state.error = action.payload.message
+}
 
 const authSlice = createSlice({
-  name: "auth",
-  initialState,
-  extraReducers: {
-    [register.fulfilled](state, action) {
-      state.user = action.payload.user;
-      state.token = action.payload.token;
-      state.isLoggedIn = true;
-    },
-    [register.rejected]: handleRejected,
+	name: 'auth',
+	initialState,
+	extraReducers: {
+		[register.fulfilled](state, action) {
+			state.user = action.payload.user
+			state.token = action.payload.token
+			state.isLoggedIn = true
+		},
+		[register.rejected]: handleRejected,
 
-    [logIn.fulfilled](state, action) {
-      state.user = action.payload.user;
-      state.token = action.payload.user.token;
-      state.isLoggedIn = true;
-    },
-    [logIn.rejected]: handleRejected,
+		[logIn.fulfilled](state, action) {
+			state.user = action.payload.user
+			state.token = action.payload.user.token
+			state.isLoggedIn = true
+		},
+		[logIn.rejected]: handleRejected,
 
-    [logOut.fulfilled](state, action) {
-      state.user = null;
-      state.token = null;
-      state.isLoggedIn = false;
-    },
-    [logOut.rejected]: handleRejected,
+		[logOut.fulfilled](state, action) {
+			state.user = null
+			state.token = null
+			state.isLoggedIn = false
+		},
+		[logOut.rejected]: handleRejected,
 
-    // spr logikę z api na refresh user
+		// spr logikę z api na refresh user
 
-    [currentUser.pending](state) {
-      state.isRefreshing = true;
-    },
-    [currentUser.fulfilled](state, action) {
-      state.user = action.payload.user;
-      state.isLoggedIn = true;
-      state.isRefreshing = false;
-    },
-    [currentUser.rejected](state) {
-      state.isRefreshing = false;
-    },
+		[currentUser.pending](state) {
+			state.isRefreshing = true
+		},
+		[currentUser.fulfilled](state, action) {
+			state.user = action.payload.user
+			state.isLoggedIn = true
+			state.isRefreshing = false
+		},
+		[currentUser.rejected](state) {
+			state.isRefreshing = false
+		},
 
-    [subscription.pending](state) {
-      state.isRefreshing = true;
-    },
-    [subscription.fulfilled](state, action) {
-      console.log(action.payload);
-      state.user.isSubscriber = action.payload.userData.isSubscriber;
-      state.isLoggedIn = true;
-      state.isRefreshing = false;
-    },
-    [subscription.rejected](state) {
-      state.isRefreshing = false;
-    },
-  },
-});
+		[subscription.pending](state) {
+			state.isRefreshing = true
+		},
+		[subscription.fulfilled](state, action) {
+			console.log(action.payload)
+			state.user.isSubscriber = action.payload.userData.isSubscriber
+			state.isLoggedIn = true
+			state.isRefreshing = false
+		},
+		[subscription.rejected](state) {
+			state.isRefreshing = false
+		},
+	},
+})
 
-export const authReducer = authSlice.reducer;
+export const authReducer = authSlice.reducer
 
 // KOD ANI
 // import { createSlice } from '@reduxjs/toolkit';

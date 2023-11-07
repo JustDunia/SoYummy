@@ -30,7 +30,11 @@ const addOwnRecipe = async recipe => recipe.save()
  */
 const removeOwnRecipe = async recipeId => Recipe.findByIdAndRemove(recipeId)
 
-const getRecipeById = async recipeId => Recipe.findById(recipeId)
+const getRecipeById = async recipeId =>
+	Recipe.findById(recipeId).populate({
+		path: 'ingredients.id',
+		model: 'Ingredient',
+	})
 
 const getRecipeCategories = async () => Recipe.distinct('category').sort()
 

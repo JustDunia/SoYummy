@@ -2,12 +2,12 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import {
   persistStore,
   persistReducer,
-  FLUSH,
-  REHYDRATE,
-  PAUSE,
-  PERSIST,
-  PURGE,
-  REGISTER,
+  // FLUSH,
+  // REHYDRATE,
+  // PAUSE,
+  // PERSIST,
+  // PURGE,
+  // REGISTER,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
@@ -34,12 +34,12 @@ const authPersistConfig = {
   storage,
   whitelist: [
     "auth",
-    "recipes",
-    "favorite",
-    "search",
-    "ownRecipes",
-    "ingredients",
-    "shoppingList",
+    // "recipes",
+    // "favorite",
+    // "search",
+    // "ownRecipes",
+    // "ingredients",
+    // "shoppingList",
   ],
 };
 
@@ -50,7 +50,8 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+        ignoredActions: false,
+        // ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }),
 });

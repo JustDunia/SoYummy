@@ -1,11 +1,10 @@
 import { useParams } from 'react-router'
 import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { getRecipe } from '../../redux/recipes/recipes.operations'
-import { selectRecipe } from '../../redux/recipes/recipes.selectors'
-
 import RecipePageHeader from './Components/RecipePageHeader/RecipePageHeader'
 import IngredientsList from './Components/IngredientsList/IngredientsList'
+import Preparation from './Components/Preparation/Preparation'
 
 const RecipePage = () => {
 	const params = useParams()
@@ -16,12 +15,11 @@ const RecipePage = () => {
 		dispatch(getRecipe(recipeId))
 	}, [dispatch])
 
-	const recipe = useSelector(selectRecipe)
-
 	return (
 		<div>
 			<RecipePageHeader />
 			<IngredientsList />
+			<Preparation/>
 		</div>
 	)
 }

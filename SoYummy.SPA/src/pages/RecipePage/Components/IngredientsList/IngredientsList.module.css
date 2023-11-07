@@ -1,5 +1,7 @@
 .ingredientsList {
 	padding-inline: 16px;
+	margin-inline: auto;
+	max-width: 480px;
 }
 
 .listHeader {
@@ -19,7 +21,12 @@
 	gap: 20px;
 }
 
-@media (min-width: 768px){
+@media (min-width: 768px) {
+	.ingredientsList {
+		padding-inline: 24px;
+		max-width: 704px;
+	}
+
 	.listHeader {
 		margin-bottom: 28px;
 		padding: 0 20px;
@@ -31,13 +38,13 @@
 	}
 }
 
-@media (min-width: 1440px){
+@media (min-width: 1440px) {
 	.ingredientsList {
 		max-width: 1240px;
-		margin-inline: auto;
 	}
 
 	.listHeader {
+		margin-top: 0;
 		margin-bottom: 40px;
 		padding: 0 44px;
 	}

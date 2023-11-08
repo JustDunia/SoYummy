@@ -1,6 +1,7 @@
 import { Outlet } from 'react-router-dom'
 import { Suspense } from 'react'
 import Navigation from '../components/Navigation/Navigation'
+import Footer from './Footer/Footer'
 
 import { SubscriptionButton } from './SubscriptionButton/SubscriptionButton.jsx'
 
@@ -15,6 +16,7 @@ export const SharedLayout = () => {
 			<Suspense fallback={<div>Loading...</div>}>
 				<Outlet />
 			</Suspense>
+			<Footer />
 		</div>
 	)
 }

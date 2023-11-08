@@ -20,11 +20,13 @@
 
 .userLogo {
 	position: relative;
+	height: 40px;
+	width: 40px;
 }
 
 .username {
 	color: #22252a;
-	font-family: "Poppins", sans-serif;
+	font-family: 'Poppins', sans-serif;
 	font-size: 12px;
 	font-style: normal;
 	font-weight: 600;
@@ -33,26 +35,22 @@
 
 /* <<<Tablet>>> */
 @media screen and (min-width: 768px) {
-
 	.userContainer {
-	right: 114px;
-}
-
-.userLogoContainer {
-	width: 44px;
-	height: 44px;
-}
-
-.username {
-	font-size: 14px;
-}
+		right: 114px;
 	}
+
+	.userLogoContainer {
+		width: 44px;
+		height: 44px;
+	}
+
+	.username {
+		font-size: 14px;
+	}
+}
 /* <<<Desktop>>> */
 @media screen and (min-width: 1440px) {
-	
 	.userContainer {
-	right: 211px;
-}
-
-
+		right: 211px;
 	}
+}

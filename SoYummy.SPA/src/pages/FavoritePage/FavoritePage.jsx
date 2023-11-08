@@ -4,9 +4,14 @@ import { selectUserId } from "../../redux/auth/auth.selectors";
 import { selectFavoriteRecipes } from "../../redux/favorite/favorite.selectors";
 
 import { RecipesContainer } from "../../components/RecipesContainer/RecipesContainer";
-import { getFavorite } from "../../redux/favorite/favorite.operations";
+import {
+  getFavorite,
+  removeFromFavorites,
+} from "../../redux/favorite/favorite.operations";
 import { selectRecipesPopular } from "../../redux/recipes/recipes.selectors";
 import { getRecipesPopular } from "../../redux/recipes/recipes.operations";
+
+import css from "./FavoritePage.module.css";
 
 const FavoritePage = () => {
   const dispatch = useDispatch();
@@ -20,40 +25,20 @@ const FavoritePage = () => {
   //   dispatch(getFavorite());
   // }, [dispatch]);
 
+  const handleRemoveFav = (e) => {
+    e.preventDefault;
+    dispatch(removeFromFavorites(recipeId));
+  };
+
   const favoriteRecipes = useSelector(selectRecipesPopular).slice(0, 8);
-  // DO PODMIANKI NA FAVORITE
-  // const favoriteRecipes = useSelector(selectFavoriteRecipes);
-
-  // zalążek paginacji:
-  // const usePagination = (items, itemsPerPage) => {
-  //   const [currentPage, setCurrentPage] = React.useState(1);
-  //   const [totalPages, setTotalPages] = React.useState(0);
-
-  //   useEffect(() => {
-  //     if (items) {
-  //       setTotalPages(Math.ceil(items.length / itemsPerPage));
-  //     }
-  //   }, [items, itemsPerPage]);
-
-  //   const currentItems = React.useMemo(() => {
-  //     const start = (currentPage - 1) * itemsPerPage;
-  //     const end = start + itemsPerPage;
-  //     return items.slice(start, end);
-  //   }, [currentPage, itemsPerPage, items]);
-
-  //   return {
-  //     setCurrentPage,
-  //     currentItems,
-  //     currentPage,
-  //     totalPages,
-  //   };
-  // };
 
   return (
-    <div>
-      <h2>Favorite Recipes</h2>
-      <RecipesContainer recipes={favoriteRecipes} />
-      {/* PAGINACJA */}
+    <div className={css.pageWrapper}>
+      <div>
+        <h2 className={css.pageTitle}>Favorite Recipes</h2>
+        <RecipesContainer recipes={favoriteRecipes} remove={handleRemoveFav} />
+        {/* PAGINACJA */}
+      </div>
     </div>
   );
 };

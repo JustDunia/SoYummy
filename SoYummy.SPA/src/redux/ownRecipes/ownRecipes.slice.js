@@ -35,7 +35,9 @@ const ownRecipesSlice = createSlice({
       .addCase(removeOwnRecipe.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.ownRecipes = null;
+        // state.ownRecipes = state.ownRecipes.filter(
+        //   (recipe) => recipe.id !== action.payload
+        // );
       })
       .addCase(removeOwnRecipe.rejected, (state, action) => {
         state.isLoading = false;

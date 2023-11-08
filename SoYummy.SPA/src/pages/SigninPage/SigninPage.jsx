@@ -12,14 +12,7 @@ import { useSelector } from "react-redux"; // Importuj funkcję useSelector
 
 import LogInForm from "../../components/LogInForm/LogInForm";
 
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux"; // Importuj funkcję useSelector
-
-import { LogInForm } from "../../components/LogInForm";
-
-
-export const SigninPage = () => {
+const SigninPage = () => {
   const navigate = useNavigate();
   const [hasRedirected, setHasRedirected] = useState(false);
 
@@ -49,11 +42,6 @@ export const SigninPage = () => {
         <LogInForm />
       </div>
     </section>
-
-    <div>
-      <h1>Login user:</h1>
-      <LogInForm />
-    </div>
 
   );
 };

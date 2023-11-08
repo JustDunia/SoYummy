@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectFavoriteRecipes } from '../../redux/favorite/favorite.selectors'
-
+import { Pagination } from '../../components/Pagination/Pagination'
 import { RecipesContainer } from '../../components/RecipesContainer/RecipesContainer'
 import { getFavorite, removeFromFavorites } from '../../redux/favorite/favorite.operations'
 
@@ -26,7 +26,7 @@ const FavoritePage = () => {
 			<div>
 				<h2 className={css.pageTitle}>Favorite Recipes</h2>
 				<RecipesContainer recipes={recipes} remove={handleRemoveFav} />
-				{/* PAGINACJA */}
+				<Pagination />
 			</div>
 		</div>
 	)

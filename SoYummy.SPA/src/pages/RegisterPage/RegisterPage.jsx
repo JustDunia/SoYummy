@@ -20,7 +20,7 @@ const RegisterPage = () => {
           sizes="(min-width: 1280px) 532px, (min-width: 768px) 409px, (min-width: 320px) 285px, 100vw"
           alt="Register hero"
         />
-        <RegisterForm />
+        <Register />
       </div>
     </section>
   );

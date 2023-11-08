@@ -14,7 +14,7 @@ export const SharedLayout = () => {
 		<div>
 			{/* <UserMenuMock />  */}
 			{/* <SubscriptionButton /> */}
-			{/* <Navigation /> */}
+			<Navigation />
 			
 
 			{isWelcomePage ? null :<UserMenuMock />}

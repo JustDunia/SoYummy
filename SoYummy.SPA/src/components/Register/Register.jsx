@@ -7,12 +7,6 @@ import css from "./Register.module.css";
 
 const Register = () => {
 
-import { useDispatch } from "react-redux";
-import { register } from "../../redux/auth/auth.operations";
-import css from "./Register.module.css";
-
-export const Register = () => {
-
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
@@ -87,22 +81,4 @@ export const Register = () => {
 };
 
 export default Register;
-
-    <form className={css.form} onSubmit={handleSubmit} autoComplete="off">
-      <label className={css.label}>
-        Username
-        <input type="text" name="username" />
-      </label>
-      <label className={css.label}>
-        Email
-        <input type="email" name="email" />
-      </label>
-      <label className={css.label}>
-        Password
-        <input type="password" name="password" />
-      </label>
-      <button type="submit">Register</button>
-    </form>
-  );
-};
 

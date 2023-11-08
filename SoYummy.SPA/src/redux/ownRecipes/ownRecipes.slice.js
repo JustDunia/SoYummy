@@ -5,49 +5,56 @@ import {
   getOwnRecipe,
 } from "./ownRecipes.operations";
 
-const handlePending = (state) => {
-  state.isLoading = true;
-};
-
-const handleRejected = (state, action) => {
-  state.isLoading = false;
-  state.error = action.payload;
+const initialState = {
+  ownRecipes: [],
+  isLoading: false,
+  error: null,
 };
 
 const ownRecipesSlice = createSlice({
   name: "ownRecipes",
-  initialState: {
-    ownRecipes: [],
-    isLoading: false,
-    error: null,
-  },
+  initialState,
   reducers: {},
-  extraReducers: {
-    [addOwnRecipe.pending]: handlePending,
-    [addOwnRecipe.fulfilled](state, action) {
-      console.log("ADD FULLFIELD");
-      state.isLoading = false;
-      state.error = null;
-    },
-    [addOwnRecipe.rejected]: handleRejected,
-
-    [removeOwnRecipe.pending]: handlePending,
-    [removeOwnRecipe.fulfilled](state, action) {
-      console.log("REMOVED FULLFIELD");
-      state.isLoading = false;
-      state.error = null;
-    },
-    [removeOwnRecipe.rejected]: handleRejected,
-
-    [getOwnRecipe.pending]: handlePending,
-    [getOwnRecipe.fulfilled](state, action) {
-      console.log("ACTION PAYLOAD", action.payload);
-      state.isLoading = false;
-      state.error = null;
-      state.ownRecipes = action.payload.recipes;
-      console.log("AFTER STATE UPDATE", state.favoriteRecipes);
-    },
-    [getOwnRecipe.rejected]: handleRejected,
+  extraReducers: (builder) => {
+    builder
+      .addCase(addOwnRecipe.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(addOwnRecipe.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        state.ownRecipes = action.payload;
+      })
+      .addCase(addOwnRecipe.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error;
+      })
+      .addCase(removeOwnRecipe.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(removeOwnRecipe.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        // state.ownRecipes = state.ownRecipes.filter(
+        //   (recipe) => recipe.id !== action.payload
+        // );
+      })
+      .addCase(removeOwnRecipe.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error;
+      })
+      .addCase(getOwnRecipe.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getOwnRecipe.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        state.ownRecipes = action.payload.recipes;
+      })
+      .addCase(getOwnRecipe.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error;
+      });
   },
 });
 

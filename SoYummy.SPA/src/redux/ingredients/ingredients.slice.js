@@ -4,42 +4,43 @@ import {
   searchRecipesByIngredient,
 } from "./ingredients.operations";
 
-const handlePending = (state) => {
-  state.isLoading = true;
-};
-
-const handleRejected = (state, action) => {
-  state.isLoading = false;
-  state.error = action.payload;
+const initialState = {
+  ingredientList: [],
+  recipesByIngredient: [],
+  isLoading: false,
+  error: null,
 };
 
 const ingredientsSlice = createSlice({
   name: "ingredients",
-  initialState: {
-    ingredientList: [],
-    recipesByIngredient: [],
-    isLoading: false,
-    error: null,
-  },
+  initialState,
   reducers: {},
-  extraReducers: {
-    [getIngredientList.pending]: handlePending,
-    [getIngredientList.fulfilled](state, action) {
-      console.log("ingedients FULLFIELD");
-      state.isLoading = false;
-      state.error = null;
-      state.ingredientList = action.payload;
-    },
-    [getIngredientList.rejected]: handleRejected,
-
-    [searchRecipesByIngredient.pending]: handlePending,
-    [searchRecipesByIngredient.fulfilled](state, action) {
-      console.log("RecipesByIngredient FULLFIELD");
-      state.isLoading = false;
-      state.error = null;
-      state.recipesByIngredient = action.payload;
-    },
-    [searchRecipesByIngredient.rejected]: handleRejected,
+  extraReducers: (builder) => {
+    builder
+      .addCase(getIngredientList.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getIngredientList.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        state.ingredientList = action.payload;
+      })
+      .addCase(getIngredientList.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error;
+      })
+      .addCase(searchRecipesByIngredient.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(searchRecipesByIngredient.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        state.recipesByIngredient = action.payload;
+      })
+      .addCase(searchRecipesByIngredient.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error;
+      });
   },
 });
 

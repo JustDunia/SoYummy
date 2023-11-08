@@ -1,15 +1,35 @@
-import { useSelector } from "react-redux";
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { selectFavoriteRecipes } from '../../redux/favorite/favorite.selectors'
 
-// import { userName, isUserLoged } from "../../redux/auth/selectors";
+import { RecipesContainer } from '../../components/RecipesContainer/RecipesContainer'
+import { getFavorite, removeFromFavorites } from '../../redux/favorite/favorite.operations'
+
+import css from './FavoritePage.module.css'
 
 const FavoritePage = () => {
-  // console.log("favorite page");
-  // const user = useSelector(userName);
-  // const isLogged = useSelector(isUserLoged);
+	const dispatch = useDispatch()
 
-  // console.log("USER:", user);
-  // console.log("LOGGED ?:", isLogged);
-  return <h2> FavoritePage</h2>;
-};
+	useEffect(() => {
+		dispatch(getFavorite())
+	}, [dispatch])
 
-export default FavoritePage;
+	const handleRemoveFav = e => {
+		e.preventDefault
+		dispatch(removeFromFavorites(recipeId))
+	}
+
+	const recipes = useSelector(selectFavoriteRecipes)
+
+	return (
+		<div className={css.pageWrapper}>
+			<div>
+				<h2 className={css.pageTitle}>Favorite Recipes</h2>
+				<RecipesContainer recipes={recipes} remove={handleRemoveFav} />
+				{/* PAGINACJA */}
+			</div>
+		</div>
+	)
+}
+
+export default FavoritePage

@@ -1,11 +1,5 @@
-@import '../../constants/colors.css';
-@import '../../constants/vars.css';
-
-* {
-	box-sizing: border-box;
-}
-
 .mainPageContainer {
+	padding: 8px;
 	margin-top: 760px;
 	margin-inline: auto;
 	max-width: 343px;

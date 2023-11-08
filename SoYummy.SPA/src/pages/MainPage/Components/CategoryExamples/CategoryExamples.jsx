@@ -1,16 +1,19 @@
 import css from './CategoryExamples.module.css'
 import RecipePreviewBox from '../../../../components/RecipePreviewBox/RecipePreviewBox'
 import SeeAllButton from '../SeeAllButton/SeeAllButton'
-
 import { useSelector } from 'react-redux'
 import { selectRecipesMainPage } from '../../../../redux/recipes/recipes.selectors'
+import { getRecipe } from '../../../../redux/recipes/recipes.operations'
+import { useNavigate } from 'react-router-dom'
 
-const CategoryExamples = props => {
-	const { category } = props
+const CategoryExamples = ({ category }) => {
+	const navigate = useNavigate()
 
 	const recipes = useSelector(selectRecipesMainPage)
-
 	const recipesForCategory = recipes[category]
+	const handleClick = id => {
+		navigate(`/recipe/${id}`)
+	}
 	return (
 		<>
 			<h2 className={css.categoryName}>{category}</h2>
@@ -21,7 +24,7 @@ const CategoryExamples = props => {
 							key={_id}
 							img={preview}
 							productName={title}
-							onClick={() => console.log(title)}
+							onClick={() => handleClick(_id)}
 						/>
 					))}
 			</div>

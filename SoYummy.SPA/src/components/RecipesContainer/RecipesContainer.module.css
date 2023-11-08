@@ -1,0 +1,17 @@
+.recipesContainer {
+  margin: 0 16px 40px 16px;
+}
+
+@media (min-width: 768px) {
+  .recipesContainer {
+    margin: 0 32px 50px 32px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .recipesContainer {
+    margin: auto;
+    margin: 0 100px 50px 100px;
+    max-width: 1240px;
+  }
+}

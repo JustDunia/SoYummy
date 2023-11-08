@@ -22,82 +22,52 @@ const handleRejected = (state, action) => {
 const authSlice = createSlice({
   name: "auth",
   initialState,
-  extraReducers: {
-    [register.fulfilled](state, action) {
-      state.user = action.payload.user;
-      state.token = action.payload.token;
-      state.isLoggedIn = true;
-    },
-    [register.rejected]: handleRejected,
-
-    [logIn.fulfilled](state, action) {
-      state.user = action.payload.user;
-      state.token = action.payload.user.token;
-      state.isLoggedIn = true;
-    },
-    [logIn.rejected]: handleRejected,
-
-    [logOut.fulfilled](state, action) {
-      state.user = null;
-      state.token = null;
-      state.isLoggedIn = false;
-    },
-    [logOut.rejected]: handleRejected,
-
-    // spr logikę z api na refresh user
-
-    [currentUser.pending](state) {
-      state.isRefreshing = true;
-    },
-    [currentUser.fulfilled](state, action) {
-      state.user = action.payload.user;
-      state.isLoggedIn = true;
-      state.isRefreshing = false;
-    },
-    [currentUser.rejected](state) {
-      state.isRefreshing = false;
-    },
-
-    [subscription.pending](state) {
-      state.isRefreshing = true;
-    },
-    [subscription.fulfilled](state, action) {
-      console.log(action.payload);
-      state.user.isSubscriber = action.payload.userData.isSubscriber;
-      state.isLoggedIn = true;
-      state.isRefreshing = false;
-    },
-    [subscription.rejected](state) {
-      state.isRefreshing = false;
-    },
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(register.fulfilled, (state, action) => {
+        state.user = action.payload.user;
+        state.token = action.payload.token;
+        state.isLoggedIn = true;
+      })
+      .addCase(register.rejected, handleRejected)
+      .addCase(logIn.fulfilled, (state, action) => {
+        state.user = action.payload.user;
+        state.token = action.payload.user.token;
+        state.isLoggedIn = true;
+      })
+      .addCase(logIn.rejected, handleRejected)
+      .addCase(logOut.fulfilled, (state, action) => {
+        state.user = null;
+        state.token = null;
+        state.isLoggedIn = false;
+        state.isRefreshing = false;
+      })
+      .addCase(logOut.rejected, handleRejected)
+      .addCase(currentUser.pending, (state) => {
+        state.isRefreshing = true;
+      })
+      .addCase(currentUser.fulfilled, (state, action) => {
+        state.user.username = action.payload.username;
+        state.isLoggedIn = true;
+        state.isRefreshing = false;
+      })
+      .addCase(currentUser.rejected, (state) => {
+        state.isRefreshing = false;
+      })
+      .addCase(subscription.pending, (state) => {
+        state.isRefreshing = true;
+      })
+      .addCase(subscription.fulfilled, (state, action) => {
+        console.log(action.payload);
+        state.user.isSubscriber = action.payload.userData.isSubscriber;
+        state.isLoggedIn = true;
+        state.isRefreshing = false;
+      })
+      .addCase(subscription.rejected, (state) => {
+        state.isRefreshing = false;
+      });
   },
 });
 
 export const authReducer = authSlice.reducer;
-
-// KOD ANI
-// import { createSlice } from '@reduxjs/toolkit';
-
-// const initialState = {
-//   token: '',
-//   theme: 'light',
-// };
-
-// export const userSlice = createSlice({
-//   name: 'user',
-//   initialState,
-//   reducers: {
-//     setUser: (state, action) => {
-//       state.token = action.payload;
-//     },
-//     clearUser: state => {
-//       state.token = '';
-//     },
-//     setTheme: (state, action) => {
-//       state.theme = action.payload;
-//     },
-//   },
-// });
-
-// export default userSlice;
-// export const { setUser, clearUser, setTheme } = userSlice.actions;

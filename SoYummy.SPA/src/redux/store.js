@@ -19,32 +19,6 @@ import { ownRecipesReducer } from "./ownRecipes/ownRecipes.slice";
 import { shoppingListReducer } from "./shoppingList/shoppingList.slice";
 import { ingredientsReducer } from "./ingredients/ingredients.slice";
 
-// const persistConfig = {
-//   key: "auth",
-//   storage,
-//   whitelist: ["token"],
-// };
-
-// export const store = configureStore({
-//   reducer: {
-//     auth: persistReducer(persistConfig, authReducer),
-//     recipes: recipesReducer,
-//     favorite: favoriteReducer,
-//     search: searchReducer,
-//     // shoppingList: shoppingListReducer,
-//   },
-//   middleware: (getDefaultMiddleware) =>
-//     getDefaultMiddleware({
-//       serializableCheck: {
-//         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-//       },
-//     }),
-// });
-
-// export const persistor = persistStore(store);
-
-// NIECO INNA WERSJA STORE:
-
 const rootReducer = combineReducers({
   auth: authReducer,
   recipes: recipesReducer,
@@ -60,12 +34,12 @@ const authPersistConfig = {
   storage,
   whitelist: [
     "auth",
-    "recipes",
-    "favorite",
-    "search",
-    "ownRecipes",
-    "ingredients",
-    "shoppingList",
+    // "recipes",
+    // "favorite",
+    // "search",
+    // "ownRecipes",
+    // "ingredients",
+    // "shoppingList",
   ],
 };
 
@@ -76,6 +50,7 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
+        // ignoredActions: false,
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }),

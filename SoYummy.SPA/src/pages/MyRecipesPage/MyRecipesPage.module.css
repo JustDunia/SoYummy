@@ -1,0 +1,32 @@
+.pageTitle {
+  color: #001833;
+  font-family: Poppins;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: -0.56px;
+  margin: 50px 0 50px 16px;
+}
+
+@media (min-width: 768px) {
+  .pageTitle {
+    font-size: 32px;
+    margin: 72px 0 100px 32px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .pageTitle {
+    font-size: 44px;
+    margin: 100px 0 100px 100px;
+  }
+
+  .pageWrapper {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    /* justify-items: center; */
+    align-items: center;
+    max-width: 100%;
+  }
+}

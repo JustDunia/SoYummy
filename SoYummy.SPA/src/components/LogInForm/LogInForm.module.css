@@ -31,7 +31,9 @@
   letter-spacing: -0.02em;
   text-align: left;
   margin-left: 28px;
-  padding-top: 2vh;
+  /* padding-top: 2vh; */
+  margin-top: 5%;
+  margin-bottom: 2%;
 }
 @media (max-width: 767px) {
   .signinTitle {
@@ -48,7 +50,7 @@
     font-weight: 600;
     line-height: 30px;
     letter-spacing: -0.02em;
-    padding-top: 1vh;
+    /* padding-top: 1vh; */
   }
 }
 
@@ -66,14 +68,16 @@
 }
 @media (min-width: 1279px) {
   .inputContainer {
-    margin: 27px 0;
+    /* margin: 27px 0; */
+    margin: 20px 0;
   }
 }
 
 .label {
   display: block;
   position: relative;
-  margin-bottom: 24px;
+  /* margin-bottom: 24px; */
+  margin-bottom: 16px;
 }
 
 .icon {

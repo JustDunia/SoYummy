@@ -65,11 +65,23 @@
   }
 }
 
-.label {
+.form {
+  width: 320px;
+}
+
+/* .label {
   display: block;
   position: relative;
   margin-bottom: 10px;
+} */
+
+.label {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
 }
+
+
 
 .icon {
   position: absolute;
@@ -163,13 +175,6 @@
 .error {
   color: red;
 
-  .form {
-    width: 320px;
-  }
-
-  .label {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 16px;
-  }
+  
 }
+ 

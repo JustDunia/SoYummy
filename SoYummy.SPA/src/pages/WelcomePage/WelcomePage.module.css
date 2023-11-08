@@ -1,20 +1,31 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 :root {
-  --breakpoint-sm: (min-width: 481px) and (max-width: 768px);
-  --breakpoint-md: (min-width: 769px) and (max-width: 1024px);
-  --breakpoint-lg: (min-width: 1025px);
+  --breakpoint-sm: (min-width: 375px);
+  --breakpoint-md: (min-width: 768px);
+  --breakpoint-lg: (min-width: 1440px);
   --primaryLightText: #FAFAFA;
   --greenAccent: #8BAA36;
 }
 
 .WelcomeImage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   background-image: url('../../images/welcomePage/welcome_hero_mob_1x.png');
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
   height: 100vh;
+  min-width: 375px;
 
   @media (--breakpoint-sm) {
-      background-image: url('../../images/welcomePage/welcome_hero_tab_1x.png');
+      background-image: url('../../images/welcomePage/welcome_hero_mob_2x.png');
   }
 
   @media (--breakpoint-md) {
@@ -22,7 +33,20 @@
   }
 
   @media (--breakpoint-lg) {
-      background-image: url('../../images/welcomePage/welcome_hero_desk_2x.jpg');
+      background-image: url('../../images/welcomePage/welcome_hero_desk_1x.png');
+  }
+
+  @media (min-resolution: 192dpi) {
+    
+      @media (--breakpoint-sm) {
+          background-image: url('../../images/welcomePage/welcome_hero_mob_2x.png');
+      }
+      @media (--breakpoint-md) {
+          background-image: url('../../images/welcomePage/welcome_hero_tab_2x.png');
+      }
+      @media (--breakpoint-lg) {
+          background-image: url('../../images/welcomePage/welcome_hero_desk_2x.png');
+      }
   }
 }
 
@@ -37,11 +61,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: auto;
   padding: auto;
   flex-direction: column;
   max-width: 305px;
-  padding-top: 228px;
   padding-left: 35px;
   padding-right: 35px;
 }

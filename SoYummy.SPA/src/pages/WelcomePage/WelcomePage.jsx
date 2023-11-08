@@ -1,10 +1,12 @@
 import styles from './WelcomePage.module.css'
 import { Link } from 'react-router-dom'
+import Logo from '../../components/Logo/Logo';
 
 const WelcomePage = () => {
 	return (
 		<div className={styles.WelcomeImage}>
 			<div className={styles.Container}>
+			<Logo />
 				<h3 className={styles.BigText}>Welcome to the app!</h3>
 				<p className={styles.MainText}>
 					This app offers more than just a collection of recipes - it is designed to be your very

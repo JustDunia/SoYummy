@@ -1,1 +1,1 @@
-export const selectSearchRecipes = (state) => recipes.search;
+export const selectSearchRecipes = (state) => state.recipes.search;

@@ -21,7 +21,7 @@ const Navigation = () => {
 							className={({ isActive }) =>
 								isActive ? css.navBarLinkActive : css.navBarLink
 							}
-							to="/categories"
+							to="/categories/:categoryName"
 						>
 							<span>Categories</span>
 						</NavLink>

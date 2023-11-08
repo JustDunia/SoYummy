@@ -69,17 +69,17 @@
   width: 320px;
 }
 
-/* .label {
+.label {
   display: block;
   position: relative;
   margin-bottom: 10px;
-} */
+}
 
-.label {
+/* .label {
   display: flex;
   flex-direction: column;
   margin-bottom: 16px;
-}
+} */
 
 
 

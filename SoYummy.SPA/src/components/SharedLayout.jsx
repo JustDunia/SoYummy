@@ -1,18 +1,8 @@
-import { Outlet, useLocation } from 'react-router-dom'
+import { Outlet } from 'react-router-dom'
 import { Suspense } from 'react'
 import Navigation from '../components/Navigation/Navigation'
 
-import { SubscriptionButton } from './SubscriptionButton/SubscriptionButton.jsx'
-
-import { UserMenuMock } from './UserMenuMock'
-
 export const SharedLayout = () => {
-	const location = useLocation()
-	const isWelcomePage =
-		location.pathname === '/' ||
-		location.pathname === '/register' ||
-		location.pathname === '/signin'
-	console.log('location.pathname:', location.pathname)
 	return (
 		<div>
 			<Navigation />

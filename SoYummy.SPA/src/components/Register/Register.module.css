@@ -1,4 +1,3 @@
-
 .registerForm {
   border-radius: 30px;
   background-color: #2a2c36;
@@ -164,13 +163,13 @@
 .error {
   color: red;
 
-.form {
-  width: 320px;
-}
+  .form {
+    width: 320px;
+  }
 
-.label {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 16px;
-
+  .label {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+  }
 }

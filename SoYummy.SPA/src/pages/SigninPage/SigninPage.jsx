@@ -12,13 +12,6 @@ import { useSelector } from "react-redux"; // Importuj funkcję useSelector
 
 import LogInForm from "../../components/LogInForm/LogInForm";
 
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux"; // Importuj funkcję useSelector
-
-import { LogInForm } from "../../components/LogInForm";
-
-
 export const SigninPage = () => {
   const navigate = useNavigate();
   const [hasRedirected, setHasRedirected] = useState(false);
@@ -50,41 +43,9 @@ export const SigninPage = () => {
       </div>
     </section>
 
-    <div>
-      <h1>Login user:</h1>
-      <LogInForm />
-    </div>
-
+    
   );
 };
 
 export default SigninPage;
 
-// import React, { useEffect, useState } from "react";
-// import { useNavigate } from "react-router-dom";
-
-// import { LogInForm } from "../../components/LogInForm";
-
-// export const SigninPage = () => {
-//   const navigate = useNavigate();
-//   const [hasRedirected, setHasRedirected] = useState(false);
-
-//   useEffect(() => {
-//     if (userIsLogged && !hasRedirected) {
-//       navigate("/main");
-//       setHasRedirected(true);
-//     }
-//     if (!userIsLogged) {
-//       setHasRedirected(false);
-//     }
-//   }, [userIsLogged, navigate, hasRedirected]);
-
-//   return (
-//     <div>
-//       <h1>Login user:</h1>
-//       <LogInForm />
-//     </div>
-//   );
-// };
-
-// export default SigninPage;
